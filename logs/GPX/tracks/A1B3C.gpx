@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <trk>
+        <name>A1B3C</name>
+        <trkseg>
+            <name>A-B</name>
+            <trkpt lat="0.179964" lon="109.142">
+                <ele>0.000000</ele>
+                <time>0</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.151">
+                <ele>0.000000</ele>
+                <time>1</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.16">
+                <ele>0.000000</ele>
+                <time>2</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.169">
+                <ele>0.000000</ele>
+                <time>3</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.178">
+                <ele>0.000000</ele>
+                <time>4</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.187">
+                <ele>0.000000</ele>
+                <time>5</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.196">
+                <ele>0.000000</ele>
+                <time>6</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.205">
+                <ele>0.000000</ele>
+                <time>7</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.214">
+                <ele>0.000000</ele>
+                <time>8</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.223">
+                <ele>0.000000</ele>
+                <time>9</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.232">
+                <ele>0.000000</ele>
+                <time>10</time>
+            </trkpt>
+        </trkseg>
+        <trkseg>
+            <name>B-C</name>
+            <trkpt lat="0.179964" lon="109.232">
+                <ele>0.000000</ele>
+                <time>10</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.235">
+                <ele>0.000000</ele>
+                <time>11</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.238">
+                <ele>0.000000</ele>
+                <time>12</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.241">
+                <ele>0.000000</ele>
+                <time>13</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.244">
+                <ele>0.000000</ele>
+                <time>14</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.247">
+                <ele>0.000000</ele>
+                <time>15</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.25">
+                <ele>0.000000</ele>
+                <time>16</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.253">
+                <ele>0.000000</ele>
+                <time>17</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.256">
+                <ele>0.000000</ele>
+                <time>18</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.259">
+                <ele>0.000000</ele>
+                <time>19</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.262">
+                <ele>0.000000</ele>
+                <time>20</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.265">
+                <ele>0.000000</ele>
+                <time>21</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.268">
+                <ele>0.000000</ele>
+                <time>22</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.271">
+                <ele>0.000000</ele>
+                <time>23</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.274">
+                <ele>0.000000</ele>
+                <time>24</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.277">
+                <ele>0.000000</ele>
+                <time>25</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.28">
+                <ele>0.000000</ele>
+                <time>26</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.283">
+                <ele>0.000000</ele>
+                <time>27</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.286">
+                <ele>0.000000</ele>
+                <time>28</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.289">
+                <ele>0.000000</ele>
+                <time>29</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.292">
+                <ele>0.000000</ele>
+                <time>30</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.295">
+                <ele>0.000000</ele>
+                <time>31</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.298">
+                <ele>0.000000</ele>
+                <time>32</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.301">
+                <ele>0.000000</ele>
+                <time>33</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.304">
+                <ele>0.000000</ele>
+                <time>34</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.307">
+                <ele>0.000000</ele>
+                <time>35</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.31">
+                <ele>0.000000</ele>
+                <time>36</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.313">
+                <ele>0.000000</ele>
+                <time>37</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.316">
+                <ele>0.000000</ele>
+                <time>38</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.319">
+                <ele>0.000000</ele>
+                <time>39</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.322">
+                <ele>0.000000</ele>
+                <time>40</time>
+            </trkpt>
+        </trkseg>
+    </trk>
+</gpx>
