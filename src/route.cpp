@@ -13,7 +13,7 @@ using namespace GPS;
 
 std::string Route::name() const
 {
-   return routeName.empty() ? "Unnamed Route" : routeName;
+    return routeName.empty() ? "Unnamed Route" : routeName;
 }
 
 unsigned int Route::numPositions() const
@@ -46,6 +46,7 @@ metres Route::netHeightGain() const
 {
     const bool implemented = false;
     assert(implemented);
+    return 0;
 }
 
 degrees Route::minLatitude() const
@@ -87,6 +88,7 @@ metres Route::maxElevation() const
 {
     const bool implemented = false;
     assert(implemented);
+    return 0;
 }
 
 degrees Route::maxGradient() const
