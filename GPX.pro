@@ -26,5 +26,3 @@ SOURCES += \
 INCLUDEPATH += headers/
 
 TARGET = $$_PRO_FILE_PWD_/execs/gpx
-
-LIBS += -lboost_unit_test_framework
