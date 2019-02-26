@@ -29,9 +29,15 @@ metres Route::totalLength() const
  // Matt
 metres Route::netLength() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    Position firstPosition = positions[0];
+    Position lastPosition = positions[positions.size() - 1];
+
+    if ( areSameLocation(firstPosition, lastPosition) )
+    {
+        return 0;
+    }
+    
+    return Position::distanceBetween(firstPosition, lastPosition);
 }
  // Matt
 metres Route::totalHeightGain() const

@@ -20,7 +20,7 @@ void testRoute(std::string fileName)
     cout << "Route name: " << route.name() << endl;
     // cout << "Number of positions in route: " << route.numPositions() << endl;
     cout << "Total route length: " << route.totalLength() << endl;
-    // cout << "Net route length: " << route.netLength() << endl;
+    cout << "Net route length: " << route.netLength() << endl;
     cout << endl;
 }
 
