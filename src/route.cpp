@@ -159,9 +159,12 @@ unsigned int Route::timesVisited(const std::string & soughtName) const
 // Callum A
 unsigned int Route::timesVisited(const Position & soughtPos) const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    unsigned int timesVisited{0};
+
+    for (const auto &i: positions)
+        if (areSameLocation(i, soughtPos)) timesVisited++;
+
+    return timesVisited;
 }
 
 std::string Route::buildReport() const
