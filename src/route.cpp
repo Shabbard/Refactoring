@@ -21,18 +21,19 @@ unsigned int Route::numPositions() const
     return positions.size();
 }
 
+// Matt
 metres Route::totalLength() const
 {
     return routeLength;
 }
-
+ // Matt
 metres Route::netLength() const
 {
     const bool implemented = false;
     assert(implemented);
     return 0;
 }
-
+ // Matt
 metres Route::totalHeightGain() const
 {
     const bool implemented = false;
@@ -40,6 +41,7 @@ metres Route::totalHeightGain() const
     return 0;
 }
 
+// Matt
 metres Route::netHeightGain() const
 {
     const bool implemented = false;
@@ -47,6 +49,7 @@ metres Route::netHeightGain() const
     return 0;
 }
 
+// Callum C
 degrees Route::minLatitude() const
 {
     const bool implemented = false;
@@ -54,6 +57,7 @@ degrees Route::minLatitude() const
     return 0;
 }
 
+// Callum C
 degrees Route::maxLatitude() const
 {
     const bool implemented = false;
@@ -61,6 +65,7 @@ degrees Route::maxLatitude() const
     return 0;
 }
 
+// Callum C
 degrees Route::minLongitude() const
 {
     const bool implemented = false;
@@ -68,6 +73,7 @@ degrees Route::minLongitude() const
     return 0;
 }
 
+// Callum C
 degrees Route::maxLongitude() const
 {
     const bool implemented = false;
@@ -75,6 +81,7 @@ degrees Route::maxLongitude() const
     return 0;
 }
 
+// Tom
 metres Route::minElevation() const
 {
     const bool implemented = false;
@@ -82,6 +89,7 @@ metres Route::minElevation() const
     return 0;
 }
 
+// Tom
 metres Route::maxElevation() const
 {
     const bool implemented = false;
@@ -89,6 +97,7 @@ metres Route::maxElevation() const
     return 0;
 }
 
+// Tom
 degrees Route::maxGradient() const
 {
     const bool implemented = false;
@@ -96,6 +105,7 @@ degrees Route::maxGradient() const
     return 0;
 }
 
+// Tom
 degrees Route::minGradient() const
 {
     const bool implemented = false;
@@ -103,6 +113,7 @@ degrees Route::minGradient() const
     return 0;
 }
 
+// Callum A
 degrees Route::steepestGradient() const
 {
     const bool implemented = false;
@@ -110,6 +121,7 @@ degrees Route::steepestGradient() const
     return 0;
 }
 
+// Callum A
 Position Route::operator[](unsigned int idx) const
 {
     const bool implemented = false;
@@ -117,13 +129,14 @@ Position Route::operator[](unsigned int idx) const
     return Position(0,0);
 }
 
+// Callum A
 Position Route::findPosition(const std::string & soughtName) const
 {
     const bool implemented = false;
     assert(implemented);
     return Position(0,0);
 }
-
+ // Callum A
 std::string Route::findNameOf(const Position & soughtPos) const
 {
     const bool implemented = false;
@@ -131,6 +144,7 @@ std::string Route::findNameOf(const Position & soughtPos) const
     return "";
 }
 
+// Callum A
 unsigned int Route::timesVisited(const std::string & soughtName) const
 {
     const bool implemented = false;
@@ -138,6 +152,7 @@ unsigned int Route::timesVisited(const std::string & soughtName) const
     return 0;
 }
 
+// Callum A
 unsigned int Route::timesVisited(const Position & soughtPos) const
 {
     const bool implemented = false;
