@@ -28,6 +28,7 @@ namespace GPS
       virtual void setGranularity(metres);
 
       // Returns the name of the Route, or "Unnamed Route" if nameless.
+      // Test comment
       std::string name() const;
 
       // Returns the number of stored route points.
