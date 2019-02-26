@@ -18,21 +18,23 @@ std::string Route::name() const
 
 unsigned int Route::numPositions() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    //const bool implemented = true;
+    //assert(implemented);
+    return (unsigned int)positions.size();
 }
 
 metres Route::totalLength() const
 {
+    // The total length of the Route; this is the sum of the distances between successive route points.
     return routeLength;
 }
 
 metres Route::netLength() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    // The distance between the first and last points on the Route.
+    //const bool implemented = true;
+    //assert(implemented)
+    return Position::distanceBetween(positions.front(),positions.back());
 }
 
 metres Route::totalHeightGain() const
