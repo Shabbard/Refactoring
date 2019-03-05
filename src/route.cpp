@@ -131,7 +131,20 @@ degrees Route::steepestGradient() const
 {
     const bool implemented = false;
     assert(implemented);
-    return 0;
+
+    auto firstPosition = positions.at(0);
+
+    int initialGradient{0}, initialElevation{firstPosition.elevation}, currentElevation{0}, steepest{0};
+    for(const auto &i: positions) {
+        double difference = currentElevation - i.elevation;
+        
+        if (difference > steepest)
+        {
+            steepest = difference;
+        }
+    }
+    
+    return steepest;
 }
 
 // Callum A
@@ -164,9 +177,14 @@ std::string Route::findNameOf(const Position & soughtPos) const
 // Callum A
 unsigned int Route::timesVisited(const std::string & soughtName) const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    Position position = this->findPosition(soughtName);
+
+    unsigned int timesVisited{0};
+
+    for (const auto &i: positions)
+        if (areSameLocation(i, position)) timesVisited++;
+
+    return timesVisited;
 }
 
 // Callum A
