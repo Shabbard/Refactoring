@@ -74,7 +74,7 @@ Track::Track(std::string source, bool isFileName, metres granularity)
     unsigned int num;
     this->granularity = granularity;
     if (isFileName) {
-        ifstream fs = ifstream(source);
+        ifstream fs(source);
         if (! fs.good()) throw invalid_argument("Error opening source file '" + source + "'.");
         oss << "Source file '" << source << "' opened okay." << endl;
         while (fs.good()) {
