@@ -136,9 +136,15 @@ Position Route::operator[](unsigned int idx) const
 // Callum A
 Position Route::findPosition(const std::string & soughtName) const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return Position(0,0);
+    auto position = std::find(positionNames.begin(), positionNames.end(), soughtName);
+
+    if (position == positionNames.end()) {
+        throw std::out_of_range("Position not found.");
+    }
+
+    auto index = std::distance(positionNames.begin(), position);
+
+    return positions.at(index);
 }
  // Callum A
 std::string Route::findNameOf(const Position & soughtPos) const
