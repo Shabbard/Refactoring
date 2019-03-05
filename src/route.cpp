@@ -58,9 +58,16 @@ metres Route::netHeightGain() const
 // Callum C
 degrees Route::minLatitude() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    degrees lowestLatitude = positions[0].latitude();
+    
+    for (int i = 0; i < positions.size(); i++)
+    {
+        if (lowestLatitude < positions[i].latitude())
+        {
+            lowestLatitude = positions[i].latitude();
+        }
+    }
+    return lowestLatitude;
 }
 
 // Callum C
