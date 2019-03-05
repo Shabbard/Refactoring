@@ -1,6 +1,7 @@
 #include <cassert>
 #include <cmath>
 #include <sstream>
+#include <stdexcept>
 
 #include "geometry.h"
 #include "earth.h"
