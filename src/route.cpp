@@ -133,10 +133,11 @@ degrees Route::steepestGradient() const
     assert(implemented);
 
     auto firstPosition = positions.at(0);
+    double initialElevation = firstPosition.elevation();
 
-    int initialGradient{0}, initialElevation{firstPosition.elevation}, currentElevation{0}, steepest{0};
+    double initialGradient{0}, currentElevation{0}, steepest{0};
     for(const auto &i: positions) {
-        double difference = currentElevation - i.elevation;
+        double difference = currentElevation - i.elevation();
         
         if (difference > steepest)
         {
