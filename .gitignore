@@ -1,4 +1,5 @@
 execs/gpx
+execs/gpx-tests
 execs/nmea-tests
 *.pro.user
 *.o
