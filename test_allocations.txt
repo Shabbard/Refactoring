@@ -1,18 +1,18 @@
 Route::totalLength() - N0755314
-Route::netLength() -
-Route::totalHeightGain() -
+Route::netLength() - 
+Route::totalHeightGain() - N0724106
 Route::netHeightGain() -
 Route::minLatitude() -
 Route::maxLatitude() - N0731234
-Route::minLongitude() -
+Route::minLongitude() - N0734498
 Route::maxLongitude() -
 Route::minElevation() -
 Route::maxElevation() -
 Route::maxGradient() -
 Route::minGradient() -
 Route::steepestGradient() -
-Route::operator[]() -
-Route::findPosition() -
+Route::operator[]() - N0727303
+Route::findPosition() - N0724629
 Route::findNameOf() -
 Route::timesVisited(string) -
 Route::timesVisited(Position) -
