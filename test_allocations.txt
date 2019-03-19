@@ -1,6 +1,6 @@
 Route::totalLength() - N0755314
-Route::netLength() -
-Route::totalHeightGain() -
+Route::netLength() - 
+Route::totalHeightGain() - N0724106
 Route::netHeightGain() -
 Route::minLatitude() -
 Route::maxLatitude() -
