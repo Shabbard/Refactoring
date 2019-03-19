@@ -12,7 +12,7 @@ Route::maxGradient() -
 Route::minGradient() -
 Route::steepestGradient() -
 Route::operator[]() - N0727303
-Route::findPosition() - N0724629
+Route::findPosition() - N0724629, N0734208
 Route::findNameOf() -
 Route::timesVisited(string) -
 Route::timesVisited(Position) -
@@ -20,6 +20,6 @@ Track::totalTime() - N0750902 N0751567
 Track::restingTime() -
 Track::travellingTime() -
 Track::maxSpeed() - N0733894
-Track::averageSpeed() - N0734208
+Track::averageSpeed() -
 Track::maxRateOfAscent() -
 Track::maxRateOfDescent() -
