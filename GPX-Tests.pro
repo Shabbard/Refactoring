@@ -23,7 +23,8 @@ SOURCES += \
     src/track.cpp \
     src/xmlparser.cpp \
     src/gpx-tests/name.cpp \
-    src/gpx-tests/numpositions.cpp
+    src/gpx-tests/numpositions.cpp \
+    src/gpx-tests/accessOperator.cpp
 
 
 INCLUDEPATH += headers/
