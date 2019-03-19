@@ -24,6 +24,7 @@ SOURCES += \
     src/xmlparser.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp
+    src/gpx-tests/steepestGradient.cpp
 
 
 INCLUDEPATH += headers/
