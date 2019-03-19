@@ -7,9 +7,9 @@ Route::minLatitude() - T0086696
 Route::maxLatitude() - N0731234, n0756079
 Route::minLongitude() - N0734498
 Route::maxLongitude() - N0732961
-Route::minElevation() -
+Route::minElevation() - N0749943
 Route::maxElevation() - N0749370, N0749364
-Route::maxGradient() - N0749943
+Route::maxGradient() - 
 Route::minGradient() -
 Route::steepestGradient() - N0745438
 Route::operator[]() - N0727303
