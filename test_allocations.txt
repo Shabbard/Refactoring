@@ -14,13 +14,10 @@ Route::minGradient() -
 Route::steepestGradient() - N0745438
 Route::operator[]() - N0727303
 Route::findPosition() - N0724629, N0734208 N0704377
-<<<<<<< HEAD
 Route::findNameOf() -
 Route::timesVisited(string) - T0084963
-=======
 Route::findNameOf() - N0741707
-Route::timesVisited(string) -
->>>>>>> 9881290653a8342f6cc273c60e810b17eba023d5
+Route::timesVisited(string) - N0763258
 Route::timesVisited(Position) -
 Track::totalTime() - N0750902 N0751567 N0774540
 Track::restingTime() - N0736563
