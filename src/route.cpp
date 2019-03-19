@@ -1,3 +1,4 @@
+
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -67,9 +68,19 @@ degrees Route::maxLatitude() const
 
 degrees Route::minLongitude() const
 {
-    const bool implemented = false;
+    const bool implemented = true;
     assert(implemented);
-    return 0;
+    degrees lowestLon = positions[0].longitude();
+
+    for (int i = 0; i < positions.size(); i++)
+    {
+        if (lowestLon < positions[i].longitude())
+        {
+            lowestLon = positions[i].longitude();
+        }
+    }
+
+    return lowestLon;
 }
 
 degrees Route::maxLongitude() const
