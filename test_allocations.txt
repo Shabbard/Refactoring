@@ -11,7 +11,7 @@ Route::maxElevation() -
 Route::maxGradient() -
 Route::minGradient() -
 Route::steepestGradient() -
-Route::operator[]() -
+Route::operator[]() - N0727303
 Route::findPosition() - N0724629
 Route::findNameOf() -
 Route::timesVisited(string) -
