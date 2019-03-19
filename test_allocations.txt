@@ -20,6 +20,6 @@ Track::totalTime() - N0750902 N0751567
 Track::restingTime() -
 Track::travellingTime() -
 Track::maxSpeed() -
-Track::averageSpeed() -
+Track::averageSpeed() - N0734208
 Track::maxRateOfAscent() -
 Track::maxRateOfDescent() -
