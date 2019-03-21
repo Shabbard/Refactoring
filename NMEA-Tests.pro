@@ -16,8 +16,7 @@ SOURCES += \
     src/geometry.cpp \
     src/logs.cpp \
     src/position.cpp \
-    src/nmea-tests.cpp \
-    src/parseNMEA.cpp
+    src/nmea-tests.cpp 
 
 INCLUDEPATH += headers/
 
