@@ -14,4 +14,10 @@ BOOST_AUTO_TEST_CASE( ele_absent )
    BOOST_CHECK_EQUAL( route.maxElevation(), NULL );
 }
 
+BOOST_AUTO_TEST_CASE( same_ele )
+{
+   Route route = Route(LogFiles::GPXRoutesDir + "same_ele.gpx", isFileName);
+   BOOST_CHECK_EQUAL( route.maxElevation(), 309 );
+}
+
 BOOST_AUTO_TEST_SUITE_END()
