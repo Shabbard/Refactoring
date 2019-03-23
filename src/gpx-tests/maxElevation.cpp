@@ -6,10 +6,6 @@
 
 using namespace GPS;
 
-
-
-
-
 BOOST_AUTO_TEST_SUITE( Route_maxElevation_N0774756 )
 
 BOOST_AUTO_TEST_CASE( ele_absent )
