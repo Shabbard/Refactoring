@@ -32,8 +32,10 @@ BOOST_AUTO_TEST_CASE(ItReturnsEmptyWithAnEmptyRoute)
 
 BOOST_AUTO_TEST_CASE(ItThrowsAnExceptionWhenTryingToAccessOutOfRange)
 {
-    // Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-    // BOOST_CHECK_THROW(route[1], std::out_of_range);
+    GridWorldTrack track = GridWorldTrack("A", 10, 0, gridWorld);
+    GridWorldRoute worldRoute = GridWorldRoute(track.toString(), gridWorld);
+    Route route = Route(worldRoute.toGPX(), false);
+    BOOST_CHECK_THROW(route[1], std::out_of_range);
 }
 
 BOOST_AUTO_TEST_CASE(ItCantAccessDataOutsideOfLogicalBounds)
