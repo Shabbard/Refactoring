@@ -26,8 +26,9 @@ SOURCES += \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
     src/gpx-tests/maxlongitude.cpp \
-    src/gpx-tests/maxLongitudeN0743797.cpp
-    src/gpx-tests/steepestGradient.cpp
+    src/gpx-tests/maxLongitudeN0743797.cpp \
+    src/gpx-tests/steepestGradient.cpp \
+    src/gpx-tests/findNameOf.cpp
 
 
 INCLUDEPATH += headers/
