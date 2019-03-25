@@ -15,6 +15,11 @@ const bool isFileName = true;
 
 GridWorld gridWorld;
 
+GridWorldRoute generateRoute(const GridWorldTrack & track)
+{
+    return GridWorldRoute(track.toString(), gridWorld);
+}
+
 // Tests accessing a position on the route under normal circumstances.
 BOOST_AUTO_TEST_CASE(ItCanAccessAPositionAtAnIndex)
 {
@@ -24,28 +29,30 @@ BOOST_AUTO_TEST_CASE(ItCanAccessAPositionAtAnIndex)
     BOOST_CHECK_EQUAL(route[0].toString(), gridWorld['A'].toString());
 }
 
-BOOST_AUTO_TEST_CASE(ItReturnsEmptyWithAnEmptyRoute)
-{
-    // Route route = Route(generator.closeAllElementsAndExtractString(), false);
-    // BOOST_CHECK_THROW(route[0], std::out_of_range);
-}
-
+// Ensures that the appropriate exception is thrown when trying to 
+// access a position at an index greater than the number of positions
 BOOST_AUTO_TEST_CASE(ItThrowsAnExceptionWhenTryingToAccessOutOfRange)
 {
     GridWorldTrack track = GridWorldTrack("A", 10, 0, gridWorld);
-    GridWorldRoute worldRoute = GridWorldRoute(track.toString(), gridWorld);
-    Route route = Route(worldRoute.toGPX(), false);
+    Route route = Route(generateRoute(track).toGPX(), false);
+
     BOOST_CHECK_THROW(route[1], std::out_of_range);
 }
 
-BOOST_AUTO_TEST_CASE(ItCantAccessDataOutsideOfLogicalBounds)
+BOOST_AUTO_TEST_CASE(ItAccessRepeatedPointsCorrectly)
 {
-    //
+    GridWorldTrack track = GridWorldTrack("MHMR", 10, 0, gridWorld);
+    Route route = Route(generateRoute(track).toGPX(), false);
+
+    BOOST_CHECK_EQUAL(route[0].toString(), gridWorld['M'].toString());
+    BOOST_CHECK_EQUAL(route[2].toString(), gridWorld['M'].toString());
 }
 
 BOOST_AUTO_TEST_CASE(ItDoesntAcceptANegativeIndex)
 {
-    //
+    GridWorldTrack track = GridWorldTrack("A", 10, 0, gridWorld);;
+    Route route = Route(generateRoute(track).toGPX(), false);
+    BOOST_CHECK_THROW(route[-1], std::out_of_range);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
