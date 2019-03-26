@@ -74,9 +74,19 @@ degrees Route::minLongitude() const
 
 degrees Route::maxLongitude() const
 {
-    const bool implemented = false;
+    const bool implemented = true;
     assert(implemented);
-    return 0;
+    degrees highestLon = positions[0].longitude();
+
+    for (int i = 0; i < positions.size(); i++)
+    {
+        if (highestLon > positions[i].longitude())
+        {
+            highestLon = positions[i].longitude();
+        }
+    }
+
+    return highestLon;
 }
 
 metres Route::minElevation() const
