@@ -4,6 +4,7 @@
 #include <cassert>
 #include <cmath>
 #include <stdexcept>
+#include <algorithm>
 
 #include "geometry.h"
 #include "xmlparser.h"
@@ -39,7 +40,7 @@ metres Route::netLength() const
     {
         return 0;
     }
-    
+
     return Position::distanceBetween(firstPosition, lastPosition);
 }
  // Matt
@@ -62,7 +63,7 @@ metres Route::netHeightGain() const
 degrees Route::minLatitude() const
 {
     degrees lowestLatitude = positions[0].latitude();
-    
+
     for (int i = 0; i < positions.size(); i++)
     {
         if (lowestLatitude < positions[i].latitude())
@@ -141,13 +142,13 @@ degrees Route::steepestGradient() const
     double initialGradient{0}, currentElevation{0}, steepest{0};
     for(const auto &i: positions) {
         double difference = currentElevation - i.elevation();
-        
+
         if (difference > steepest)
         {
             steepest = difference;
         }
     }
-    
+
     return steepest;
 }
 
