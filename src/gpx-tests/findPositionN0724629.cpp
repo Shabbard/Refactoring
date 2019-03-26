@@ -6,7 +6,7 @@
 
 using namespace GPS;
 
-BOOST_AUTO_TEST_SUITE( find_position_N0724629 )
+BOOST_AUTO_TEST_SUITE( Route_Find_Position_N0724629 )
 
 
 
