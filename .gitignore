@@ -3,3 +3,6 @@ execs/gpx-tests
 execs/nmea-tests
 *.pro.user
 *.o
+src/Makefile
+src/GPX-XML-Generator
+src/GPX-XML.cpp

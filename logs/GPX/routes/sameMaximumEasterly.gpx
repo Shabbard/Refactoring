@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>route_name</name>
+        <rtept lat="1.10000" lon="1.67800">
+            <name>point_name</name>
+            <ele>99</ele>
+        </rtept>
+        <rtept lat="1.20000" lon="1.67800">
+            <name>point_name</name>
+            <ele>88</ele>
+        </rtept>
+        <rtept lat="1.30000" lon="1.45678">
+            <name>point_name</name>
+            <ele>77</ele>
+        </rtept>
+    </rte>
+</gpx>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>route_name</name>
+        <rtept lat="1.10000" lon="1.67800">
+            <name>point_name</name>
+            <ele>99</ele>
+        </rtept>
+        <rtept lat="1.20000" lon="1.67800">
+            <name>point_name</name>
+            <ele>88</ele>
+        </rtept>
+        <rtept lat="1.30000" lon="1.45678">
+            <name>point_name</name>
+            <ele>77</ele>
+        </rtept>
+    </rte>
+</gpx>
