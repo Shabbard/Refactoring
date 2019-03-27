@@ -74,7 +74,7 @@ degrees Route::minLongitude() const     //MY FUNCTION
 
     for (int i = 0; i < positions.size(); i++)
     {
-        if (lowestLon < positions[i].longitude())
+        if (lowestLon > positions[i].longitude())
         {
             lowestLon = positions[i].longitude();
         }
