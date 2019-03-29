@@ -11,7 +11,10 @@ HEADERS += \
     headers/route.h \
     headers/track.h \
     headers/types.h \
-    headers/xmlparser.h
+    headers/xmlparser.h \
+    headers/xmlgenerator.h \
+    headers/gridworld.h \
+    headers/gridworld_route.h
 
 SOURCES += \
     src/earth.cpp \
@@ -22,6 +25,9 @@ SOURCES += \
     src/route.cpp \
     src/track.cpp \
     src/xmlparser.cpp \
+    src/xmlgenerator.cpp \
+    src/gridworld.cpp \
+    src/gridworld_route.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
     src/gpx-tests/maxLongitudeN0743797.cpp \
