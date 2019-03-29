@@ -1,25 +1,28 @@
-Route::totalLength() - N0755314
+Route::totalLength() - N0755314 N0699063 N0699064
 Route::netLength() - N0704050 N0745509, N0731739
-Route::totalHeightGain() - N0724106
+Route::totalHeightGain() - N0724106 n0733719
+Route::totalHeightGain() - N0724106, N0774446
 Route::netHeightGain() - N0701387
-Route::minLatitude() -
-Route::maxLatitude() - N0731234
-Route::minLongitude() - N0734498
-Route::maxLongitude() -
-Route::minElevation() -
-Route::maxElevation() -
-Route::maxGradient() -
+Route::minLatitude() - T0086696, N0727890
+Route::maxLatitude() - N0731234, n0756079, N0745180
+Route::minLongitude() - N0734498, N0735026
+Route::maxLongitude() - N0732961, N0729418, N0743797
+Route::minElevation() - N0749943, N0751891, N0749369
+Route::maxElevation() - N0749370, N0749364, N0774756
+Route::maxGradient() - 
 Route::minGradient() -
-Route::steepestGradient() -
+Route::steepestGradient() - N0745438, N0742908
 Route::operator[]() - N0727303
-Route::findPosition() - N0724629, N0734208
-Route::findNameOf() -
-Route::timesVisited(string) -
+Route::findPosition() - N0724629, N0734208 N0704377
+Route::findNameOf() - T0084963
+Route::timesVisited(string) - 
+Route::findNameOf() - N0741707, N0665742
+Route::timesVisited(string) - N0763258
 Route::timesVisited(Position) -
-Track::totalTime() - N0750902 N0751567
+Track::totalTime() - N0750902 N0751567 N0774540
 Track::restingTime() - N0736563
 Track::travellingTime() - 
-Track::maxSpeed() - N0733894 N0731688 , N0737110
-Track::averageSpeed() -
+Track::maxSpeed() - N0733894 N0736188 , N0737110
+Track::averageSpeed() - N0747947
 Track::maxRateOfAscent() -
 Track::maxRateOfDescent() -

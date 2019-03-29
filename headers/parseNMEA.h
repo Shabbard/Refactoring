@@ -19,6 +19,7 @@ namespace GPS
   using NMEAPair = std::pair<std::string, std::vector<std::string>>;
 
 
+
   /* Determine whether the parameter is a valid NMEA sentence, including verifying
    * the checksum.
    *
