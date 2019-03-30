@@ -157,6 +157,28 @@ BOOST_AUTO_TEST_CASE ( CanGetZeroLongitude )
 }
 
 /**
+* Test case: CanGetZeroLongitude
+* Use:       Checks that it is possible to obtain a zero value for elevation in a GPX log file.
+*/
+BOOST_AUTO_TEST_CASE ( CanGetZeroElevation )
+{
+	// Generate a GPX log file for the with GridWorld constructor for EquatorialMeridian.
+    GridWorldRoute routeLog = GridWorldRoute("LQHD", GridWorld(Earth::EquatorialMeridian, 0, 0));
+
+    // Converts the GridWorldRoute in to GPX format
+    std::string routeGPX = routeLog.toGPX(true, "CanGetZeroElevation");
+
+    std::string fileName = "CanGetZeroElevation-N0724629.gpx";
+
+    std::ofstream openedFile(LogFiles::GPXRoutesDir + fileName);
+    openedFile << routeGPX;
+    openedFile.close();
+
+    Route route = Route(LogFiles::GPXRoutesDir + fileName, isFileName);
+   	BOOST_CHECK_EQUAL( route.findPosition("L").elevation(), 0 );
+}
+
+/**
 * Test case: ThrowsOutOfRangeIfNameNotFound
 * Use:       Checks that the std::out_of_range exception is thrown if the specified name is not found.
 */
