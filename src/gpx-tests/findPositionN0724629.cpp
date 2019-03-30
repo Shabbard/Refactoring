@@ -5,6 +5,7 @@
 #include "logs.h"
 #include "route.h"
 #include "track.h"
+#include "earth.h"
 #include "gridworld_route.h"
 #include "xmlgenerator.h"
 
@@ -64,6 +65,28 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 
     Route route = Route(LogFiles::GPXRoutesDir + fileName, isFileName);
    	BOOST_CHECK_THROW( route.findPosition("K").elevation(), std::out_of_range );
+}
+
+/**
+* Test case: ThrowsOutOfRangeIfElevationNotFound
+* Use:       Checks that the std::out_of_range exception is thrown if the elevation is not found.
+*/
+BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
+{
+	// Generate a GPX log file for the with default GridWorld constructor
+    GridWorldRoute routeLog = GridWorldRoute(GridWorldRoute("EAL", GridWorld(Earth::NorthPole, 0, 1000)));
+
+    // Converts the GridWorldRoute in to GPX format
+    std::string routeGPX = routeLog.toGPX(true, "ThrowsOutOfRangeIfElevationNotFound");
+
+    std::string fileName = "ThrowsOutOfRangeIfElevationNotFound-N0724629.gpx";
+
+    std::ofstream openedFile(LogFiles::GPXRoutesDir + fileName);
+    openedFile << routeGPX;
+    openedFile.close();
+
+    Route route = Route(LogFiles::GPXRoutesDir + fileName, isFileName);
+   	BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
 }
 
 BOOST_AUTO_TEST_SUITE_END()
