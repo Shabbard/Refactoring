@@ -18,7 +18,7 @@ const bool isFileName = true;
 
 /**
 * Test case: CanGetPositiveLatitude
-* Use:       Checks that it is possible to obtain a Positive value for latitude in a GPX log file.
+* Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLatitude )
 {
@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLatitude )
 
 /**
 * Test case: CanGetPositiveLongitude
-* Use:       Checks that it is possible to obtain a Positive value for longitude in a GPX log file.
+* Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLongitude )
 {
@@ -58,6 +58,28 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLongitude )
 
     Route route = Route(LogFiles::GPXRoutesDir + fileName, isFileName);
    	BOOST_CHECK_EQUAL( route.findPosition("K").longitude(), 109.322 );
+}
+
+/**
+* Test case: CanGetPositiveElevation
+* Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositiveElevation )
+{
+   	// Generate a GPX log file for the with GridWorld constructor for CliftonCampus.
+    GridWorldRoute routeLog = GridWorldRoute("IJOF", GridWorld(Earth::CliftonCampus, 0, 0));
+
+    // Converts the GridWorldRoute in to GPX format.
+    std::string routeGPX = routeLog.toGPX(true, "CanGetPositiveElevation");
+
+    std::string fileName = "CanGetPositiveElevation-N0724629.gpx";
+
+    std::ofstream openedFile(LogFiles::GPXRoutesDir + fileName);
+    openedFile << routeGPX;
+    openedFile.close();
+
+    Route route = Route(LogFiles::GPXRoutesDir + fileName, isFileName);
+   	BOOST_CHECK_EQUAL( route.findPosition("I").elevation(), 58 );
 }
 
 /**
