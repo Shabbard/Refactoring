@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveElevation )
 BOOST_AUTO_TEST_CASE( CanGetNegativeLatitude )
 {
    	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("Q").latitude(), Position(-0.89982, -0.898312).latitude() );
+   	BOOST_CHECK_EQUAL( route.findPosition("Q").latitude(), -0.89982 );
 }
 
 /**
@@ -99,7 +99,7 @@ BOOST_AUTO_TEST_CASE( CanGetNegativeLatitude )
 BOOST_AUTO_TEST_CASE( CanGetNegativeLongitude )
 {
    	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("Q").longitude(), Position(-0.89982, -0.898312).longitude() );
+   	BOOST_CHECK_EQUAL( route.findPosition("Q").longitude(), -0.898312 );
 }
 
 /**
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_CASE( CanGetNegativeLongitude )
 BOOST_AUTO_TEST_CASE( CanGetNegativeElevation )
 {
    	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), Position(-0.89982, -0.898312, -20000).elevation() );
+   	BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), -20000 );
 }
 
 /**
@@ -131,7 +131,7 @@ BOOST_AUTO_TEST_CASE ( CanGetZeroLatitude )
     openedFile.close();
 
     Route route = Route(LogFiles::GPXRoutesDir + fileName, isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("I").latitude(), Position(0,0,0).latitude() );
+   	BOOST_CHECK_EQUAL( route.findPosition("I").latitude(), 0 );
 }
 
 /**
@@ -153,7 +153,7 @@ BOOST_AUTO_TEST_CASE ( CanGetZeroLongitude )
     openedFile.close();
 
     Route route = Route(LogFiles::GPXRoutesDir + fileName, isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("F").longitude(), Position(poleLatitude,0,0).longitude() );
+   	BOOST_CHECK_EQUAL( route.findPosition("F").longitude(), 0 );
 }
 
 /**
