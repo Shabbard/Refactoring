@@ -39,6 +39,28 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLatitude )
 }
 
 /**
+* Test case: CanGetPositiveLongitude
+* Use:       Checks that it is possible to obtain a Positive value for longitude in a GPX log file.
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositiveLongitude )
+{
+   	// Generate a GPX log file for the with GridWorld constructor for Pontianak.
+    GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::Pontianak, 0, 1000));
+
+    // Converts the GridWorldRoute in to GPX format.
+    std::string routeGPX = routeLog.toGPX(true, "CanGetLongitudeLatitude");
+
+    std::string fileName = "CanGetPositiveLongitude-N0724629.gpx";
+
+    std::ofstream openedFile(LogFiles::GPXRoutesDir + fileName);
+    openedFile << routeGPX;
+    openedFile.close();
+
+    Route route = Route(LogFiles::GPXRoutesDir + fileName, isFileName);
+   	BOOST_CHECK_EQUAL( route.findPosition("K").longitude(), 109.322 );
+}
+
+/**
 * Test case: CanGetNegativeLatitude
 * Use:       Checks that it is possible to obtain a negative value for latitude in a GPX log file.
 */
