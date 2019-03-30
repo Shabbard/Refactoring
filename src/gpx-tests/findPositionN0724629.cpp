@@ -17,6 +17,28 @@ BOOST_AUTO_TEST_SUITE( Route_Find_Position_N0724629 )
 const bool isFileName = true;
 
 /**
+* Test case: CanGetPositiveLatitude
+* Use:       Checks that it is possible to obtain a Positive value for latitude in a GPX log file.
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositiveLatitude )
+{
+   	// Generate a GPX log file for the with GridWorld constructor for CityCampus.
+    GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::CityCampus, 0, 1000));
+
+    // Converts the GridWorldRoute in to GPX format.
+    std::string routeGPX = routeLog.toGPX(true, "CanGetPositiveLatitude");
+
+    std::string fileName = "CanGetPositiveLatitude-N0724629.gpx";
+
+    std::ofstream openedFile(LogFiles::GPXRoutesDir + fileName);
+    openedFile << routeGPX;
+    openedFile.close();
+
+    Route route = Route(LogFiles::GPXRoutesDir + fileName, isFileName);
+   	BOOST_CHECK_EQUAL( route.findPosition("K").latitude(), 52.9581 );
+}
+
+/**
 * Test case: CanGetNegativeLatitude
 * Use:       Checks that it is possible to obtain a negative value for latitude in a GPX log file.
 */
@@ -52,10 +74,10 @@ BOOST_AUTO_TEST_CASE( CanGetNegativeElevation )
 */
 BOOST_AUTO_TEST_CASE ( CanGetZeroLatitude )
 {
-	// Generate a GPX log file for the with default GridWorld constructor
+	// Generate a GPX log file for the with GridWorld constructor for EquatorialMeridian.
     GridWorldRoute routeLog = GridWorldRoute("IEKS", GridWorld(Earth::EquatorialMeridian, 0, 1000));
 
-    // Converts the GridWorldRoute in to GPX format
+    // Converts the GridWorldRoute in to GPX format.
     std::string routeGPX = routeLog.toGPX(true, "CanGetZeroLatitude");
 
     std::string fileName = "CanGetZeroLatitude-N0724629.gpx";
@@ -74,7 +96,7 @@ BOOST_AUTO_TEST_CASE ( CanGetZeroLatitude )
 */
 BOOST_AUTO_TEST_CASE ( CanGetZeroLongitude )
 {
-	// Generate a GPX log file for the with default GridWorld constructor
+	// Generate a GPX log file for the with GridWorld constructor for NorthPole.
     GridWorldRoute routeLog = GridWorldRoute("FIWA", GridWorld(Earth::NorthPole, 0, 1000));
 
     // Converts the GridWorldRoute in to GPX format
@@ -118,7 +140,7 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 */
 BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
 {
-	// Generate a GPX log file for the with default GridWorld constructor
+	// Generate a GPX log file for the with GridWorld constructor for NorthPole.
     GridWorldRoute routeLog = GridWorldRoute(GridWorldRoute("EAL", GridWorld(Earth::NorthPole, 0, 1000)));
 
     // Converts the GridWorldRoute in to GPX format
