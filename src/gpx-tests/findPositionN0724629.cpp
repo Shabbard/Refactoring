@@ -6,6 +6,7 @@
 #include "route.h"
 #include "track.h"
 #include "earth.h"
+#include "geometry.h"
 #include "gridworld_route.h"
 #include "xmlgenerator.h"
 
@@ -43,6 +44,28 @@ BOOST_AUTO_TEST_CASE( CanGetElevation )
 {
    	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
    	BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), Position(-0.89982, -0.898312, -20000).elevation() );
+}
+
+/**
+* Test case: CanGetZeroLongitude
+* Use:       Checks that it is possible to obtain a zero value for longitude in a GPX log file.
+*/
+BOOST_AUTO_TEST_CASE ( CanGetZeroLongitude )
+{
+	// Generate a GPX log file for the with default GridWorld constructor
+    GridWorldRoute routeLog = GridWorldRoute("FIWA", GridWorld(Earth::NorthPole, 0, 1000));
+
+    // Converts the GridWorldRoute in to GPX format
+    std::string routeGPX = routeLog.toGPX(true, "CanGetZeroLongitude");
+
+    std::string fileName = "CanGetZeroLongitude-N0724629.gpx";
+
+    std::ofstream openedFile(LogFiles::GPXRoutesDir + fileName);
+    openedFile << routeGPX;
+    openedFile.close();
+
+    Route route = Route(LogFiles::GPXRoutesDir + fileName, isFileName);
+   	BOOST_CHECK_EQUAL( route.findPosition("F").longitude(), Position(poleLatitude,0,0).longitude() );
 }
 
 /**
