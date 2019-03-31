@@ -23,5 +23,12 @@ BOOST_AUTO_TEST_CASE( longest_route )
    BOOST_CHECK_EQUAL( route.minLongitude(), -1.1207020282745359 );
 }
 
+// Test returns correct longitude when all values for longitude on a route are the same
+BOOST_AUTO_TEST_CASE( no_change_in_longitude )
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "AFKPU.gpx", isFileName);
+    BOOST_CHECK_EQUAL( route.minLongitude(), -1.79662 );
+}
+
 
 BOOST_AUTO_TEST_SUITE_END()
