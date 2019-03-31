@@ -15,7 +15,8 @@ HEADERS += \
     headers/xmlgenerator.h \
     headers/gridworld.h \
     headers/gridworld_route.h \
-    headers/gridworld_track.h
+    headers/gridworld_track.h \
+    headers/accessOperatorLogGenerator.h
 
 SOURCES += \
     src/earth.cpp \
@@ -32,7 +33,8 @@ SOURCES += \
     src/gridworld_track.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
-    src/gpx-tests/accessOperator.cpp
+    src/gpx-tests/accessOperator.cpp \ 
+    src/gpx-tests/accessOperatorLogGenerator.cpp
 
 
 INCLUDEPATH += headers/
