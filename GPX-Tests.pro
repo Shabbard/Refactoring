@@ -15,6 +15,7 @@ HEADERS += \
     headers/xmlgenerator.h \
     headers/gridworld.h \
     headers/gridworld_route.h
+    headers/accessOperatorLogGenerator.h
 
 SOURCES += \
     src/earth.cpp \
@@ -29,6 +30,9 @@ SOURCES += \
     src/gridworld.cpp \
     src/gridworld_route.cpp \
     src/gpx-tests/name.cpp \
+    src/gpx-tests/numpositions.cpp \
+    src/gpx-tests/accessOperator.cpp \ 
+    src/gpx-tests/accessOperatorLogGenerator.cpp
     src/gpx-tests/numpositions.cpp \
     src/gpx-tests/maxLongitudeN0743797.cpp \
     src/gpx-tests/steepestGradient.cpp \
