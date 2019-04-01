@@ -25,6 +25,8 @@ std::string generateLogs(std::string nameOfTest, GridWorldRoute route)
 */
 BOOST_AUTO_TEST_SUITE( Steepest_Gradient_N0742908 )
 
+    bool isFileName = true;
+
 BOOST_AUTO_TEST_CASE( is_Negative_Gradient )
 {
     GridWorldRoute routeLog = GridWorldRoute("A");
