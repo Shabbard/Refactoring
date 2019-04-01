@@ -8,7 +8,6 @@
 #include "earth.h"
 #include "geometry.h"
 #include "gridworld_route.h"
-#include "xmlgenerator.h"
 
 using namespace GPS;
 
@@ -167,10 +166,10 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
 }
 
 /**
-* Test case: ThrowsOutOfRangeIfFileIsEmpty
+* Test case: ThrowsDomainErrorIfFileIsEmpty
 * Use:       Checks that the std::domain_error exception is thrown if the log file is empty.
 */
-BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfFileIsEmpty )
+BOOST_AUTO_TEST_CASE ( ThrowsDomainErrorIfFileIsEmpty )
 {
     std::ofstream openedFile(LogFiles::GPXRoutesDir + "ThrowsOutOfRangeIfFileIsEmpty-N0724629.gpx");
     openedFile.close();
