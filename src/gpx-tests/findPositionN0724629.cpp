@@ -166,4 +166,16 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
    	BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
 }
 
+/**
+* Test case: ThrowsOutOfRangeIfFileIsEmpty
+* Use:       Checks that the std::domain_error exception is thrown if the log file is empty.
+*/
+BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfFileIsEmpty )
+{
+    std::ofstream openedFile(LogFiles::GPXRoutesDir + "ThrowsOutOfRangeIfFileIsEmpty-N0724629.gpx");
+    openedFile.close();
+
+   	BOOST_CHECK_THROW( Route(LogFiles::GPXRoutesDir + "ThrowsOutOfRangeIfFileIsEmpty-N0724629.gpx", isFileName), std::domain_error );
+}
+
 BOOST_AUTO_TEST_SUITE_END()
