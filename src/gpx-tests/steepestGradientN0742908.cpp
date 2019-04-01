@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-
+#include <fstream>
 #include "logs.h"
 #include "types.h"
 #include "route.h"
