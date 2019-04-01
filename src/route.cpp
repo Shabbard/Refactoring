@@ -19,18 +19,15 @@ std::string Route::name() const
 
 unsigned int Route::numPositions() const
 {
-    //const bool implemented = true;
-    //assert(implemented);
     return (unsigned int)positions.size();
 }
 
-// Matt
 metres Route::totalLength() const
 {
     // The total length of the Route; this is the sum of the distances between successive route points.
     return routeLength;
 }
- // Matt
+
 metres Route::netLength() const
 {
     Position firstPosition = positions[0];
@@ -43,23 +40,28 @@ metres Route::netLength() const
 
     return Position::distanceBetween(firstPosition, lastPosition);
 }
- // Matt
+
 metres Route::totalHeightGain() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    assert(! positions.empty());
+
+    metres total = 0.0;
+    for (unsigned int i = 1; i < numPositions(); ++i)
+    {
+        metres deltaV = positions[i].elevation() - positions[i-1].elevation();
+        if (deltaV > 0.0) total += deltaV; // ignore negative height differences
+    }
+    return total;
 }
 
-// Matt
 metres Route::netHeightGain() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    assert(! positions.empty());
+
+    metres deltaV = positions.back().elevation() - positions.front().elevation();
+    return std::max(deltaV,0.0); // ignore negative height differences
 }
 
-// Callum C
 degrees Route::minLatitude() const
 {
     degrees lowestLatitude = positions[0].latitude();
@@ -74,7 +76,6 @@ degrees Route::minLatitude() const
     return lowestLatitude;
 }
 
-// Callum C
 degrees Route::maxLatitude() const
 {
     degrees currentMax = positions[0].latitude();
@@ -87,104 +88,139 @@ degrees Route::maxLatitude() const
     return currentMax;
 }
 
-// Callum C
 degrees Route::minLongitude() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    assert(! positions.empty());
+
+    degrees minLon = positions.front().longitude();
+    for (const Position& pos : positions)
+    {
+        minLon = std::min(minLon,pos.longitude());
+    }
+    return minLon;
 }
 
-// Callum C
 degrees Route::maxLongitude() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    assert(! positions.empty());
+
+    degrees maxLon = positions.front().longitude();
+    for (const Position& pos : positions)
+    {
+        maxLon = std::max(maxLon,pos.longitude());
+    }
+    return maxLon;
 }
 
-// Tom
 metres Route::minElevation() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    assert(! positions.empty());
+
+    degrees minEle = positions.front().elevation();
+    for (const Position& pos : positions)
+    {
+        minEle = std::min(minEle,pos.elevation());
+    }
+    return minEle;
 }
 
-// Tom
 metres Route::maxElevation() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    assert(! positions.empty());
+
+    degrees maxEle = positions.front().elevation();
+    for (const Position& pos : positions)
+    {
+        maxEle = std::max(maxEle,pos.elevation());
+    }
+    return maxEle;
 }
 
-// Tom
 degrees Route::maxGradient() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    assert(! positions.empty());
+
+    if (positions.size() == 1) return 0.0;
+
+    degrees maxGrad = -halfRotation/2; // minimum possible value
+    for (unsigned int i = 1; i < positions.size(); ++i)
+    {
+        metres deltaH = Position::distanceBetween(positions[i],positions[i-1]);
+        metres deltaV = positions[i].elevation() - positions[i-1].elevation();
+        degrees grad = radToDeg(std::atan(deltaV/deltaH));
+        maxGrad = std::max(maxGrad,grad);
+    }
+    return maxGrad;
 }
 
-// Tom
 degrees Route::minGradient() const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return 0;
+    assert(! positions.empty());
+
+    if (positions.size() == 1) return 0.0;
+
+    degrees minGrad = halfRotation/2; // maximum possible value
+    for (unsigned int i = 1; i < positions.size(); ++i)
+    {
+        metres deltaH = Position::distanceBetween(positions[i],positions[i-1]);
+        metres deltaV = positions[i].elevation() - positions[i-1].elevation();
+        degrees grad = radToDeg(std::atan(deltaV/deltaH));
+        minGrad = std::min(minGrad,grad);
+    }
+    return minGrad;
 }
 
-// Callum A
 degrees Route::steepestGradient() const
 {
-    const bool implemented = false;
-    assert(implemented);
+    assert(! positions.empty());
 
-    auto firstPosition = positions.at(0);
-    double initialElevation = firstPosition.elevation();
+    if (positions.size() == 1) return 0.0;
 
-    double initialGradient{0}, currentElevation{0}, steepest{0};
-    for(const auto &i: positions) {
-        double difference = currentElevation - i.elevation();
-
-        if (difference > steepest)
-        {
-            steepest = difference;
-        }
+    degrees maxGrad = -halfRotation/2; // minimum possible value
+    for (unsigned int i = 1; i < positions.size(); ++i)
+    {
+        metres deltaH = Position::distanceBetween(positions[i],positions[i-1]);
+        metres deltaV = positions[i].elevation() - positions[i-1].elevation();
+        degrees grad = radToDeg(std::atan(deltaV/deltaH));
+        maxGrad = std::max(maxGrad,std::abs(grad));
     }
-
-    return steepest;
+    return maxGrad;
 }
 
-// Callum A
 Position Route::operator[](unsigned int idx) const
 {
     return positions.at(idx);
 }
 
-// Callum A
 Position Route::findPosition(const std::string & soughtName) const
 {
-    auto position = std::find(positionNames.begin(), positionNames.end(), soughtName);
+    auto nameIt = std::find(positionNames.begin(), positionNames.end(), soughtName);
 
-    if (position == positionNames.end()) {
-        throw std::out_of_range("Position not found.");
+    if (nameIt == positionNames.end())
+    {
+        throw std::out_of_range("No position with that name found in the route.");
     }
-
-    auto index = std::distance(positionNames.begin(), position);
-
-    return positions.at(index);
+    else
+    {
+        return positions[std::distance(positionNames.begin(),nameIt)];
+    }
 }
- // Callum A
+
 std::string Route::findNameOf(const Position & soughtPos) const
 {
-    const bool implemented = false;
-    assert(implemented);
-    return "";
+    auto posIt = std::find_if(positions.begin(), positions.end(),
+                              [&] (const Position& pos) {return areSameLocation(pos,soughtPos);});
+
+    if (posIt == positions.end())
+    {
+        throw std::out_of_range("Position not found in route.");
+    }
+    else
+    {
+        return positionNames[std::distance(positions.begin(),posIt)];
+    }
 }
 
-// Callum A
 unsigned int Route::timesVisited(const std::string & soughtName) const
 {
     Position position = this->findPosition(soughtName);
@@ -197,7 +233,6 @@ unsigned int Route::timesVisited(const std::string & soughtName) const
     return timesVisited;
 }
 
-// Callum A
 unsigned int Route::timesVisited(const Position & soughtPos) const
 {
     unsigned int timesVisited{0};

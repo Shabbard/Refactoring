@@ -6,7 +6,13 @@
 
 using namespace GPS;
 
-BOOST_AUTO_TEST_SUITE( Route_maxLongitude_N0743797 )
+BOOST_AUTO_TEST_SUITE( Track_maxSpeed_N0737110 )
+
+
+BOOST_AUTO_TEST_CASE( )
+{
+ 
+}
 
 
 BOOST_AUTO_TEST_SUITE_END()

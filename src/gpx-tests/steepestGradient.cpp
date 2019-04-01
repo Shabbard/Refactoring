@@ -1,7 +1,9 @@
 #include <boost/test/unit_test.hpp>
-
+#include <fstream>
 #include "logs.h"
 #include "route.h"
+#include "gridworld_route.h"
+#include "xmlgenerator.h"
 
 using namespace GPS;
 
@@ -14,6 +16,19 @@ using namespace GPS;
  * of the number, taking only its absolute value. 
 */
 
+std::string createLogs(std::string name, GridWorldRoute route)
+{
+    std::string fileName = name + ".gpx";
+
+    std::ofstream fileOutput(GPS::LogFiles::GPXRoutesDir + fileName);
+
+    fileOutput << route.toGPX(true, name);
+    fileOutput.close();
+
+    return fileName;
+
+}
+
 BOOST_AUTO_TEST_SUITE( Steepest_Gradient )
 
 const bool isFileName = true;
@@ -21,8 +36,10 @@ const bool isFileName = true;
 // You cannot calculate a gradient from just one point, the program should throw an out of range exception
 BOOST_AUTO_TEST_CASE( Route_with_one_point )
 {
-   Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-   BOOST_CHECK_THROW( route.steepestGradient(),  std::out_of_range);
+    GridWorldRoute routeLog = GridWorldRoute("A");
+
+    Route route = Route(LogFiles::GPXRoutesDir + createLogs("RouteWithOnePoint", routeLog), isFileName);
+    BOOST_CHECK_EQUAL( route.steepestGradient(),  0);
 }
 
 // two points on top of each other should have a gradient of 0
