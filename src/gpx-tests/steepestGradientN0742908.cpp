@@ -3,6 +3,8 @@
 #include "logs.h"
 #include "types.h"
 #include "route.h"
+#include "gridworld_route.h"
+#include "xmlgenerator.h"
 
 using namespace GPS;
 
