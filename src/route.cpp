@@ -172,20 +172,19 @@ degrees Route::minGradient() const
 
 degrees Route::steepestGradient() const
 {
-    auto firstPosition = positions.at(0);
-    double initialElevation = firstPosition.elevation();
+    assert(! positions.empty());
 
-    double initialGradient{0}, currentElevation{0}, steepest{0};
-    for(const auto &i: positions) {
-        double difference = currentElevation - i.elevation();
+    if (positions.size() == 1) return 0.0;
 
-        if (difference > steepest)
-        {
-            steepest = difference;
-        }
+    degrees maxGrad = -halfRotation/2; // minimum possible value
+    for (unsigned int i = 1; i < positions.size(); ++i)
+    {
+        metres deltaH = Position::distanceBetween(positions[i],positions[i-1]);
+        metres deltaV = positions[i].elevation() - positions[i-1].elevation();
+        degrees grad = radToDeg(std::atan(deltaV/deltaH));
+        maxGrad = std::max(maxGrad,std::abs(grad));
     }
-
-    return steepest;
+    return maxGrad;
 }
 
 Position Route::operator[](unsigned int idx) const
