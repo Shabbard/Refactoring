@@ -8,7 +8,6 @@
 #include "earth.h"
 #include "geometry.h"
 #include "gridworld_route.h"
-#include "xmlgenerator.h"
 
 using namespace GPS;
 
