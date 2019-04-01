@@ -35,9 +35,11 @@ SOURCES += \
     src/gpx-tests/accessOperatorLogGenerator.cpp \
     src/gpx-tests/maxLongitudeN0743797.cpp \
     src/gpx-tests/steepestGradient.cpp \
+    src/gpx-tests/steepestGradientN0742908.cpp \
     src/gpx-tests/findNameOf.cpp \
     src/gpx-tests/findPositionN0724629.cpp \
     src/gpx-tests/findpositionn0734208.cpp
+
 
 
 INCLUDEPATH += headers/
