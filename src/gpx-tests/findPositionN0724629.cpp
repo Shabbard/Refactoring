@@ -64,47 +64,47 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithOnePosition )
 }
 
 /**
-* Test case: CanGetPositiveLatitude
+* Test case: CanGetPositiveLatitudeInLogFileWithPointsApart
 * Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
 */
-BOOST_AUTO_TEST_CASE( CanGetPositiveLatitude )
+BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithPointsApart )
 {
-    const metres granularity = 0;
+    const metres granularity = horizontalGridUnit / 100;
 
    	// Generate a GPX log file for the with GridWorld constructor for CityCampus.
     GridWorldRoute routeLog = GridWorldRoute("QWERTYUIOPASDFGHJKLXCVBNM", GridWorld(Earth::CityCampus, horizontalGridUnit));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLatitude", routeLog), isFileName, granularity);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLatitudeInLogFileWithPointsApart", routeLog), isFileName, granularity);
    	BOOST_CHECK_CLOSE( route.findPosition("C").latitude(), 52.9581383, percentageAccuracy );
 }
 
 /**
-* Test case: CanGetPositiveLongitude
+* Test case: CanGetPositiveLongitudeInLogFileWithPointsApart
 * Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
 */
-BOOST_AUTO_TEST_CASE( CanGetPositiveLongitude )
+BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithPointsApart )
 {
-    const metres granularity = 0;
+    const metres granularity = horizontalGridUnit / 100;
 
    	// Generate a GPX log file for the with GridWorld constructor for Pontianak.
     GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::Pontianak, horizontalGridUnit));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLongitude", routeLog), isFileName, granularity);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLongitudeInLogFileWithPointsApart", routeLog), isFileName, granularity);
    	BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), 109.322134, percentageAccuracy );
 }
 
 /**
-* Test case: CanGetPositiveElevation
+* Test case: CanGetPositiveElevationInLogFileWithPointsApart
 * Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
 */
-BOOST_AUTO_TEST_CASE( CanGetPositiveElevation )
+BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithPointsApart )
 {
-    const metres granularity = 0;
+    const metres granularity = horizontalGridUnit / 100;
 
    	// Generate a GPX log file for the with GridWorld constructor for CliftonCampus.
     GridWorldRoute routeLog = GridWorldRoute("IJOF", GridWorld(Earth::CliftonCampus, horizontalGridUnit));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevation", routeLog), isFileName, granularity);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevationInLogFileWithPointsApart", routeLog), isFileName, granularity);
    	BOOST_CHECK_EQUAL( route.findPosition("I").elevation(), 58 );
 }
 
