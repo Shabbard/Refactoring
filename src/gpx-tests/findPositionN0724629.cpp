@@ -30,6 +30,8 @@ std::string createLogFile(std::string name, GridWorldRoute routeLog)
 BOOST_AUTO_TEST_SUITE( Route_Find_Position_N0724629 )
 
 const bool isFileName = true;
+const metres horizontalGridUnit = 1000;
+const double percentageAccuracy = 0.1;
 
 /**
 * Test case: CanGetPositiveLatitude
@@ -38,10 +40,10 @@ const bool isFileName = true;
 BOOST_AUTO_TEST_CASE( CanGetPositiveLatitude )
 {
    	// Generate a GPX log file for the with GridWorld constructor for CityCampus.
-    GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::CityCampus, 0, 1000));
+    GridWorldRoute routeLog = GridWorldRoute("QWERTYUIOPASDFGHJKLXCVBNM", GridWorld(Earth::CityCampus, horizontalGridUnit));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLatitude", routeLog), isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("K").latitude(), 52.9581 );
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLatitude", routeLog), isFileName, 0);
+   	BOOST_CHECK_CLOSE( route.findPosition("C").latitude(), 52.9581383, percentageAccuracy );
 }
 
 /**
@@ -51,10 +53,10 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLatitude )
 BOOST_AUTO_TEST_CASE( CanGetPositiveLongitude )
 {
    	// Generate a GPX log file for the with GridWorld constructor for Pontianak.
-    GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::Pontianak, 0, 1000));
+    GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::Pontianak, horizontalGridUnit));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLongitude", routeLog), isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("K").longitude(), 109.322 );
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLongitude", routeLog), isFileName, 0);
+   	BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), 109.322134, percentageAccuracy );
 }
 
 /**
@@ -64,9 +66,9 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLongitude )
 BOOST_AUTO_TEST_CASE( CanGetPositiveElevation )
 {
    	// Generate a GPX log file for the with GridWorld constructor for CliftonCampus.
-    GridWorldRoute routeLog = GridWorldRoute("IJOF", GridWorld(Earth::CliftonCampus, 0, 0));
+    GridWorldRoute routeLog = GridWorldRoute("IJOF", GridWorld(Earth::CliftonCampus, horizontalGridUnit));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevation", routeLog), isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevation", routeLog), isFileName, 0);
    	BOOST_CHECK_EQUAL( route.findPosition("I").elevation(), 58 );
 }
 
