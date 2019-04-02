@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE( Route_with_only_negative_gradients )
     GridWorldRoute routeLog = GridWorldRoute("MHDYV", GridWorld(Earth::NorthPole, 10000, 1000));
 
     Route route = Route(LogFiles::GPXRoutesDir + createLogs("RouteWithOnlyNegativeGradients", routeLog), isFileName);
-    BOOST_CHECK_CLOSE( route.steepestGradient(),  0, percentageAccuracy);
+    BOOST_CHECK_CLOSE( route.steepestGradient(),  5.706309, percentageAccuracy);
 }
 
 // check different values with only positive gradients
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE( Route_with_only_positive_gradients )
     GridWorldRoute routeLog = GridWorldRoute("MQV", GridWorld(Earth::NorthPole, 10000, 1000));
 
     Route route = Route(LogFiles::GPXRoutesDir + createLogs("RouteWithOnlyPositiveGradients", routeLog), isFileName);
-    BOOST_CHECK_CLOSE( route.steepestGradient(),  0, percentageAccuracy); // use correct macro for floating point numbers
+    BOOST_CHECK_CLOSE( route.steepestGradient(),  5.706309, percentageAccuracy); // use correct macro for floating point numbers
 }
 
 // check values with both positive and negative gradients
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE( Route_with_positive_and_negative_gradients )
     GridWorldRoute routeLog = GridWorldRoute("MICW", GridWorld(Earth::NorthPole, 10000, 1000));
 
     Route route = Route(LogFiles::GPXRoutesDir + createLogs("RouteWithPositiveAndNegativeGradients", routeLog), isFileName);
-    BOOST_CHECK_CLOSE( route.steepestGradient(),  0, percentageAccuracy);
+    BOOST_CHECK_CLOSE( route.steepestGradient(),  5.706309, percentageAccuracy);
 }
 
 // two points on top of each other should have a gradient of 0
