@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
 <gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
     <rte>
-        <name>CanGetPositiveLongitude</name>
-        <rtept lat="0" lon="109.322">
-            <name>K</name>
-            <ele>-2000.000000</ele>
+        <name>RouteWithOnlyPositiveGradients</name>
+        <rtept lat="90" lon="180">
+            <name>M</name>
+            <ele>0.000000</ele>
         </rtept>
-        <rtept lat="0" lon="109.322">
+        <rtept lat="89.91" lon="135.5">
             <name>Q</name>
             <ele>-1000.000000</ele>
         </rtept>
-        <rtept lat="0" lon="109.322">
-            <name>L</name>
-            <ele>-1000.000000</ele>
-        </rtept>
-        <rtept lat="0" lon="109.322">
-            <name>D</name>
+        <rtept lat="89.82" lon="135.5">
+            <name>V</name>
             <ele>-2000.000000</ele>
         </rtept>
     </rte>
