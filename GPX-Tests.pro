@@ -11,22 +11,40 @@ HEADERS += \
     headers/route.h \
     headers/track.h \
     headers/types.h \
-    headers/xmlparser.h
+    headers/xmlparser.h \
+    headers/xmlgenerator.h \
+    headers/gridworld.h \
+    headers/gridworld_route.h \
+    headers/gridworld_track.h \
+    headers/accessOperatorLogGenerator.h
 
 SOURCES += \
     src/earth.cpp \
     src/gpx-tests.cpp \
     src/geometry.cpp \
-    src/gpx-tests/steepestGradient.cpp \
     src/logs.cpp \
     src/position.cpp \
     src/route.cpp \
     src/track.cpp \
     src/xmlparser.cpp \
+    src/xmlgenerator.cpp \
+    src/gridworld.cpp \
+    src/gridworld_route.cpp \
+    src/gridworld_track.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
-    src/gpx-tests/maxlongitude.cpp
-    src/gpx-tests/steepestGradient.cpp
+    src/gpx-tests/accessOperator.cpp \ 
+    src/gpx-tests/accessOperatorLogGenerator.cpp \
+    src/gpx-tests/maxLongitudeN0743797.cpp \
+    src/gpx-tests/steepestGradient.cpp \
+    src/gpx-tests/steepestGradientN0742908.cpp \
+    src/gpx-tests/findNameOf.cpp \
+    src/gpx-tests/findPositionN0724629.cpp \
+    src/gpx-tests/findpositionn0734208.cpp \
+    src/gpx-tests/maxSpeedN0737110.cpp \
+    src/gpx-tests/maxlatitude.cpp \
+    src/gpx-tests/maxSpeedN0733894.cpp
+
 
 
 INCLUDEPATH += headers/
