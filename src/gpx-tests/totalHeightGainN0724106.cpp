@@ -15,7 +15,7 @@ using namespace GPS;
  * value. It will also check that if there are two successive points with a decline in 
  * elevation, the function notices this and returns a value of 0 for these two points.
  * 
- * I will also check that 3 or 4 successive points return the correct total height gain, with four tests.
+ * I will also check that 4 successive points return the correct total height gain, with four tests.
  *      All of the points are consecutive inclines in elevation.
  *      All of points are consecutive declines in elevation.
  *      There is a net decline between the points.
