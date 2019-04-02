@@ -38,35 +38,35 @@ BOOST_AUTO_TEST_SUITE( Steepest_Gradient_N0742908 )
 
 BOOST_AUTO_TEST_CASE( is_Negative_Gradient )
 {
-    GridWorldRoute routeLog = GridWorldRoute("AGM");
+    GridWorldRoute routeLog = GridWorldRoute("AGM", GridWorld(Earth::CityCampus, 20000, 2000));
     Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_Negative_Gradient", routeLog), isFileName);
-    BOOST_CHECK_EQUAL( route.steepestGradient(), -50);
+    BOOST_CHECK_EQUAL( route.steepestGradient(), 4.0580047402710955);
 }
 
 BOOST_AUTO_TEST_CASE( is_Positive_Gradient )
 {
-    GridWorldRoute routeLog = GridWorldRoute("MGA");
+    GridWorldRoute routeLog = GridWorldRoute("MGA", GridWorld(Earth::CityCampus, 20000, 2000));
     Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_Positive_Gradient", routeLog), isFileName);
-    BOOST_CHECK_EQUAL( route.steepestGradient(), 50);
+    BOOST_CHECK_EQUAL( route.steepestGradient(), 4.0580047402710955);
 }
 
 BOOST_AUTO_TEST_CASE( is_OnePoint_Gradient )
 {
-    GridWorldRoute routeLog = GridWorldRoute("M");
+    GridWorldRoute routeLog = GridWorldRoute("M", GridWorld(Earth::CityCampus, 20000, 2000));
     Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_OnePoint_Gradient", routeLog), isFileName);
     BOOST_CHECK_EQUAL( route.steepestGradient(), 0);
 }
 
 BOOST_AUTO_TEST_CASE( is_PositiveNegative_Gradient )
 {
-    GridWorldRoute routeLog = GridWorldRoute("UQMSY");
+    GridWorldRoute routeLog = GridWorldRoute("UQMSY", GridWorld(Earth::CityCampus, 20000, 2000));
     Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_OnePoint_Gradient", routeLog), isFileName);
-    BOOST_CHECK_EQUAL( route.steepestGradient(), 0);
+    BOOST_CHECK_EQUAL( route.steepestGradient(), 4.0424037169314566);
 }
 
 BOOST_AUTO_TEST_CASE( is_No_Gradient )
 {
-    GridWorldRoute routeLog = GridWorldRoute("ABC");
+    GridWorldRoute routeLog = GridWorldRoute("ABC", GridWorld(Earth::CityCampus, 20000, 2000));
     Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_No_Gradient", routeLog), isFileName);
     BOOST_CHECK_EQUAL( route.steepestGradient(), 0);
 }
