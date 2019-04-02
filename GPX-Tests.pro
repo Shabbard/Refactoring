@@ -38,7 +38,8 @@ SOURCES += \
     src/gpx-tests/steepestGradientN0742908.cpp \
     src/gpx-tests/findNameOf.cpp \
     src/gpx-tests/findPositionN0724629.cpp \
-    src/gpx-tests/findpositionn0734208.cpp
+    src/gpx-tests/findpositionn0734208.cpp \
+    src/gpx-tests/restingTimeN0736563.cpp
 
 
 
