@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE( is_OnePoint_Gradient )
     BOOST_CHECK_EQUAL( route.steepestGradient(), 0);
 }
 
-BOOST_AUTO_TEST_CASE( is_Positive+Negative_Gradient )
+BOOST_AUTO_TEST_CASE( is_PositiveNegative_Gradient )
 {
     GridWorldRoute routeLog = GridWorldRoute("UQMSY");
     Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_OnePoint_Gradient", routeLog), isFileName);
