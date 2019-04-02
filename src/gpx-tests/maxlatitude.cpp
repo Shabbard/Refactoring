@@ -1,7 +1,10 @@
-#include <boost/test/unit_test.hpp>
-#include "../../headers/route.h"
-#include "../../headers/logs.h"
-#include "../../headers/gridworld_route.h"
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MODULE RouteMaxLatitudeTests
+#include<boost/test/unit_test.hpp>
+#include "route.h"
+#include "logs.h"
+#include "gridworld_route.h"
+#include "gridworld.h"
 #include <fstream>
 using namespace GPS;
 
@@ -59,6 +62,5 @@ BOOST_AUTO_TEST_CASE(circular_route){
     Route route = Route(LogFiles::logsDir+filename,true);
     BOOST_CHECK_EQUAL(route.maxLatitude(),0.89982);
 }
-
 
 BOOST_AUTO_TEST_SUITE_END();
