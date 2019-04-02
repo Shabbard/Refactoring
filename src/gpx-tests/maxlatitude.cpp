@@ -1,5 +1,5 @@
 #define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE RouteMaxLatitudeTests
+//#define BOOST_TEST_MODULE RouteMaxLatitudeTests
 #include<boost/test/unit_test.hpp>
 #include "route.h"
 #include "logs.h"

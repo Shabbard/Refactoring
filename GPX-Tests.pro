@@ -45,6 +45,7 @@ SOURCES += \
     src/gpx-tests/maxlatitude.cpp \
     src/gpx-tests/maxSpeedN0733894.cpp \
     src/gpx-tests/totalLengthTest_n0755314.cpp
+    src/gpx-tests/restingTimeN0736563.cpp
 
 
 INCLUDEPATH += headers/
