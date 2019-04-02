@@ -69,10 +69,12 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithOnePosition )
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLatitude )
 {
+    const metres granularity = 0;
+
    	// Generate a GPX log file for the with GridWorld constructor for CityCampus.
     GridWorldRoute routeLog = GridWorldRoute("QWERTYUIOPASDFGHJKLXCVBNM", GridWorld(Earth::CityCampus, horizontalGridUnit));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLatitude", routeLog), isFileName, 0);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLatitude", routeLog), isFileName, granularity);
    	BOOST_CHECK_CLOSE( route.findPosition("C").latitude(), 52.9581383, percentageAccuracy );
 }
 
@@ -82,10 +84,12 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLatitude )
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLongitude )
 {
+    const metres granularity = 0;
+
    	// Generate a GPX log file for the with GridWorld constructor for Pontianak.
     GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::Pontianak, horizontalGridUnit));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLongitude", routeLog), isFileName, 0);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLongitude", routeLog), isFileName, granularity);
    	BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), 109.322134, percentageAccuracy );
 }
 
@@ -95,10 +99,12 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLongitude )
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveElevation )
 {
+    const metres granularity = 0;
+
    	// Generate a GPX log file for the with GridWorld constructor for CliftonCampus.
     GridWorldRoute routeLog = GridWorldRoute("IJOF", GridWorld(Earth::CliftonCampus, horizontalGridUnit));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevation", routeLog), isFileName, 0);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevation", routeLog), isFileName, granularity);
    	BOOST_CHECK_EQUAL( route.findPosition("I").elevation(), 58 );
 }
 
