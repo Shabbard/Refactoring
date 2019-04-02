@@ -17,7 +17,6 @@ SOURCES += \
     src/earth.cpp \
     src/gpx-tests.cpp \
     src/geometry.cpp \
-    src/gpx-tests/steepestGradient.cpp \
     src/logs.cpp \
     src/position.cpp \
     src/route.cpp \
@@ -25,10 +24,7 @@ SOURCES += \
     src/xmlparser.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
-    src/gpx-tests/maxlongitude.cpp \
-    src/gpx-tests/maxLongitudeN0743797.cpp \
-    src/gpx-tests/steepestGradient.cpp \
-    src/gpx-tests/findNameOf.cpp
+    src/gpx-tests/maxLongitudeN0732961.cpp
 
 
 INCLUDEPATH += headers/

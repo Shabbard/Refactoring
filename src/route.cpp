@@ -80,7 +80,7 @@ degrees Route::maxLongitude() const
 
     for (int i = 0; i < positions.size(); i++)
     {
-        if (highestLon > positions[i].longitude())
+        if (highestLon < positions[i].longitude())
         {
             highestLon = positions[i].longitude();
         }
