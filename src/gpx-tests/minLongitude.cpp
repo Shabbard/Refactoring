@@ -50,7 +50,6 @@ BOOST_AUTO_TEST_CASE( nottingham_to_stoke_test )
 BOOST_AUTO_TEST_CASE( liverpool_to_runcorn_test )
 {
     Route route = Route(LogFiles::GPXRoutesDir + "Liverpool-Runcorn.gpx", isFileName);
-    // -2.9779210
     BOOST_CHECK_CLOSE( route.minLongitude(), -2.9779210, 0.000001 );
 }
 
