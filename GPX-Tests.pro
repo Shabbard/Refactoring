@@ -33,6 +33,7 @@ SOURCES += \
     src/gridworld_track.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
+<<<<<<< HEAD
     src/gpx-tests/accessOperator.cpp \ 
     src/gpx-tests/accessOperatorLogGenerator.cpp \
     src/gpx-tests/maxLongitudeN0743797.cpp \
@@ -44,6 +45,8 @@ SOURCES += \
     src/gpx-tests/maxSpeedN0737110.cpp \
     src/gpx-tests/maxlatitude.cpp \
     src/gpx-tests/maxSpeedN0733894.cpp \
+=======
+>>>>>>> n0755314-tests
     src/gpx-tests/totalLengthTest_n0755314.cpp
 
 
