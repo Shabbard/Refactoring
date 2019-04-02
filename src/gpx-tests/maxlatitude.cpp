@@ -1,7 +1,6 @@
 #include <boost/test/unit_test.hpp>
-#include "position.h"
 #include "../../headers/route.h"
-#include "logs.h"
+#include "../../headers/logs.h"
 #include "../../headers/gridworld_route.h"
 #include <fstream>
 using namespace GPS;
@@ -10,7 +9,6 @@ using namespace GPS;
 
 // create gpx log files
 void createGPXlog(GridWorldRoute gwr, std::string fileName){
-    fileName+="-N0731234.gpx";
     // takes a grid world and returns string points
     std::string route = gwr.toGPX(true, fileName);
 
@@ -23,30 +21,43 @@ void createGPXlog(GridWorldRoute gwr, std::string fileName){
 
 BOOST_AUTO_TEST_SUITE(Route_maxLatitude)
 
-BOOST_AUTO_TEST_CASE(expected_max){
-    std::string filename = "standardRoute-N0731234.gpx";
-    // create new GPX data
-    GridWorldRoute gwr = GridWorldRoute("M"); // just one point on defualt earth
+BOOST_AUTO_TEST_CASE(origin_point){
+    // test for just a single point located on the origin
+
+    std::string filename = "maxLat_single_point-N0731234.gpx";
+    GridWorldRoute gwr = GridWorldRoute("M");
+    createGPXlog(gwr,filename);
+    Route route = Route(LogFiles::logsDir+filename,true);
+    BOOST_CHECK_EQUAL(route.maxLatitude(),0);
+}
+
+BOOST_AUTO_TEST_CASE(single_point){
+    // test for a single point that is not the origin
+
+    std::string filename = "maxLat_single_point-N0731234.gpx";
+    GridWorldRoute gwr = GridWorldRoute("A");
+    createGPXlog(gwr,filename);
+    Route route = Route(LogFiles::logsDir+filename,true);
+    BOOST_CHECK_EQUAL(route.maxLatitude(),1.79964);
+}
+
+BOOST_AUTO_TEST_CASE(multiple_points){
+    // test for multiple points on the gridworld
+
+    std::string filename = "maxaLat_multiple_points-N0731234.gpx";
+    GridWorldRoute gwr = GridWorldRoute("MHC");
+    createGPXlog(gwr,filename);
+    Route route = Route(LogFiles::logsDir+filename,true);
+    BOOST_CHECK_EQUAL(route.maxLatitude(),1.79964);
+}
+
+BOOST_AUTO_TEST_CASE(circular_route){
+    // test for max latitude on a circual route
+    std::string filename = "maxLat_circular_route-N0731234.gpx";
+    GridWorldRoute gwr = GridWorldRoute("PFHRP");
     createGPXlog(gwr, filename);
     Route route = Route(LogFiles::logsDir+filename,true);
-    //BOOST_AUTO_TEST_CASE(route.maxLatitude(),);
-}
-
-//BOOST_AUTO_TEST_CASE(no_data){
-//    std::string filename = "";
-//    GridWorldRoute gwr = GridWorldRoute()
-//    Route route = Route(LogFiles::logsDir+filename, true);
-//    BOOST_TEST_MESSAGE(route.maxLatitude());
-//}
-
-BOOST_AUTO_TEST_CASE(null_position_list)
-{
-    // check to see if Null values are handled
-}
-
-BOOST_AUTO_TEST_CASE(incorrect_data)
-{
-    // check
+    BOOST_CHECK_EQUAL(route.maxLatitude(),0.89982);
 }
 
 
