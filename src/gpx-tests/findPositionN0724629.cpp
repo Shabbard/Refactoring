@@ -34,6 +34,36 @@ const metres horizontalGridUnit = 1000;
 const double percentageAccuracy = 0.1;
 
 /**
+* Test case: CanGetPositiveLatitudeInLogFileWithOnePosition
+* Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithOnePosition )
+{
+   Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
+    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), -0.89982, percentageAccuracy );
+}
+
+/**
+* Test case: CanGetPositiveLongitudeInLogFileWithOnePosition
+* Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithOnePosition )
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
+    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), -0.898312, percentageAccuracy );
+}
+
+/**
+* Test case: CanGetPositiveElevationInLogFileWithOnePosition
+* Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithOnePosition )
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
+    BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), -20000 );
+}
+
+/**
 * Test case: CanGetPositiveLatitude
 * Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
 */
