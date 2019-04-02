@@ -27,6 +27,20 @@ std::string createLogs(std::string name, GridWorldRoute route)
     return fileName;
 }
 
+ /* GridWorld consists of a grid of points, where each point is named by a single character A-Y.
+   *
+   *  A B C D E
+   *  F G H I J
+   *  K L M N O
+   *  P Q R S T
+   *  U V W X Y
+   *
+   *  The central point M is used as the initial reference point.
+   *  Up/down in the grid changes latitude relative to M.
+   *  Left/right in the grid changes longitude relative to M.
+   *  Note: the closer you get to a pole, the more distorted from a grid this becomes.
+   */
+
 BOOST_AUTO_TEST_SUITE( Steepest_Gradient )
 
 const bool isFileName = true;
@@ -44,7 +58,7 @@ BOOST_AUTO_TEST_CASE( Route_with_one_point )
 
 BOOST_AUTO_TEST_CASE( Route_with_only_negative_gradients )
 {
-    GridWorldRoute routeLog = GridWorldRoute("MHDYV", GridWorld(Earth::NorthPole, 10000, 1000));
+    GridWorldRoute routeLog = GridWorldRoute("MHC", GridWorld(Earth::NorthPole, 10000, 1000));
 
     Route route = Route(LogFiles::GPXRoutesDir + createLogs("RouteWithOnlyNegativeGradients", routeLog), isFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(),  5.706309, percentageAccuracy);
@@ -54,7 +68,7 @@ BOOST_AUTO_TEST_CASE( Route_with_only_negative_gradients )
 
 BOOST_AUTO_TEST_CASE( Route_with_only_positive_gradients )
 {
-    GridWorldRoute routeLog = GridWorldRoute("MQV", GridWorld(Earth::NorthPole, 10000, 1000));
+    GridWorldRoute routeLog = GridWorldRoute("WRM", GridWorld(Earth::NorthPole, 10000, 1000));
 
     Route route = Route(LogFiles::GPXRoutesDir + createLogs("RouteWithOnlyPositiveGradients", routeLog), isFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(),  5.706309, percentageAccuracy); // use correct macro for floating point numbers
@@ -64,7 +78,7 @@ BOOST_AUTO_TEST_CASE( Route_with_only_positive_gradients )
 
 BOOST_AUTO_TEST_CASE( Route_with_positive_and_negative_gradients )
 {
-    GridWorldRoute routeLog = GridWorldRoute("MICW", GridWorld(Earth::NorthPole, 10000, 1000));
+    GridWorldRoute routeLog = GridWorldRoute("HMR", GridWorld(Earth::NorthPole, 10000, 1000));
 
     Route route = Route(LogFiles::GPXRoutesDir + createLogs("RouteWithPositiveAndNegativeGradients", routeLog), isFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(),  5.706309, percentageAccuracy);
