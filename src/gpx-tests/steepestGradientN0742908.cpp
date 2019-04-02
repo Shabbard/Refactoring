@@ -16,7 +16,7 @@ using namespace GPS;
 // function to generate a log for each file when implemented..
 std::string generateLogs(std::string nameOfTest, GridWorldRoute route)
 {
-    std::string fileName = nameOfTest + ".gpx";
+    std::string fileName = "N0742908" + nameOfTest + ".gpx";
     std::ofstream fileOutput(GPS::LogFiles::GPXRoutesDir + fileName);
 
     fileOutput << route.toGPX(true, nameOfTest);
