@@ -9,7 +9,7 @@ using namespace GPS;
 BOOST_AUTO_TEST_SUITE( Track_maxSpeed_N0733894 )
 
 
-BOOST_AUTO_TEST_CASE( )
+BOOST_AUTO_TEST_CASE(TEST_MAXSPEED )
 {
 
 }
