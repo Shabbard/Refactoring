@@ -34,7 +34,7 @@ std::string saveLogFile(std::string name, GridWorldRoute &route) {
   return filepath;
 }
 
-BOOST_AUTO_TEST_CASE(Route_MaxGradient_N0740369)
+BOOST_AUTO_TEST_SUITE(Route_MaxGradient_N0740369)
 
 /**
  * Checks that a route with a singular point returns 0 for maximum gradient
