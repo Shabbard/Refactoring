@@ -57,4 +57,24 @@ BOOST_AUTO_TEST_CASE( max_ele_all_negative )
     BOOST_CHECK_EQUAL( route.maxElevation(), -447);
 }
 
+//Check correct max ele when there are positive and negative values.
+BOOST_AUTO_TEST_CASE( max_ele_both_positive_negative )
+{
+    GridWorldRoute routeName = GridWorldRoute("AMN", GridWorld(Earth::CityCampus,1000,500));
+
+    Route route = Route(LogFiles::GPXRoutesDir + generate_gpx_file("max_ele_both_positive_negative", routeName),isFileName);
+
+    BOOST_CHECK_EQUAL( route.maxElevation(), 53);
+}
+
+//Check for duplicate values in a file
+BOOST_AUTO_TEST_CASE( max_ele_when_duplicate )
+{
+    GridWorldRoute routeName = GridWorldRoute("ANPS", GridWorld(Earth::CliftonCampus,1000,-250));
+
+    Route route = Route(LogFiles::GPXRoutesDir + generate_gpx_file("max_ele_when_duplicate", routeName),isFileName);
+
+    BOOST_CHECK_EQUAL( route.maxElevation(), 558);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
