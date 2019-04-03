@@ -11,9 +11,9 @@
 using namespace GPS;
 
 // Constants for tests
-const degrees CHECK_TOLERANCE = 0.01;
-const degrees GRADIENT = 0.5729;      // arctan(100 / 10000)
-const degrees DIAG_GRADIENT = 0.4051; // arctan(100 / sqrt(2 * (10000^2))
+const degrees CHECK_TOLERANCE = 0.1;
+const degrees GRADIENT = 0.5729386;      // arctan(100 / 10000)
+const degrees DIAG_GRADIENT = 0.4051355; // arctan(100 / sqrt(2 * (10000^2))
 const metres HORIZONTAL_GRID_UNIT = 10000;
 const metres VERTICAL_GRID_UNIT = 100;
 
