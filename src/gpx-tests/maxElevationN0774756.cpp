@@ -77,4 +77,25 @@ BOOST_AUTO_TEST_CASE( max_ele_when_duplicate )
     BOOST_CHECK_EQUAL( route.maxElevation(), 558);
 }
 
+
+//Check for ascending values in a file
+BOOST_AUTO_TEST_CASE( max_ele_when_ascending)
+{
+    GridWorldRoute routeName = GridWorldRoute("MSP", GridWorld(Earth::CliftonCampus,1000,-250));
+
+    Route route = Route(LogFiles::GPXRoutesDir + generate_gpx_file("max_ele_when_ascending", routeName),isFileName);
+
+    BOOST_CHECK_EQUAL( route.maxElevation(), 558);
+}
+
+//Check for descending values in a file
+BOOST_AUTO_TEST_CASE( max_ele_when_descending)
+{
+    GridWorldRoute routeName = GridWorldRoute("MSP", GridWorld(Earth::CliftonCampus,1000,450));
+
+    Route route = Route(LogFiles::GPXRoutesDir + generate_gpx_file("max_ele_when_descending", routeName),isFileName);
+
+    BOOST_CHECK_EQUAL( route.maxElevation(), 58);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
