@@ -37,4 +37,24 @@ BOOST_AUTO_TEST_CASE( max_ele_check_zero )
     BOOST_CHECK_EQUAL( route.maxElevation(), 0 );
 }
 
+//Check correct max ele when all values are positive
+BOOST_AUTO_TEST_CASE( max_ele_all_positive )
+{
+    GridWorldRoute routeName = GridWorldRoute("KR", GridWorld(Earth::CityCampus,1000,-500));
+
+    Route route = Route(LogFiles::GPXRoutesDir + generate_gpx_file("max_ele_all_positive", routeName),isFileName);
+
+    BOOST_CHECK_EQUAL( route.maxElevation(), 1053);
+}
+
+//Check correct max ele when all values are negative
+BOOST_AUTO_TEST_CASE( max_ele_all_negative )
+{
+    GridWorldRoute routeName = GridWorldRoute("KN", GridWorld(Earth::CityCampus,1000,500));
+
+    Route route = Route(LogFiles::GPXRoutesDir + generate_gpx_file("max_ele_all_negative", routeName),isFileName);
+
+    BOOST_CHECK_EQUAL( route.maxElevation(), -447);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
