@@ -9,8 +9,8 @@ Route::minLongitude() - N0734498, N0735026, N0743587
 Route::maxLongitude() - N0732961, N0729418, N0743797
 Route::minElevation() - N0749943, N0751891, N0749369
 Route::maxElevation() - N0749370, N0749364, N0774756
-Route::maxGradient() - 
-Route::minGradient() -
+Route::maxGradient() - N0740369
+Route::minGradient() - 
 Route::steepestGradient() - N0745438, N0742908, N0826291
 Route::operator[]() - N0727303
 Route::findPosition() - N0724629, N0734208 N0704377
