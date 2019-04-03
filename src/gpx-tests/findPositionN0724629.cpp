@@ -36,6 +36,7 @@ const double PERCENTAGE_ACCURACY = 0.1;
 /**
 * Test case: CanGetNegativeLatitudeInLogFileWithOnePosition
 * Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
+* Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetNegativeLatitudeInLogFileWithOnePosition )
 {
@@ -46,6 +47,7 @@ BOOST_AUTO_TEST_CASE( CanGetNegativeLatitudeInLogFileWithOnePosition )
 /**
 * Test case: CanGetNegativeLongitudeInLogFileWithOnePosition
 * Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
+* Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetNegativeLongitudeInLogFileWithOnePosition )
 {
@@ -56,6 +58,7 @@ BOOST_AUTO_TEST_CASE( CanGetNegativeLongitudeInLogFileWithOnePosition )
 /**
 * Test case: CanGetNegativeElevationInLogFileWithOnePosition
 * Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
+* Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetNegativeElevationInLogFileWithOnePosition )
 {
@@ -66,6 +69,7 @@ BOOST_AUTO_TEST_CASE( CanGetNegativeElevationInLogFileWithOnePosition )
 /**
 * Test case: CanGetPositiveLatitudeInLogFileWithPointsApart
 * Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
+* Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithPointsApart )
 {
@@ -81,6 +85,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithPointsApart )
 /**
 * Test case: CanGetPositiveLongitudeInLogFileWithPointsApart
 * Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
+* Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithPointsApart )
 {
@@ -96,6 +101,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithPointsApart )
 /**
 * Test case: CanGetPositiveElevationInLogFileWithPointsApart
 * Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
+* Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithPointsApart )
 {
@@ -111,6 +117,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithPointsApart )
 /**
 * Test case: CanGetPositiveLatitudeInLogFileWithPointsTooClose
 * Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
+* Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithPointsTooClose )
 {
@@ -127,6 +134,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithPointsTooClose )
 /**
 * Test case: CanGetPositiveLongitudeInLogFileWithPointsTooClose
 * Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
+* Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithPointsTooClose )
 {
@@ -142,6 +150,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithPointsTooClose )
 /**
 * Test case: CanGetPositiveElevationInLogFileWithPointsTooClose
 * Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
+* Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithPointsTooClose )
 {
@@ -153,38 +162,6 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithPointsTooClose )
     Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevationInLogFileWithPointsTooClose", routeLog), IS_FILE_NAME, granularity);
     BOOST_CHECK_THROW( route.findPosition("O").elevation(), std::out_of_range );
 }
-
-/**
-* Test case: CanGetNegativeLatitude
-* Use:       Checks that it is possible to obtain a negative value for latitude in a GPX log file.
-*/
-BOOST_AUTO_TEST_CASE( CanGetNegativeLatitude )
-{
-   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
-   	BOOST_CHECK_EQUAL( route.findPosition("Q").latitude(), -0.89982 );
-}
-
-/**
-* Test case: CanGetNegativeLongitude
-* Use:       Checks that it is possible to obtain a negative value for longitude in a GPX log file.
-*/
-BOOST_AUTO_TEST_CASE( CanGetNegativeLongitude )
-{
-   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
-   	BOOST_CHECK_EQUAL( route.findPosition("Q").longitude(), -0.898312 );
-}
-
-/**
-* Test case: CanGetNegativeElevation
-* Use:       Checks that it is possible to obtain a negative value for elevation in a GPX log file.
-*/
-BOOST_AUTO_TEST_CASE( CanGetNegativeElevation )
-{
-   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
-   	BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), -20000 );
-}
-
-#include <iostream>
 
 /**
 * Test case: CanGetZeroLatitude
