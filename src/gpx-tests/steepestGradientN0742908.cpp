@@ -1,10 +1,13 @@
 #include <boost/test/unit_test.hpp>
 #include <fstream>
-#include "logs.h"
-#include "types.h"
-#include "route.h"
+#include <string>
+
+#include "earth.h"
+#include "gridworld.h"
 #include "gridworld_route.h"
-#include "xmlgenerator.h"
+#include "logs.h"
+#include "route.h"
+
 
 
 /*
@@ -24,7 +27,7 @@ std::string generateLogs(std::string nameOfTest, GridWorldRoute route)
 
     return fileName;
 }
-
+// Example of gridworld
     /* A B C D E
      * F G H I J
      * K L M N O
@@ -34,43 +37,54 @@ std::string generateLogs(std::string nameOfTest, GridWorldRoute route)
 
 BOOST_AUTO_TEST_SUITE( Steepest_Gradient_N0742908 )
 
-    bool isFileName = true;
+
+    // constants to use in tests
+    const bool IS_FILE_NAME = true;
+    const degrees DEGREE_OF_ACCURACY = 0.01;
+    const metres HORI_UNIT = 20000;
+    const metres VERT_UNIT = 2000;
+    
+
+    // tests that a negative gradient is still positive.
 
 BOOST_AUTO_TEST_CASE( is_Negative_Gradient )
 {
-    GridWorldRoute routeLog = GridWorldRoute("AGM", GridWorld(Earth::CityCampus, 20000, 2000));
-    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_Negative_Gradient", routeLog), isFileName);
-    BOOST_CHECK_EQUAL( route.steepestGradient(), 4.0580047402710955);
+    GridWorldRoute routeLog = GridWorldRoute("AGM", GridWorld(Earth::CityCampus, HORI_UNIT , VERT_UNIT));
+    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_Negative_Gradient", routeLog), IS_FILE_NAME);
+    BOOST_CHECK_CLOSE( route.steepestGradient(), 4.0580047402710955, DEGREE_OF_ACCURACY);
 }
+
+    // tests that a positive gradient correct.
 
 BOOST_AUTO_TEST_CASE( is_Positive_Gradient )
 {
-    GridWorldRoute routeLog = GridWorldRoute("MGA", GridWorld(Earth::CityCampus, 20000, 2000));
-    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_Positive_Gradient", routeLog), isFileName);
-    BOOST_CHECK_EQUAL( route.steepestGradient(), 4.0580047402710955);
+    GridWorldRoute routeLog = GridWorldRoute("MGA", GridWorld(Earth::CityCampus, HORI_UNIT , VERT_UNIT));
+    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_Positive_Gradient", routeLog), IS_FILE_NAME);
+    BOOST_CHECK_CLOSE( route.steepestGradient(), 4.0580047402710955, DEGREE_OF_ACCURACY);
 }
 
+    // tests that a one point gradient equals 0.
 BOOST_AUTO_TEST_CASE( is_OnePoint_Gradient )
 {
-    GridWorldRoute routeLog = GridWorldRoute("M", GridWorld(Earth::CityCampus, 20000, 2000));
-    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_OnePoint_Gradient", routeLog), isFileName);
-    BOOST_CHECK_EQUAL( route.steepestGradient(), 0);
+    GridWorldRoute routeLog = GridWorldRoute("M", GridWorld(Earth::CityCampus, HORI_UNIT , VERT_UNIT));
+    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_OnePoint_Gradient", routeLog), IS_FILE_NAME);
+    BOOST_CHECK_CLOSE( route.steepestGradient(), 0, DEGREE_OF_ACCURACY);
 }
 
-
+    // checks that a positive and then negitive gradient result in correct answer.
 BOOST_AUTO_TEST_CASE( is_PositiveNegative_Gradient )
 {
-    GridWorldRoute routeLog = GridWorldRoute("UQMSY", GridWorld(Earth::CityCampus, 20000, 2000));
-    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_OnePoint_Gradient", routeLog), isFileName);
-    BOOST_CHECK_EQUAL( route.steepestGradient(), 4.0424037169314566);
+    GridWorldRoute routeLog = GridWorldRoute("UQMSY", GridWorld(Earth::CityCampus, HORI_UNIT , VERT_UNIT));
+    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_OnePoint_Gradient", routeLog), IS_FILE_NAME);
+    BOOST_CHECK_CLOSE( route.steepestGradient(), 4.0424037169314566, DEGREE_OF_ACCURACY);
 }
 
-
+    // checks that a flat line equals 0 as no gradient is present.
 BOOST_AUTO_TEST_CASE( is_No_Gradient )
 {
-    GridWorldRoute routeLog = GridWorldRoute("ABC", GridWorld(Earth::CityCampus, 20000, 2000));
-    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_No_Gradient", routeLog), isFileName);
-    BOOST_CHECK_EQUAL( route.steepestGradient(), 0);
+    GridWorldRoute routeLog = GridWorldRoute("ABC", GridWorld(Earth::CityCampus, HORI_UNIT , VERT_UNIT));
+    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_No_Gradient", routeLog), IS_FILE_NAME);
+    BOOST_CHECK_CLOSE( route.steepestGradient(), 0, DEGREE_OF_ACCURACY);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
