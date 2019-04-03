@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>MLHIOTX</name>
+        <rtept lat="90" lon="0">
+            <name>M</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="90" lon="164.812">
+            <name>L</name>
+            <ele>-1500.000000</ele>
+        </rtept>
+        <rtept lat="89.9766" lon="180">
+            <name>H</name>
+            <ele>-1500.000000</ele>
+        </rtept>
+        <rtept lat="89.9766" lon="15.1875">
+            <name>I</name>
+            <ele>-1500.000000</ele>
+        </rtept>
+        <rtept lat="90" lon="30.375">
+            <name>O</name>
+            <ele>-3000.000000</ele>
+        </rtept>
+        <rtept lat="89.9766" lon="30.375">
+            <name>T</name>
+            <ele>-3000.000000</ele>
+        </rtept>
+        <rtept lat="89.9532" lon="-164.812">
+            <name>X</name>
+            <ele>-3000.000000</ele>
+        </rtept>
+    </rte>
+</gpx>
+
