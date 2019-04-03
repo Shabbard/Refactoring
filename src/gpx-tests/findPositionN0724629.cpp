@@ -29,9 +29,9 @@ std::string createLogFile(std::string name, GridWorldRoute routeLog)
 
 BOOST_AUTO_TEST_SUITE( Route_Find_Position_N0724629 )
 
-const bool isFileName = true;
-const metres horizontalGridUnit = 1000;
-const double percentageAccuracy = 0.1;
+const bool IS_FILE_NAME = true;
+const metres HORIZONTAL_GRID_UNIT = 1000;
+const double PERCENTAGE_ACCURACY = 0.1;
 
 /**
 * Test case: CanGetPositiveLatitudeInLogFileWithOnePosition
@@ -39,8 +39,8 @@ const double percentageAccuracy = 0.1;
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithOnePosition )
 {
-   Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), -0.89982, percentageAccuracy );
+   Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
+    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), -0.89982, PERCENTAGE_ACCURACY );
 }
 
 /**
@@ -49,8 +49,8 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithOnePosition )
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithOnePosition )
 {
-    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), -0.898312, percentageAccuracy );
+    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
+    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), -0.898312, PERCENTAGE_ACCURACY );
 }
 
 /**
@@ -59,7 +59,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithOnePosition )
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithOnePosition )
 {
-    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
     BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), -20000 );
 }
 
@@ -69,13 +69,13 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithOnePosition )
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithPointsApart )
 {
-    const metres granularity = horizontalGridUnit / 100;
+    const metres granularity = HORIZONTAL_GRID_UNIT / 100;
 
    	// Generate a GPX log file for the with GridWorld constructor for CityCampus.
-    GridWorldRoute routeLog = GridWorldRoute("QWERTYUIOPASDFGHJKLXCVBNM", GridWorld(Earth::CityCampus, horizontalGridUnit));
+    GridWorldRoute routeLog = GridWorldRoute("QWERTYUIOPASDFGHJKLXCVBNM", GridWorld(Earth::CityCampus, HORIZONTAL_GRID_UNIT));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLatitudeInLogFileWithPointsApart", routeLog), isFileName, granularity);
-   	BOOST_CHECK_CLOSE( route.findPosition("C").latitude(), 52.9581383, percentageAccuracy );
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLatitudeInLogFileWithPointsApart", routeLog), IS_FILE_NAME, granularity);
+   	BOOST_CHECK_CLOSE( route.findPosition("C").latitude(), 52.9581383, PERCENTAGE_ACCURACY );
 }
 
 /**
@@ -84,13 +84,13 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithPointsApart )
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithPointsApart )
 {
-    const metres granularity = horizontalGridUnit / 100;
+    const metres granularity = HORIZONTAL_GRID_UNIT / 100;
 
    	// Generate a GPX log file for the with GridWorld constructor for Pontianak.
-    GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::Pontianak, horizontalGridUnit));
+    GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::Pontianak, HORIZONTAL_GRID_UNIT));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLongitudeInLogFileWithPointsApart", routeLog), isFileName, granularity);
-   	BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), 109.322134, percentageAccuracy );
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLongitudeInLogFileWithPointsApart", routeLog), IS_FILE_NAME, granularity);
+   	BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), 109.322134, PERCENTAGE_ACCURACY );
 }
 
 /**
@@ -99,12 +99,12 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithPointsApart )
 */
 BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithPointsApart )
 {
-    const metres granularity = horizontalGridUnit / 100;
+    const metres granularity = HORIZONTAL_GRID_UNIT / 100;
 
    	// Generate a GPX log file for the with GridWorld constructor for CliftonCampus.
-    GridWorldRoute routeLog = GridWorldRoute("IJOF", GridWorld(Earth::CliftonCampus, horizontalGridUnit));
+    GridWorldRoute routeLog = GridWorldRoute("IJOF", GridWorld(Earth::CliftonCampus, HORIZONTAL_GRID_UNIT));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevationInLogFileWithPointsApart", routeLog), isFileName, granularity);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevationInLogFileWithPointsApart", routeLog), IS_FILE_NAME, granularity);
    	BOOST_CHECK_EQUAL( route.findPosition("I").elevation(), 58 );
 }
 
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithPointsApart )
 */
 BOOST_AUTO_TEST_CASE( CanGetNegativeLatitude )
 {
-   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
+   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
    	BOOST_CHECK_EQUAL( route.findPosition("Q").latitude(), -0.89982 );
 }
 
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE( CanGetNegativeLatitude )
 */
 BOOST_AUTO_TEST_CASE( CanGetNegativeLongitude )
 {
-   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
+   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
    	BOOST_CHECK_EQUAL( route.findPosition("Q").longitude(), -0.898312 );
 }
 
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE( CanGetNegativeLongitude )
 */
 BOOST_AUTO_TEST_CASE( CanGetNegativeElevation )
 {
-   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
+   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
    	BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), -20000 );
 }
 
@@ -147,7 +147,7 @@ BOOST_AUTO_TEST_CASE ( CanGetZeroLatitude )
 	// Generate a GPX log file for the with GridWorld constructor for EquatorialMeridian.
     GridWorldRoute routeLog = GridWorldRoute("IEKS", GridWorld(Earth::EquatorialMeridian, 0, 1000));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetZeroLatitude", routeLog), isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetZeroLatitude", routeLog), IS_FILE_NAME);
    	BOOST_CHECK_EQUAL( route.findPosition("I").latitude(), 0 );
 }
 
@@ -160,7 +160,7 @@ BOOST_AUTO_TEST_CASE ( CanGetZeroLongitude )
 	// Generate a GPX log file for the with GridWorld constructor for NorthPole.
     GridWorldRoute routeLog = GridWorldRoute("FIWA", GridWorld(Earth::NorthPole, 0, 1000));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetZeroLongitude", routeLog), isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetZeroLongitude", routeLog), IS_FILE_NAME);
    	BOOST_CHECK_EQUAL( route.findPosition("F").longitude(), 0 );
 }
 
@@ -173,7 +173,7 @@ BOOST_AUTO_TEST_CASE ( CanGetZeroElevation )
 	// Generate a GPX log file for the with GridWorld constructor for EquatorialMeridian.
     GridWorldRoute routeLog = GridWorldRoute("LQHD", GridWorld(Earth::EquatorialMeridian, 0, 0));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetZeroElevation", routeLog), isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetZeroElevation", routeLog), IS_FILE_NAME);
    	BOOST_CHECK_EQUAL( route.findPosition("L").elevation(), 0 );
 }
 
@@ -186,7 +186,7 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 	// Generate a GPX log file for the with default GridWorld constructor
     GridWorldRoute routeLog = GridWorldRoute("FIWA", GridWorld());
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("ThrowsOutOfRangeIfNameNotFound", routeLog), isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("ThrowsOutOfRangeIfNameNotFound", routeLog), IS_FILE_NAME);
    	BOOST_CHECK_THROW( route.findPosition("K").elevation(), std::out_of_range );
 }
 
@@ -199,7 +199,7 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
 	// Generate a GPX log file for the with GridWorld constructor for NorthPole.
     GridWorldRoute routeLog = GridWorldRoute(GridWorldRoute("EAL", GridWorld(Earth::NorthPole, 0, 1000)));
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("ThrowsOutOfRangeIfElevationNotFound", routeLog), isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("ThrowsOutOfRangeIfElevationNotFound", routeLog), IS_FILE_NAME);
    	BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
 }
 
@@ -212,7 +212,7 @@ BOOST_AUTO_TEST_CASE ( ThrowsDomainErrorIfFileIsEmpty )
     std::ofstream openedFile(LogFiles::GPXRoutesDir + "ThrowsOutOfRangeIfFileIsEmpty-N0724629.gpx");
     openedFile.close();
 
-   	BOOST_CHECK_THROW( Route(LogFiles::GPXRoutesDir + "ThrowsOutOfRangeIfFileIsEmpty-N0724629.gpx", isFileName), std::domain_error );
+   	BOOST_CHECK_THROW( Route(LogFiles::GPXRoutesDir + "ThrowsOutOfRangeIfFileIsEmpty-N0724629.gpx", IS_FILE_NAME), std::domain_error );
 }
 
 BOOST_AUTO_TEST_SUITE_END()
