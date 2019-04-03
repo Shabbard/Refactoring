@@ -49,7 +49,8 @@ SOURCES += \
     src/gpx-tests/restingTimeN0736563.cpp \
     src/gpx-tests/maxGradient-N0740369.cpp \
     src/gpx-tests/MaxElevation-N0749370.cpp \
-    src/gpx-tests/minlatitude-n0743587.cpp
+    src/gpx-tests/minlatitude-n0743587.cpp \
+    src/gpx-tests/netLength-N0745509.cpp
     
     #Breaks code:
     #src/gpx-tests/steepestGradient-N0826291.cpp \
