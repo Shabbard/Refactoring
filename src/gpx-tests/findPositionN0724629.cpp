@@ -67,6 +67,54 @@ BOOST_AUTO_TEST_CASE( CanGetNegativeElevationInLogFileWithOnePosition )
 }
 
 /**
+* Test case: CanGetPositiveLatitudeInLogFileWithRepeatedPoints
+* Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithRepeatedPoints )
+{
+    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+
+    // Generate a GPX log file for the with GridWorld constructor for CityCampus.
+    GridWorldRoute routeLog = GridWorldRoute("KDLDDK", GridWorld(Earth::CityCampus, HORIZONTAL_GRID_UNIT));
+
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLatitudeInLogFileWithRepeatedPoints", routeLog), IS_FILE_NAME, granularity);
+    BOOST_CHECK_CLOSE( route.findPosition("D").latitude(), 52.9581383, PERCENTAGE_ACCURACY );
+}
+
+/**
+* Test case: CanGetPositiveLongitudeInLogFileWithPointsApart
+* Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithRepeatedPoints )
+{
+    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+
+    // Generate a GPX log file for the with GridWorld constructor for Pontianak.
+    GridWorldRoute routeLog = GridWorldRoute("KDLDDK", GridWorld(Earth::Pontianak, HORIZONTAL_GRID_UNIT));
+
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLongitudeInLogFileWithRepeatedPoints", routeLog), IS_FILE_NAME, granularity);
+    BOOST_CHECK_CLOSE( route.findPosition("D").longitude(), 109.322134, PERCENTAGE_ACCURACY );
+}
+
+/**
+* Test case: CanGetPositiveElevationInLogFileWithPointsApart
+* Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithRepeatedPoints )
+{
+    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+
+    // Generate a GPX log file for the with GridWorld constructor for CliftonCampus.
+    GridWorldRoute routeLog = GridWorldRoute("KDLDDK", GridWorld(Earth::CliftonCampus, HORIZONTAL_GRID_UNIT));
+
+    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevationInLogFileWithRepeatedPoints", routeLog), IS_FILE_NAME, granularity);
+    BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), 58 );
+}
+
+/**
 * Test case: CanGetPositiveLatitudeInLogFileWithPointsApart
 * Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
 * Test type: Valid
@@ -166,6 +214,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithPointsTooClose )
 /**
 * Test case: CanGetZeroLatitude
 * Use:       Checks that it is possible to obtain a zero value for latitude in a GPX log file.
+* Test type: Valid (edge case)
 */
 BOOST_AUTO_TEST_CASE ( CanGetZeroLatitude )
 {
@@ -180,6 +229,7 @@ BOOST_AUTO_TEST_CASE ( CanGetZeroLatitude )
 /**
 * Test case: CanGetZeroLongitude
 * Use:       Checks that it is possible to obtain a zero value for longitude in a GPX log file.
+* Test type: Valid (edge case)
 */
 BOOST_AUTO_TEST_CASE ( CanGetZeroLongitude )
 {
@@ -193,6 +243,7 @@ BOOST_AUTO_TEST_CASE ( CanGetZeroLongitude )
 /**
 * Test case: CanGetZeroLongitude
 * Use:       Checks that it is possible to obtain a zero value for elevation in a GPX log file.
+* Test type: Valid (edge case)
 */
 BOOST_AUTO_TEST_CASE ( CanGetZeroElevation )
 {
@@ -206,6 +257,7 @@ BOOST_AUTO_TEST_CASE ( CanGetZeroElevation )
 /**
 * Test case: ThrowsOutOfRangeIfNameNotFound
 * Use:       Checks that the std::out_of_range exception is thrown if the specified name is not found.
+* Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 {
@@ -219,6 +271,7 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 /**
 * Test case: ThrowsOutOfRangeIfElevationNotFound
 * Use:       Checks that the std::out_of_range exception is thrown if the elevation is not found.
+* Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
 {
@@ -232,6 +285,7 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
 /**
 * Test case: ThrowsDomainErrorIfFileIsEmpty
 * Use:       Checks that the std::domain_error exception is thrown if the log file is empty.
+* Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE ( ThrowsDomainErrorIfFileIsEmpty )
 {
