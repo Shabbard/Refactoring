@@ -1,10 +1,13 @@
 #include <boost/test/unit_test.hpp>
 #include <fstream>
+#include <string>
 
-#include "logs.h"
-#include "types.h"
-#include "route.h"
+#include "earth.h"
+#include "gridworld.h"
 #include "gridworld_route.h"
+#include "logs.h"
+#include "route.h"
+
 
 
 /*
@@ -38,8 +41,9 @@ BOOST_AUTO_TEST_SUITE( Steepest_Gradient_N0742908 )
     // constants to use in tests
     const bool IS_FILE_NAME = true;
     const degrees DEGREE_OF_ACCURACY = 0.01;
-    const meters HORI_UNIT = 20000;
-    const meters VERT_UNIT = 2000;
+    const metres HORI_UNIT = 20000;
+    const metres VERT_UNIT = 2000;
+    
 
     // tests that a negative gradient is still positive.
 
