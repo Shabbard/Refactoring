@@ -41,8 +41,8 @@ BOOST_AUTO_TEST_CASE(Route_MaxGradient_N0740369)
  */
 BOOST_AUTO_TEST_CASE(SINGLE_POINT) {
   GridWorld world(Earth::CityCampus, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT);
-  GridWorldRoute route("A", world);
-  std::string logPath = saveLogFile("flat-route", route);
+  GridWorldRoute gridRoute("A", world);
+  std::string logPath = saveLogFile("flat-route", gridRoute);
 
   Route route(logPath, true);
   BOOST_CHECK_CLOSE(route.maxGradient(), 0.0, CHECK_TOLERANCE);
@@ -53,8 +53,8 @@ BOOST_AUTO_TEST_CASE(SINGLE_POINT) {
  */
 BOOST_AUTO_TEST_CASE(FLAT_ROUTE) {
   GridWorld world(Earth::CityCampus, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT);
-  GridWorldRoute route("ABC", world);
-  std::string logPath = saveLogFile("flat-route", route);
+  GridWorldRoute gridRoute("ABC", world);
+  std::string logPath = saveLogFile("flat-route", gridRoute);
 
   Route route(logPath, true);
   BOOST_CHECK_CLOSE(route.maxGradient(), 0.0, CHECK_TOLERANCE);
@@ -65,8 +65,8 @@ BOOST_AUTO_TEST_CASE(FLAT_ROUTE) {
  */
 BOOST_AUTO_TEST_CASE(DOWNHILL_ROUTE) {
   GridWorld world(Earth::CityCampus, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT);
-  GridWorldRoute route("MRW", world);
-  std::string logPath = saveLogFile("downhill-route", route);
+  GridWorldRoute gridRoute("MRW", world);
+  std::string logPath = saveLogFile("downhill-route", gridRoute);
 
   Route route(logPath, true);
   BOOST_CHECK_CLOSE(route.maxGradient(), -GRADIENT, CHECK_TOLERANCE);
@@ -77,8 +77,8 @@ BOOST_AUTO_TEST_CASE(DOWNHILL_ROUTE) {
  */
 BOOST_AUTO_TEST_CASE(UPHILL_ROUTE) {
   GridWorld world(Earth::CityCampus, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT);
-  GridWorldRoute route("WRM", world);
-  std::string logPath = saveLogFile("uphill-route", route);
+  GridWorldRoute gridRoute("WRM", world);
+  std::string logPath = saveLogFile("uphill-route", gridRoute);
 
   Route route(logPath, true);
   BOOST_CHECK_CLOSE(route.maxGradient(), GRADIENT, CHECK_TOLERANCE);
@@ -90,8 +90,8 @@ BOOST_AUTO_TEST_CASE(UPHILL_ROUTE) {
  */
 BOOST_AUTO_TEST_CASE(DOWNHILL_ROUTE_WITH_FLAT) {
   GridWorld world(Earth::CityCampus, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT);
-  GridWorldRoute route("MRWX", world);
-  std::string logPath = saveLogFile("downhill-route-with-flat", route);
+  GridWorldRoute gridRoute("MRWX", world);
+  std::string logPath = saveLogFile("downhill-route-with-flat", gridRoute);
 
   Route route(logPath, true);
   BOOST_CHECK_CLOSE(route.maxGradient(), 0, CHECK_TOLERANCE);
@@ -103,8 +103,8 @@ BOOST_AUTO_TEST_CASE(DOWNHILL_ROUTE_WITH_FLAT) {
  */
 BOOST_AUTO_TEST_CASE(UPHILL_ROUTE_WITH_FLAT) {
   GridWorld world(Earth::CityCampus, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT);
-  GridWorldRoute route("XWRM", world);
-  std::string logPath = saveLogFile("uphill-route-with-flat", route);
+  GridWorldRoute gridRoute("XWRM", world);
+  std::string logPath = saveLogFile("uphill-route-with-flat", gridRoute);
 
   Route route(logPath, true);
   BOOST_CHECK_CLOSE(route.maxGradient(), GRADIENT, CHECK_TOLERANCE);
@@ -116,8 +116,8 @@ BOOST_AUTO_TEST_CASE(UPHILL_ROUTE_WITH_FLAT) {
  */
 BOOST_AUTO_TEST_CASE(DOWNHILL_ROUTE_WITH_DIAG) {
   GridWorld world(Earth::CityCampus, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT);
-  GridWorldRoute route("MLF", world);
-  std::string logPath = saveLogFile("downhill-route-with-diag", route);
+  GridWorldRoute gridRoute("MLF", world);
+  std::string logPath = saveLogFile("downhill-route-with-diag", gridRoute);
 
   Route route(logPath, true);
   BOOST_CHECK_CLOSE(route.maxGradient(), -DIAG_GRADIENT, CHECK_TOLERANCE);
@@ -129,8 +129,8 @@ BOOST_AUTO_TEST_CASE(DOWNHILL_ROUTE_WITH_DIAG) {
  */
 BOOST_AUTO_TEST_CASE(UPHILL_ROUTE_WITH_DIAG) {
   GridWorld world(Earth::CityCampus, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT);
-  GridWorldRoute route("FLM", world);
-  std::string logPath = saveLogFile("uphill-route-with-diag", route);
+  GridWorldRoute gridRoute("FLM", world);
+  std::string logPath = saveLogFile("uphill-route-with-diag", gridRoute);
 
   Route route(logPath, true);
   BOOST_CHECK_CLOSE(route.maxGradient(), GRADIENT, CHECK_TOLERANCE);
@@ -142,8 +142,9 @@ BOOST_AUTO_TEST_CASE(UPHILL_ROUTE_WITH_DIAG) {
  */
 BOOST_AUTO_TEST_CASE(ROUTE_WITH_UPHILL_AND_DOWNHILL) {
   GridWorld world(Earth::CityCampus, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT);
-  GridWorldRoute route("KLMNO", world);
-  std::string logPath = saveLogFile("route-with-uphill-and-downhill", route);
+  GridWorldRoute gridRoute("KLMNO", world);
+  std::string logPath =
+      saveLogFile("route-with-uphill-and-downhill", gridRoute);
 
   Route route(logPath, true);
   BOOST_CHECK_CLOSE(route.maxGradient(), GRADIENT, CHECK_TOLERANCE);
