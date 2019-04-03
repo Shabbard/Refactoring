@@ -60,14 +60,18 @@ BOOST_AUTO_TEST_CASE( Route_with_one_point )
 // two points on top of each other should have a gradient of 0
 BOOST_AUTO_TEST_CASE( Route_with_two_vertical_points )
 {
-    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
+    GridWorldRoute routeLog = GridWorldRoute("MH", GridWorld(Earth::NorthPole, 0, VERTICAL_GRID_UNIT));
+
+    Route route = Route(LogFiles::GPXRoutesDir + createLogs("RouteWithTwoVerticalPoints", routeLog), isFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(),  0, PERCENTAGE_ACCURACY);
 }
 
 // two points with no elevation difference should have a gradient of 0
 BOOST_AUTO_TEST_CASE( Route_with_two_horizontal_points )
 {
-    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
+    GridWorldRoute routeLog = GridWorldRoute("MH", GridWorld(Earth::NorthPole, HORIZONTAL_GRID_UNIT, 0));
+
+    Route route = Route(LogFiles::GPXRoutesDir + createLogs("RouteWithTwoHorizontalPoints", routeLog), isFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(),  0, PERCENTAGE_ACCURACY);
 }
 
