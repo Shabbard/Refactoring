@@ -51,7 +51,8 @@ SOURCES += \
     src/gpx-tests/totalLengthTest_n0755314.cpp \
     src/gpx-tests/restingTimeN0736563.cpp \
     src/gpx-tests/maxlongitude.cpp \
-    src/gpx-tests/maxGradient-N0740369.cpp
+    src/gpx-tests/maxGradient-N0740369.cpp \
+    src/gpx-tests/MaxElevation-N0749370.cpp
 
 INCLUDEPATH += headers/
 
