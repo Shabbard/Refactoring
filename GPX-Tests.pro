@@ -57,6 +57,7 @@ SOURCES += \
     #Breaks code:
     #src/gpx-tests/steepestGradient-N0826291.cpp \
     #src/gpx-tests/restingTimeN0736563.cpp\
+    #src/gpx-tests/steepestGradient-N0826291.cpp \
     #Please ensure the a successful build before pushing to the master. Thanks.
 
 INCLUDEPATH += headers/
