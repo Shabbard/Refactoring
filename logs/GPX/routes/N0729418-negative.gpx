@@ -2,12 +2,12 @@
 <gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
     <rte>
         <name>n0729418-negative.gpx</name>
-        <rtept lat="-0.089973" lon="109.142">
-            <name>Point1</name>
+        <rtept lat="-0.089973" lon="-1.142">
+            <name>P</name>
             <ele>0.000000</ele>
         </rtept>
-        <rtept lat="-0.089979" lon="109.232">
-            <name>Point2</name>
+        <rtept lat="-0.089979" lon="-1.232">
+            <name>Q</name>
             <ele>0.000000</ele>
         </rtept>
     </rte>

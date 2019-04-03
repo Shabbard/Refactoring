@@ -3,19 +3,19 @@
     <rte>
         <name>n0729418-duplicate.gpx</name>
         <rtept lat="54.214518" lon="-0.291245">
-            <name>Home</name>
+            <name>D</name>
             <ele>0.000000</ele>
         </rtept>
         <rtept lat="54.214518" lon="-0.291245">
-            <name>Home</name>
+            <name>I</name>
             <ele>0.000000</ele>
         </rtept>
-        <rtept lat="47.872144" lon="13.220503">
-            <name>Germany</name>
+        <rtept lat="47.872144" lon="-0.291245">
+            <name>N</name>
             <ele>0.000000</ele>
         </rtept>
-        <rtept lat="20.961440" lon="81.217885">
-            <name>India</name>
+        <rtept lat="20.961440" lon="-0.291245">
+            <name>S</name>
             <ele>0.000000</ele>
         </rtept>
     </rte>

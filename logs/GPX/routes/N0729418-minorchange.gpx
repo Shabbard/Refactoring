@@ -3,11 +3,11 @@
     <rte>
         <name>n0729418-minorchange.gpx</name>
         <rtept lat="2.00000" lon="-1.1999999999988">
-            <name>Point1</name>
+            <name>P</name>
             <ele>11</ele>
         </rtept>
         <rtept lat="2.10000" lon="-1.1999999999999">
-            <name>Point2</name>
+            <name>Q</name>
             <ele>22</ele>
         </rtept>
     </rte>

@@ -3,16 +3,20 @@
     <rte>
         <name>n0729418-signedValue.gpx</name>
         <rtept lat="1.50000" lon="-1.92345">
-            <name>Point1</name>
+            <name>K</name>
             <ele>1</ele>
         </rtept>
         <rtept lat="1.60000" lon="-2.35678">
-            <name>Point2</name>
+            <name>L</name>
             <ele>2</ele>
         </rtept>
         <rtept lat="1.90000" lon="1.12345">
-            <name>Point3</name>
+            <name>M</name>
             <ele>3</ele>
+        </rtept>
+	<rtept lat="1.70000" lon="1.12354">
+            <name>N</name>
+            <ele>4</ele>
         </rtept>
     </rte>
 </gpx>
