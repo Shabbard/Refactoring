@@ -1,5 +1,9 @@
 #include <boost/test/unit_test.hpp>
 
+#include <fstream>
+#include "gridworld_route.h"
+#include "xmlgenerator.h"
+
 #include "logs.h"
 #include "route.h"
 #include "track.h"
@@ -12,48 +16,65 @@ const bool isFileName = true;
 
 // The longitude of the most Easterly point on the Route.
 
-/* The maxLongitude function is used to return the most easternly
- * value included in a given Route.
+/* generateGPX is a auxillary function used to generate a GPX files
+ * based on a given route. It uses the following GridWorld system.
  *
- * This function is very simple, it should
- * go through each point in the route, selecting the first easterly point
- * in the route as the maximum and then comparing each other easterly value
- * in the route to check if it is greater than the first point. If it is
- * larger then the maximum can be replaced. This function should loop through
- * each point in the route; doing the comparison just explained, then the
- * largest easterly value will be found and can be returned.
- *
- *
- * The first obvious test is to test real values to make sure the correct
- * maximum longitude is returned.
- *
- * The function should also make sure it accounts for signed numbers,
- * and so will be tested with negative numbers that use a high value
- * compared to postive ints with smaller values. Also signed purely negative
- * numbers should be tested too.
- *
- * Signed numbers at the edge case of 0 should also be tested
- * -0 and 0.
- *
- */
+ * A B C D E
+ * F G H I J
+ * K L M N O
+ * P Q R S T
+ * U V W X Y
+*/
 
-BOOST_AUTO_TEST_CASE( correctEasterlyValue )
+std::string generateGPX(std::string logName, GridWorldRoute route)
 {
-   Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName);
-   BOOST_CHECK_EQUAL( route.maxLongitude(), 1.79662 );
+    std::string fileName = logName;
+    std::ofstream GPXFile(GPS::LogFiles::GPXRoutesDir + fileName);
+
+    GPXFile << route.toGPX(true, logName);
+    GPXFile.close();
+
+    return fileName;
 }
 
-BOOST_AUTO_TEST_CASE( signedMixedEasterlyValues )
+// To test a single pointed route, this checks any loops the function may have
+// and makes sure that the function returns the only value in the route.
+BOOST_AUTO_TEST_CASE( single_Point )
 {
-   Route route = Route(LogFiles::GPXRoutesDir + "longitudeSigned-N0743797.gpx", isFileName);
+   GridWorldRoute routeLog = GridWorldRoute("E");
+   Route route = Route(LogFiles::GPXRoutesDir + generateGPX("singlePoint-N0743797.gpx", routeLog), isFileName);
+   BOOST_CHECK_EQUAL( route.maxLongitude(), -1.12345);
+}
+
+// Tests a route with points all having the same longitude values.
+BOOST_AUTO_TEST_CASE( same_Longitude )
+{
+   GridWorldRoute routeLog = GridWorldRoute("DINS");
+   Route route = Route(LogFiles::GPXRoutesDir + generateGPX("sameLongitude-N0743797.gpx", routeLog), isFileName);
+   BOOST_CHECK_EQUAL( route.maxLongitude(), -1.12345);
+}
+
+// Checks that the function can differentiate between signed numbers
+BOOST_AUTO_TEST_CASE( mixed_Sign_Longitude )
+{
+   GridWorldRoute routeLog = GridWorldRoute("KLMN");
+   Route route = Route(LogFiles::GPXRoutesDir + generateGPX("longitudeSigned-N0743797", routeLog), isFileName);
    BOOST_CHECK_EQUAL( route.maxLongitude(), 1.12345);
 }
 
-BOOST_AUTO_TEST_CASE( signedNegativeEasterlyValues )
+// Checks the function can find the most positive number from all negatively signed ones.
+BOOST_AUTO_TEST_CASE( negative_Signed_Longitude )
 {
-   Route route = Route(LogFiles::GPXRoutesDir + "longitudeNegative-N0743797.gpx", isFileName);
-   BOOST_CHECK_EQUAL( route.maxLongitude(), 1.12345);
+   GridWorldRoute routeLog = GridWorldRoute("PQ");
+   Route route = Route(LogFiles::GPXRoutesDir + generateGPX("longitudeNegative-N0743797.gpx", routeLog), isFileName);
+   BOOST_CHECK_EQUAL( route.maxLongitude(), -1.12345);
 }
 
+// Checks that the function does not use rounding by using longitudes to 15 decimals places.
+BOOST_AUTO_TEST_CASE( very_Close_Longitude )
+{
+   Route route = Route(LogFiles::GPXRoutesDir + "closeLongitude-N0743797.gpx", isFileName);
+   BOOST_CHECK_EQUAL( route.maxLongitude(), -1.199999999999998);
+}
 
 BOOST_AUTO_TEST_SUITE_END()
