@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE( Route_with_two_horizontal_points )
     BOOST_CHECK_CLOSE( route.steepestGradient(),  0, PERCENTAGE_ACCURACY);
 }
 
-// check values with only negative gradients
+// check values with only negative gradients, should return a positive gradient
 BOOST_AUTO_TEST_CASE( Route_with_only_negative_gradients )
 {
     GridWorldRoute routeLog = GridWorldRoute("MHC", GridWorld(Earth::NorthPole, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT));
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE( Route_with_only_negative_gradients )
     BOOST_CHECK_CLOSE( route.steepestGradient(),  GRADIENT, PERCENTAGE_ACCURACY);
 }
 
-// check different values with only positive gradients
+// check different values with only positive gradients, should return a positive gradient
 BOOST_AUTO_TEST_CASE( Route_with_only_positive_gradients )
 {
     GridWorldRoute routeLog = GridWorldRoute("WRM", GridWorld(Earth::NorthPole, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT));
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE( Route_with_only_positive_gradients )
     BOOST_CHECK_CLOSE( route.steepestGradient(),  GRADIENT, PERCENTAGE_ACCURACY); // use correct macro for floating point numbers
 }
 
-// check values with both positive and negative gradients
+// check values with both positive and negative gradients, should return a positive gradient
 BOOST_AUTO_TEST_CASE( Route_with_positive_and_negative_gradients )
 {
     GridWorldRoute routeLog = GridWorldRoute("HMR", GridWorld(Earth::NorthPole, HORIZONTAL_GRID_UNIT, VERTICAL_GRID_UNIT));
