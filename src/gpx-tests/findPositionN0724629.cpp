@@ -8,173 +8,187 @@
 #include "earth.h"
 #include "geometry.h"
 #include "gridworld_route.h"
+#include "findPositionN0724629_logGenerator.cpp"
 
 using namespace GPS;
 
-
-std::string createLogFile(std::string name, GridWorldRoute routeLog)
-{
-	// Converts the GridWorldRoute in to GPX format.
-    std::string routeGPX = routeLog.toGPX(true, name);
-
-    std::string fileName = name + "-N0724629.gpx";
-
-    std::ofstream openedFile(LogFiles::GPXRoutesDir + name + "-N0724629.gpx");
-    openedFile << routeGPX;
-    openedFile.close();
-
-    return name + "-N0724629.gpx";
-}
-
-
 BOOST_AUTO_TEST_SUITE( Route_Find_Position_N0724629 )
 
-const bool isFileName = true;
+const bool IS_FILE_NAME = true;
+const metres HORIZONTAL_GRID_UNIT = 1000;
+const double PERCENTAGE_ACCURACY = 0.1;
+
 
 /**
-* Test case: CanGetPositiveLatitude
-* Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
+* Test case: CanGetPositionWithPositiveValuesInLogFileWithOnePoint
+* Use:       Checks that it is possible to obtain positive values for latitude,
+*            longitude and elevation in a GPX log file with only one point on
+*            the route.
+* Test type: Valid
 */
-BOOST_AUTO_TEST_CASE( CanGetPositiveLatitude )
+BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithOnePoint )
 {
-   	// Generate a GPX log file for the with GridWorld constructor for CityCampus.
-    GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::CityCampus, 0, 1000));
+    GPX::generateLogFiles();
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLatitude", routeLog), isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("K").latitude(), 52.9581 );
+    Position thePosition = Position(53.1381, 1.00511, 53);
+    Route route = Route(LogFiles::GPXRoutesDir + "OnePointPositive-N0724629.gpx", IS_FILE_NAME);
+
+    BOOST_CHECK_CLOSE( route.findPosition("B").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_CLOSE( route.findPosition("B").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("B").elevation(), thePosition.elevation() );
 }
+
 
 /**
-* Test case: CanGetPositiveLongitude
-* Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
+* Test case: CanGetPositionWithNegativeValuesInLogFileWithOnePoint
+* Use:       Checks that it is possible to obtain negative values for latitude,
+*            longitude and elevation in a GPX log file with only one point on
+*            the route.
+* Test type: Valid
 */
-BOOST_AUTO_TEST_CASE( CanGetPositiveLongitude )
+BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithOnePoint )
 {
-   	// Generate a GPX log file for the with GridWorld constructor for Pontianak.
-    GridWorldRoute routeLog = GridWorldRoute("KQLD", GridWorld(Earth::Pontianak, 0, 1000));
+    Position thePosition = Position(-0.89982, -0.898312, -20000);
+    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveLongitude", routeLog), isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("K").longitude(), 109.322 );
+    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), thePosition.elevation() );
 }
+
 
 /**
-* Test case: CanGetPositiveElevation
-* Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
+* Test case: CanGetPositionWithZeroValues
+* Use:       Checks that it is possible to obtain zero values for latitude,
+*            longitude and elevation.
+* Test type: Valid
 */
-BOOST_AUTO_TEST_CASE( CanGetPositiveElevation )
+BOOST_AUTO_TEST_CASE( CanGetPositionWithZeroValues )
 {
-   	// Generate a GPX log file for the with GridWorld constructor for CliftonCampus.
-    GridWorldRoute routeLog = GridWorldRoute("IJOF", GridWorld(Earth::CliftonCampus, 0, 0));
+    Route route = Route(LogFiles::GPXRoutesDir + "ZeroValues-N0724629.gpx", IS_FILE_NAME);
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetPositiveElevation", routeLog), isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("I").elevation(), 58 );
+    BOOST_CHECK_EQUAL( route.findPosition("I").latitude(), 0 );
+    BOOST_CHECK_EQUAL( route.findPosition("I").longitude(), 0 );
+    BOOST_CHECK_EQUAL( route.findPosition("I").elevation(), 0 );
 }
 
-/**
-* Test case: CanGetNegativeLatitude
-* Use:       Checks that it is possible to obtain a negative value for latitude in a GPX log file.
-*/
-BOOST_AUTO_TEST_CASE( CanGetNegativeLatitude )
-{
-   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("Q").latitude(), -0.89982 );
-}
-
-/**
-* Test case: CanGetNegativeLongitude
-* Use:       Checks that it is possible to obtain a negative value for longitude in a GPX log file.
-*/
-BOOST_AUTO_TEST_CASE( CanGetNegativeLongitude )
-{
-   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("Q").longitude(), -0.898312 );
-}
-
-/**
-* Test case: CanGetNegativeElevation
-* Use:       Checks that it is possible to obtain a negative value for elevation in a GPX log file.
-*/
-BOOST_AUTO_TEST_CASE( CanGetNegativeElevation )
-{
-   	Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), -20000 );
-}
-
-/**
-* Test case: CanGetZeroLatitude
-* Use:       Checks that it is possible to obtain a zero value for latitude in a GPX log file.
-*/
-BOOST_AUTO_TEST_CASE ( CanGetZeroLatitude )
-{
-	// Generate a GPX log file for the with GridWorld constructor for EquatorialMeridian.
-    GridWorldRoute routeLog = GridWorldRoute("IEKS", GridWorld(Earth::EquatorialMeridian, 0, 1000));
-
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetZeroLatitude", routeLog), isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("I").latitude(), 0 );
-}
-
-/**
-* Test case: CanGetZeroLongitude
-* Use:       Checks that it is possible to obtain a zero value for longitude in a GPX log file.
-*/
-BOOST_AUTO_TEST_CASE ( CanGetZeroLongitude )
-{
-	// Generate a GPX log file for the with GridWorld constructor for NorthPole.
-    GridWorldRoute routeLog = GridWorldRoute("FIWA", GridWorld(Earth::NorthPole, 0, 1000));
-
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetZeroLongitude", routeLog), isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("F").longitude(), 0 );
-}
-
-/**
-* Test case: CanGetZeroLongitude
-* Use:       Checks that it is possible to obtain a zero value for elevation in a GPX log file.
-*/
-BOOST_AUTO_TEST_CASE ( CanGetZeroElevation )
-{
-	// Generate a GPX log file for the with GridWorld constructor for EquatorialMeridian.
-    GridWorldRoute routeLog = GridWorldRoute("LQHD", GridWorld(Earth::EquatorialMeridian, 0, 0));
-
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("CanGetZeroElevation", routeLog), isFileName);
-   	BOOST_CHECK_EQUAL( route.findPosition("L").elevation(), 0 );
-}
 
 /**
 * Test case: ThrowsOutOfRangeIfNameNotFound
-* Use:       Checks that the std::out_of_range exception is thrown if the specified name is not found.
+* Use:       Checks that the std::out_of_range exception is thrown if the
+*            specified name is not found.
+* Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 {
-	// Generate a GPX log file for the with default GridWorld constructor
-    GridWorldRoute routeLog = GridWorldRoute("FIWA", GridWorld());
+    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
 
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("ThrowsOutOfRangeIfNameNotFound", routeLog), isFileName);
-   	BOOST_CHECK_THROW( route.findPosition("K").elevation(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("K").latitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("K").longitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("K").elevation(), std::out_of_range );
 }
+
 
 /**
 * Test case: ThrowsOutOfRangeIfElevationNotFound
-* Use:       Checks that the std::out_of_range exception is thrown if the elevation is not found.
+* Use:       Checks that the std::out_of_range exception is thrown if the
+*            elevation is not found.
+* Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
 {
-	// Generate a GPX log file for the with GridWorld constructor for NorthPole.
-    GridWorldRoute routeLog = GridWorldRoute(GridWorldRoute("EAL", GridWorld(Earth::NorthPole, 0, 1000)));
-
-    Route route = Route(LogFiles::GPXRoutesDir + createLogFile("ThrowsOutOfRangeIfElevationNotFound", routeLog), isFileName);
-   	BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
+    Route route = Route(LogFiles::GPXRoutesDir + "NoElevation-N0724629.gpx", IS_FILE_NAME);
+    BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
 }
+
+
+// /**
+// * Test case: CanGetPositiveLatitudeInLogFileWithRepeatedPoints
+// * Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
+// * Test type: Valid
+// */
+// BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithRepeatedPoints )
+// {
+//     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+
+//     Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPoints-N0724629.gpx", IS_FILE_NAME, granularity);
+//     BOOST_CHECK_CLOSE( route.findPosition("D").latitude(), 52.9581383, PERCENTAGE_ACCURACY );
+// }
+
+// /**
+// * Test case: CanGetPositiveLongitudeInLogFileWithPointsApart
+// * Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
+// * Test type: Valid
+// */
+// BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithRepeatedPoints )
+// {
+//     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+
+//     Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPoints-N0724629.gpx", IS_FILE_NAME, granularity);
+//     BOOST_CHECK_CLOSE( route.findPosition("D").longitude(), 109.322134, PERCENTAGE_ACCURACY );
+// }
+
+// /**
+// * Test case: CanGetPositiveElevationInLogFileWithPointsApart
+// * Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
+// * Test type: Valid
+// */
+// BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithRepeatedPoints )
+// {
+//     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+
+//     Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPoints-N0724629.gpx", IS_FILE_NAME, granularity);
+//     BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), 58 );
+// }
+
+
+/**
+* Test case: CanGetPositionWithPositiveValuesInLogFileWithPointsApart
+* Use:       Checks that it is possible to obtain positive values for latitude,
+*            longitude and elevation in a GPX log file with multiple points,
+*            none of which are more than 'granularity' apart.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithPointsApart )
+{
+    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+
+    Position thePosition = Position(52.9491, -1.16915, 53);
+    Route route = Route(LogFiles::GPXRoutesDir + "PointsApart-N0724629.gpx", IS_FILE_NAME, granularity);
+
+    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), thePosition.elevation() );
+}
+
+
+/**
+* Test case: CanGetPositionWithPositiveValuesInLogFileWithPointsTooClose
+* Use:       Checks that it is possible to obtain positive values for latitude,
+*            longitude and elevation in a GPX log file with multiple points,
+*            none of which are less than 'granularity' apart.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithPointsTooClose )
+{
+    const metres granularity = HORIZONTAL_GRID_UNIT * 5;
+
+    Route route = Route(LogFiles::GPXRoutesDir + "PointsTooClose-N0724629.gpx", IS_FILE_NAME, granularity);
+
+    BOOST_CHECK_THROW( route.findPosition("A").latitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("A").longitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
+}
+
 
 /**
 * Test case: ThrowsDomainErrorIfFileIsEmpty
 * Use:       Checks that the std::domain_error exception is thrown if the log file is empty.
+* Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE ( ThrowsDomainErrorIfFileIsEmpty )
 {
-    std::ofstream openedFile(LogFiles::GPXRoutesDir + "ThrowsOutOfRangeIfFileIsEmpty-N0724629.gpx");
-    openedFile.close();
-
-   	BOOST_CHECK_THROW( Route(LogFiles::GPXRoutesDir + "ThrowsOutOfRangeIfFileIsEmpty-N0724629.gpx", isFileName), std::domain_error );
+   	BOOST_CHECK_THROW( Route(LogFiles::GPXRoutesDir + "EmptyFile-N0724629.gpx", IS_FILE_NAME), std::domain_error );
 }
 
 BOOST_AUTO_TEST_SUITE_END()
