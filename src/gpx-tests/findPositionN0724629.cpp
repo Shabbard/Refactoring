@@ -98,10 +98,8 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoints )
 {
-    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
-
     Position thePosition = Position(52.9761, 1.16915, 53);
-    Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPointsPositive-N0724629.gpx", IS_FILE_NAME, granularity);
+    Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPointsPositive-N0724629.gpx", IS_FILE_NAME);
 
     BOOST_CHECK_CLOSE( route.findPosition("D").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
     BOOST_CHECK_CLOSE( route.findPosition("D").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
@@ -118,10 +116,8 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoint
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithRepeatedPoints )
 {
-    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
-
     Position thePosition = Position(-52.9401, -1.13932, -53);
-    Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPointsNegative-N0724629.gpx", IS_FILE_NAME, granularity);
+    Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPointsNegative-N0724629.gpx", IS_FILE_NAME);
 
     BOOST_CHECK_CLOSE( route.findPosition("D").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
     BOOST_CHECK_CLOSE( route.findPosition("D").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
