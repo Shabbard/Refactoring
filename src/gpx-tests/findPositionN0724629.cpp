@@ -89,6 +89,22 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 
 
 /**
+* Test case: ThrowsOutOfRangeIfNameNotFound
+* Use:       Checks that the std::out_of_range exception is thrown if the
+*            specified name is in the incorrect case.
+* Test type: Invalid
+*/
+BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfCaseIncorrect )
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
+
+    BOOST_CHECK_THROW( route.findPosition("q").latitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("q").longitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("q").elevation(), std::out_of_range );
+}
+
+
+/**
 * Test case: CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoints
 * Use:       Checks that it is possible to obtain positive values for latitude,
 *            longitude and elevation in a GPX log file with only one point on
