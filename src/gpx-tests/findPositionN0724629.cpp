@@ -16,7 +16,6 @@ BOOST_AUTO_TEST_SUITE( Route_Find_Position_N0724629 )
 
 const bool IS_FILE_NAME = true;
 const metres HORIZONTAL_GRID_UNIT = 1000;
-const double PERCENTAGE_ACCURACY = 0.1;
 
 
 /**
@@ -33,8 +32,8 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithOnePoint )
     Position thePosition = Position(53.1381, 1.00511, 53);
     Route route = Route(LogFiles::GPXRoutesDir + "OnePointPositive-N0724629.gpx", IS_FILE_NAME);
 
-    BOOST_CHECK_CLOSE( route.findPosition("B").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
-    BOOST_CHECK_CLOSE( route.findPosition("B").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("B").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("B").longitude(), thePosition.longitude() );
     BOOST_CHECK_EQUAL( route.findPosition("B").elevation(), thePosition.elevation() );
 }
 
@@ -51,8 +50,8 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithOnePoint )
     Position thePosition = Position(-0.89982, -0.898312, -20000);
     Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
 
-    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
-    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").longitude(), thePosition.longitude() );
     BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), thePosition.elevation() );
 }
 
@@ -101,8 +100,8 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoint
     Position thePosition = Position(52.9761, 1.16915, 53);
     Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPointsPositive-N0724629.gpx", IS_FILE_NAME);
 
-    BOOST_CHECK_CLOSE( route.findPosition("D").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
-    BOOST_CHECK_CLOSE( route.findPosition("D").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("D").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("D").longitude(), thePosition.longitude() );
     BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), thePosition.elevation() );
 }
 
@@ -119,8 +118,8 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithRepeatedPoint
     Position thePosition = Position(-52.9401, -1.13932, -53);
     Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPointsNegative-N0724629.gpx", IS_FILE_NAME);
 
-    BOOST_CHECK_CLOSE( route.findPosition("D").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
-    BOOST_CHECK_CLOSE( route.findPosition("D").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("D").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("D").longitude(), thePosition.longitude() );
     BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), thePosition.elevation() );
 }
 
@@ -139,8 +138,8 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithPointsApart )
     Position thePosition = Position(52.9035, 1.16913, 58);
     Route route = Route(LogFiles::GPXRoutesDir + "PointsApartPositive-N0724629.gpx", IS_FILE_NAME, granularity);
 
-    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
-    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").longitude(), thePosition.longitude() );
     BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), thePosition.elevation() );
 }
 
@@ -159,8 +158,8 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithPointsApart )
     Position thePosition = Position(-52.9215, -1.19892, -58);
     Route route = Route(LogFiles::GPXRoutesDir + "PointsApartNegative-N0724629.gpx", IS_FILE_NAME, granularity);
 
-    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
-    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").longitude(), thePosition.longitude() );
     BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), thePosition.elevation() );
 }
 
