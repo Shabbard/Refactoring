@@ -18,40 +18,40 @@ const bool IS_FILE_NAME = true;
 const metres HORIZONTAL_GRID_UNIT = 1000;
 
 
-// /**
-// * Test case: DoesNotThrowExceptionWhenAccessingPositivePositionValues
-// * Use:       Checks that it is possible to obtain positive values for latitude,
-// *            longitude and elevation in a GPX log file with only one point on
-// *            the route.
-// * Test type: Valid
-// */
-// BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingPositivePositionValues )
-// {
-//     GPX::generateLogFiles();
+/**
+* Test case: DoesNotThrowExceptionWhenAccessingPositivePositionValues
+* Use:       Checks that it is possible to obtain positive values for latitude,
+*            longitude and elevation in a GPX log file with only one point on
+*            the route.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingPositivePositionValues )
+{
+    GPX::generateLogFiles();
 
-//     Route route = Route(LogFiles::GPXRoutesDir + "OnePointPositive-N0724629.gpx", IS_FILE_NAME);
+    Route route = Route(LogFiles::GPXRoutesDir + "OnePointPositive-N0724629.gpx", IS_FILE_NAME);
 
-//     BOOST_CHECK_NO_THROW( route.findPosition("B").latitude() );
-//     BOOST_CHECK_NO_THROW( route.findPosition("B").longitude() );
-//     BOOST_CHECK_NO_THROW( route.findPosition("B").elevation() );
-// }
+    BOOST_CHECK_NO_THROW( route.findPosition("B").latitude() );
+    BOOST_CHECK_NO_THROW( route.findPosition("B").longitude() );
+    BOOST_CHECK_NO_THROW( route.findPosition("B").elevation() );
+}
 
 
-// /**
-// * Test case: DoesNotThrowExceptionWhenAccessingNegativePositionValues
-// * Use:       Checks that it is possible to obtain positive values for latitude,
-// *            longitude and elevation in a GPX log file with only one point on
-// *            the route.
-// * Test type: Valid
-// */
-// BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingNegativePositionValues )
-// {
-//     Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
+/**
+* Test case: DoesNotThrowExceptionWhenAccessingNegativePositionValues
+* Use:       Checks that it is possible to obtain positive values for latitude,
+*            longitude and elevation in a GPX log file with only one point on
+*            the route.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingNegativePositionValues )
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
 
-//     BOOST_CHECK_NO_THROW( route.findPosition("Q").latitude() );
-//     BOOST_CHECK_NO_THROW( route.findPosition("Q").longitude() );
-//     BOOST_CHECK_NO_THROW( route.findPosition("Q").elevation() );
-// }
+    BOOST_CHECK_NO_THROW( route.findPosition("Q").latitude() );
+    BOOST_CHECK_NO_THROW( route.findPosition("Q").longitude() );
+    BOOST_CHECK_NO_THROW( route.findPosition("Q").elevation() );
+}
 
 
 /**
