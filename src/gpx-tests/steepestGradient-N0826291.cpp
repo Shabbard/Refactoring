@@ -2,16 +2,9 @@
 #include <fstream>
 #include <string>
 
-#include <iostream>
-#include <cassert>
-#include <cmath>
-#include <stdexcept>
-#include <algorithm>
-
 #include "earth.h"
 #include "logs.h"
 #include "route.h"
-#include "geometry.h"
 #include "gridworld.h"
 #include "gridworld_route.h"
 
