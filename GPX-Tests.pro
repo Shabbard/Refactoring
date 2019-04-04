@@ -45,12 +45,7 @@ SOURCES += \
     src/gpx-tests/maxSpeedN0737110.cpp \
     src/gpx-tests/maxlatitude.cpp \
     src/gpx-tests/maxSpeedN0733894.cpp \
-<<<<<<< HEAD
-=======
-    # Fix code plz
-    # src/gpx-tests/findnameofn0665742.cpp \
     src/gpx-tests/maxGradient-n0756303.cpp \
->>>>>>> 9d039b021ab1519f7e6fd2cbf0ee7115507de0a3
     src/gpx-tests/maxspeedn0736188.cpp \
     src/gpx-tests/totalLengthTest_n0755314.cpp \
     src/gpx-tests/netLength-N0704050.cpp\
@@ -61,11 +56,7 @@ SOURCES += \
     src/gpx-tests/minlatitude-n0743587.cpp \
     src/gpx-tests/netLength-N0745509.cpp \
     src/gpx-tests/maxLongitude.cpp \
-<<<<<<< HEAD
-    src/gpx-tests/timesVisited-n0763258.cpp
-=======
     src/gpx-tests/timesVisited-n0763258.cpp \
->>>>>>> 9d039b021ab1519f7e6fd2cbf0ee7115507de0a3
 
 
     #Breaks code:
