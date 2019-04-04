@@ -16,15 +16,6 @@ const bool isFileName = true;
 std::string testName;
 std::string filePath;
 
-void generateLogFile
-    (const std::string filePath, const std::string GPXStr)
-{
-    std::ofstream out(filePath);
-
-    out << GPXStr;
-    out.close();
-}
-
 BOOST_AUTO_TEST_SUITE(track_maxSpeed_N0733894)
 
 /*
