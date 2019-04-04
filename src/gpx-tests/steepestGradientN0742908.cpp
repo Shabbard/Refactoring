@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE( is_OnePoint_Gradient )
 BOOST_AUTO_TEST_CASE( is_PositiveNegative_Gradient )
 {
     GridWorldRoute routeLog = GridWorldRoute("UQMSY", GridWorld(Earth::CityCampus, HORI_UNIT , VERT_UNIT));
-    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_OnePoint_Gradient", routeLog), IS_FILE_NAME);
+    Route route = Route(LogFiles::GPXRoutesDir + generateLogs("is_PositiveNegative_Gradient", routeLog), IS_FILE_NAME);
     BOOST_CHECK_CLOSE( route.steepestGradient(), 4.0424037169314566, DEGREE_OF_ACCURACY);
 }
 
