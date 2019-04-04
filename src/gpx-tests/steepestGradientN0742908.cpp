@@ -1,20 +1,17 @@
 #include <boost/test/unit_test.hpp>
 #include <fstream>
-#include <string>
 
-#include "earth.h"
-#include "gridworld.h"
 #include "gridworld_route.h"
 #include "logs.h"
 #include "route.h"
 
-
+using namespace GPS;
 
 /*
         Leon Winstanley - N0742908
 */
 
-using namespace GPS;
+
 
 // function to generate a log for each file when implemented..
 std::string generateLogs(std::string nameOfTest, GridWorldRoute route)
@@ -40,7 +37,7 @@ BOOST_AUTO_TEST_SUITE( Steepest_Gradient_N0742908 )
 
     // constants to use in tests
     const bool IS_FILE_NAME = true;
-    const degrees DEGREE_OF_ACCURACY = 0.01;
+    const degrees DEGREE_OF_ACCURACY = 0.1;
     const metres HORI_UNIT = 20000;
     const metres VERT_UNIT = 2000;
     
