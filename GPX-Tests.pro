@@ -62,6 +62,9 @@ SOURCES += \
     src/gpx-tests/maxLongitudeN0732961.cpp \
     src/gpx-tests/maxLatitudeN0756079.cpp
 
+    #src/gpx-tests/maxLatitudeN0756079.cpp \
+
+
     #Breaks code:
     #src/gpx-tests/findnameofn0665742.cpp \
     #src/gpx-tests/restingTimeN0736563.cpp\
