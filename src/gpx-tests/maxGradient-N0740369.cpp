@@ -32,7 +32,7 @@ static std::string saveLogFile(const std::string &name,
   std::string filepath = LogFiles::GPXRoutesDir + "N0740369-" + name + ".gpx";
 
   std::ofstream logFile(filepath);
-  logFile << route.toGPX(true, name);
+  logFile << gridRoute.toGPX(true, name);
   logFile.close();
 
   return filepath;
