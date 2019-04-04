@@ -1,3 +1,4 @@
+
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -88,7 +89,7 @@ degrees Route::maxLatitude() const
     return currentMax;
 }
 
-degrees Route::minLongitude() const
+degrees Route::minLongitude() const     //MY FUNCTION
 {
     assert(! positions.empty());
 
@@ -223,12 +224,15 @@ std::string Route::findNameOf(const Position & soughtPos) const
 
 unsigned int Route::timesVisited(const std::string & soughtName) const
 {
-    Position position = this->findPosition(soughtName);
-
     unsigned int timesVisited{0};
 
-    for (const auto &i: positions)
-        if (areSameLocation(i, position)) timesVisited++;
+    try{
+
+        Position position = this->findPosition(soughtName);
+        for (const auto &i: positions)
+            if (areSameLocation(i, position)) timesVisited++;
+        
+    } catch(const std::out_of_range& e){}
 
     return timesVisited;
 }
