@@ -12,7 +12,7 @@
 
 using namespace GPS;
 
-// Will generate a GPX log file name/location 
+// Will generate a GPX log file, name and location 
 std::string generateTheLogs(std::string testName, GridWorldRoute route)
 {
 
