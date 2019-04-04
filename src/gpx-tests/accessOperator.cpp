@@ -13,12 +13,13 @@ using namespace GPS;
 BOOST_AUTO_TEST_SUITE(Route_accessOperator)
 
 const std::string singlePointFilename = "A.gpx";
+const bool isFileName = true;
 
 
 BOOST_AUTO_TEST_CASE(ItDoesntThrownAnExceptionWhenAccessingAPosition)
 {
     GridWorldRoute generatedRoute = GPX::singlePositionLog(singlePointFilename);
-    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, true);
+    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, isFileName);
 
     BOOST_CHECK_NO_THROW(route[0]);
 }
@@ -27,7 +28,7 @@ BOOST_AUTO_TEST_CASE(ItDoesntThrownAnExceptionWhenAccessingAPosition)
 BOOST_AUTO_TEST_CASE(ItCanAccessAPositionAtAnIndex)
 {
     GridWorldRoute generatedRoute = GPX::singlePositionLog(singlePointFilename);
-    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, true);
+    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, isFileName);
 
     BOOST_CHECK_CLOSE(route[0].latitude(), 0.179964, 0.000001);
     BOOST_CHECK_CLOSE(route[0].longitude(), 109.142, 0.000001);
@@ -38,7 +39,7 @@ BOOST_AUTO_TEST_CASE(ItCanAccessAPositionAtAnIndex)
 BOOST_AUTO_TEST_CASE(ItThrowsAnExceptionWhenTryingToAccessOutOfRange)
 {
     GridWorldRoute generatedRoute = GPX::singlePositionLog(singlePointFilename);
-    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, true);
+    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, isFileName);
 
     BOOST_CHECK_THROW(route[1], std::out_of_range);
 }
@@ -49,7 +50,7 @@ BOOST_AUTO_TEST_CASE(ItThrowsAnExceptionWhenTryingToAccessOutOfRange)
 BOOST_AUTO_TEST_CASE(ItDoesntAcceptANegativeIndex)
 {
     GridWorldRoute generatedRoute = GPX::singlePositionLog(singlePointFilename);
-    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, true);
+    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, isFileName);
 
     BOOST_CHECK_THROW(route[-1], std::out_of_range);
 }
@@ -60,7 +61,7 @@ BOOST_AUTO_TEST_CASE(ItHandlesAnIntegerOverflowWithAnOutOfRange)
 {
     const unsigned int maximumUIntIndex = std::numeric_limits<unsigned int>::max();
     GridWorldRoute generatedRoute = GPX::singlePositionLog(singlePointFilename);
-    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, true);
+    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, isFileName);
 
     BOOST_CHECK_THROW(route[maximumUIntIndex], std::out_of_range);
 }
