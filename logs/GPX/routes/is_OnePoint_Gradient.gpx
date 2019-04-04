@@ -2,6 +2,7 @@
 <gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
     <rte>
         <name>is_OnePoint_Gradient</name>
+<<<<<<< HEAD
         <rtept lat="-0.179964" lon="109.142">
             <name>U</name>
             <ele>0.000000</ele>
@@ -10,10 +11,13 @@
             <name>Q</name>
             <ele>0.000000</ele>
         </rtept>
+=======
+>>>>>>> restingTimeImplementation
         <rtept lat="0" lon="109.322">
             <name>M</name>
             <ele>0.000000</ele>
         </rtept>
+<<<<<<< HEAD
         <rtept lat="-0.089982" lon="109.412">
             <name>S</name>
             <ele>0.000000</ele>
@@ -22,5 +26,7 @@
             <name>Y</name>
             <ele>0.000000</ele>
         </rtept>
+=======
+>>>>>>> restingTimeImplementation
     </rte>
 </gpx>
