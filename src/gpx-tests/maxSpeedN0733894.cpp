@@ -1,5 +1,6 @@
 ﻿#include <boost/test/unit_test.hpp>
 #include <fstream>
+#include <iostream>
 #include "logs.h"
 #include "types.h"
 #include "track.h"
@@ -41,6 +42,7 @@ BOOST_AUTO_TEST_CASE( IS_STATIONARY )
 
     //CHECK THE FINAL RESULT MAKES
     BOOST_CHECK_EQUAL(track.maxSpeed(), 0);
+
 }
 
 //A test to check that the program returns the value that it should return
@@ -50,7 +52,7 @@ BOOST_AUTO_TEST_CASE(COMPARE_MAX_SPEED)
     testName = "COMPARE_MAX_SPEED";
 
     //The track string that gets put in the GridWorldTrack
-    std::string trackString("A20D30C");
+    std::string trackString = "A20D30C";
 
     //generating the track [trackString, 10 second time unit, 0 start time]
     GridWorldTrack trackLog = GridWorldTrack(trackString, 10, 0);
