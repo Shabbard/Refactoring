@@ -10,12 +10,16 @@
             <name>Q</name>
             <ele>-58.000000</ele>
         </rtept>
-        <rtept lat="-52.9125" lon="-1.19892">
-            <name>L</name>
+        <rtept lat="-52.9035" lon="-1.18403">
+            <name>H</name>
             <ele>-58.000000</ele>
         </rtept>
-        <rtept lat="-52.8945" lon="-1.16913">
-            <name>D</name>
+        <rtept lat="-52.8945" lon="-1.15423">
+            <name>E</name>
+            <ele>-58.000000</ele>
+        </rtept>
+        <rtept lat="-52.8945" lon="-1.21382">
+            <name>A</name>
             <ele>-58.000000</ele>
         </rtept>
     </rte>

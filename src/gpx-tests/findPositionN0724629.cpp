@@ -157,11 +157,11 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithRepeatedPoint
 *            longitude and elevation in a GPX log file with a repeated point.
 * Test type: Valid
 */
-BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithAllPointsApart )
+BOOST_AUTO_TEST_CASE( CanGetPositionWithAllPointsApart )
 {
     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
 
-    Route route = Route(LogFiles::GPXRoutesDir + "PointsApartPositive-N0724629.gpx", IS_FILE_NAME, granularity);
+    Route route = Route(LogFiles::GPXRoutesDir + "PointsApart-N0724629.gpx", IS_FILE_NAME, granularity);
 
     Position thePosition = Position(52.9125, 1.15423, 58);
     BOOST_CHECK_EQUAL( route.findPosition("K").latitude(), thePosition.latitude() );
@@ -173,15 +173,58 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithAllPointsApar
     BOOST_CHECK_EQUAL( route.findPosition("Q").longitude(), thePosition.longitude() );
     BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), thePosition.elevation() );
 
-    thePosition = Position(52.9125, 1.16913, 58);
-    BOOST_CHECK_EQUAL( route.findPosition("L").latitude(), thePosition.latitude() );
-    BOOST_CHECK_EQUAL( route.findPosition("L").longitude(), thePosition.longitude() );
-    BOOST_CHECK_EQUAL( route.findPosition("L").elevation(), thePosition.elevation() );
+    thePosition = Position(52.9215, 1.18403, 58);
+    BOOST_CHECK_EQUAL( route.findPosition("H").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("H").longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("H").elevation(), thePosition.elevation() );
 
-    thePosition = Position(52.9305, 1.19892, 58);
-    BOOST_CHECK_EQUAL( route.findPosition("D").latitude(), thePosition.latitude() );
-    BOOST_CHECK_EQUAL( route.findPosition("D").longitude(), thePosition.longitude() );
-    BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), thePosition.elevation() );
+    thePosition = Position(52.9305, 1.21382, 58);
+    BOOST_CHECK_EQUAL( route.findPosition("E").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("E").longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("E").elevation(), thePosition.elevation() );
+
+    thePosition = Position(52.9305, 1.15423, 58);
+    BOOST_CHECK_EQUAL( route.findPosition("A").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("A").longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("A").elevation(), thePosition.elevation() );
+}
+
+
+/**
+* Test case: CanGetPositionWithSomePointsApart
+* Use:       Checks that it is possible to obtain positive values for latitude,
+*            longitude and elevation in a GPX log file with a repeated point.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositionWithSomePointsApart )
+{
+    const metres granularity = HORIZONTAL_GRID_UNIT * 1.5;
+
+    Route route = Route(LogFiles::GPXRoutesDir + "PointsApart-N0724629.gpx", IS_FILE_NAME, granularity);
+
+    Position thePosition = Position(52.9125, 1.15423, 58);
+    BOOST_CHECK_EQUAL( route.findPosition("K").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("K").longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("K").elevation(), thePosition.elevation() );
+
+    BOOST_CHECK_THROW( route.findPosition("Q").latitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("Q").longitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("Q").elevation(), std::out_of_range );
+
+    thePosition = Position(52.9215, 1.18403, 58);
+    BOOST_CHECK_EQUAL( route.findPosition("H").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("H").longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("H").elevation(), thePosition.elevation() );
+
+    thePosition = Position(52.9305, 1.21382, 58);
+    BOOST_CHECK_EQUAL( route.findPosition("E").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("E").longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("E").elevation(), thePosition.elevation() );
+
+    thePosition = Position(52.9305, 1.15423, 58);
+    BOOST_CHECK_EQUAL( route.findPosition("A").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("A").longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("A").elevation(), thePosition.elevation() );
 }
 
 
@@ -208,15 +251,20 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithAllPointsApar
     BOOST_CHECK_EQUAL( route.findPosition("Q").longitude(), thePosition.longitude() );
     BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), thePosition.elevation() );
 
-    thePosition = Position(-52.9125, -1.19892, -58);
-    BOOST_CHECK_EQUAL( route.findPosition("L").latitude(), thePosition.latitude() );
-    BOOST_CHECK_EQUAL( route.findPosition("L").longitude(), thePosition.longitude() );
-    BOOST_CHECK_EQUAL( route.findPosition("L").elevation(), thePosition.elevation() );
+    thePosition = Position(-52.9035, -1.18403, -58);
+    BOOST_CHECK_EQUAL( route.findPosition("H").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("H").longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("H").elevation(), thePosition.elevation() );
 
-    thePosition = Position(-52.8945, -1.16913, -58);
-    BOOST_CHECK_EQUAL( route.findPosition("D").latitude(), thePosition.latitude() );
-    BOOST_CHECK_EQUAL( route.findPosition("D").longitude(), thePosition.longitude() );
-    BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), thePosition.elevation() );
+    thePosition = Position(-52.8945, -1.15423, -58);
+    BOOST_CHECK_EQUAL( route.findPosition("E").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("E").longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("E").elevation(), thePosition.elevation() );
+
+    thePosition = Position(-52.8945, -1.21382, -58);
+    BOOST_CHECK_EQUAL( route.findPosition("A").latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("A").longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( route.findPosition("A").elevation(), thePosition.elevation() );
 }
 
 

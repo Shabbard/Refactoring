@@ -30,9 +30,7 @@ namespace GPX
 
         createLogFile("RepeatedPointsNegative-N0724629", GridWorldRoute("KDLDK", GridWorld(Position(-52.9581383, -1.1542364, -53), HORIZONTAL_GRID_UNIT)));
 
-        createLogFile("PointsApartPositive-N0724629", GridWorldRoute("KQLD", GridWorld(Position(52.91249953, 1.18402513, 58), HORIZONTAL_GRID_UNIT)));
-
-        createLogFile("PointsApartNegative-N0724629", GridWorldRoute("KQLD", GridWorld(Position(-52.91249953, -1.18402513, -58), HORIZONTAL_GRID_UNIT)));
+        createLogFile("PointsApart-N0724629", GridWorldRoute("KQHEA", GridWorld(Position(52.91249953, 1.18402513, 58), HORIZONTAL_GRID_UNIT)));
 
         createLogFile("PointsTooClose", GridWorldRoute("ILADN", GridWorld(Earth::CityCampus, HORIZONTAL_GRID_UNIT)));
 
