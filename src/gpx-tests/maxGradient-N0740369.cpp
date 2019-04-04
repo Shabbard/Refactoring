@@ -24,7 +24,7 @@ const metres VERTICAL_GRID_UNIT = 100;
  * \param route Route to save to log
  * \return File path of the saves file
  */
-std::string saveLogFile(std::string name, GridWorldRoute &route) {
+static std::string saveLogFile(std::string name, GridWorldRoute &route) {
   std::string filepath = LogFiles::GPXRoutesDir + "N0740369-" + name + ".gpx";
 
   std::ofstream logFile(filepath);
