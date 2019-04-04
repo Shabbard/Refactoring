@@ -13,7 +13,7 @@ using namespace GPS;
 const bool IsFileName = true;
 
 const degrees DegreeOfAccuracy = 0.01;
-const degrees Gradient = 5.71059314;
+const degrees Gradient = 5.71059;
 const metres HorizontalGridUnit = 10000;
 const metres VerticalGridUnit = 1000;
 
@@ -51,6 +51,16 @@ BOOST_AUTO_TEST_CASE( SinglePointGradientRoute )
     BOOST_CHECK_CLOSE( route.steepestGradient(), 0, DegreeOfAccuracy);
 }
 /**
+* Tests that a line with points that only span the horizontal plane
+* should have no gradient, since there is no change in elevation.
+*/
+BOOST_AUTO_TEST_CASE( NoGradientRoute )
+{
+    GridWorldRoute routeLog = GridWorldRoute("LMN", GridWorld(Earth::Nottingham, HorizontalGridUnit , VerticalGridUnit));
+    Route route = Route(LogFiles::GPXRoutesDir + logCreation("NoGradientRoute", routeLog), IsFileName);
+    BOOST_CHECK_CLOSE( route.steepestGradient(), 0, DegreeOfAccuracy);
+}
+/**
 * Tests that a route with only negative points 
 * should return a positive value.
 */
@@ -79,16 +89,6 @@ BOOST_AUTO_TEST_CASE( PositiveNegativeGradientRoute )
     GridWorldRoute routeLog = GridWorldRoute("AGMIE", GridWorld(Earth::Nottingham, HorizontalGridUnit , VerticalGridUnit));
     Route route = Route(LogFiles::GPXRoutesDir + logCreation("PositiveNegativeGradientRoute", routeLog), IsFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(), Gradient, DegreeOfAccuracy);
-}
-/**
-* Tests that a line with points that only span the horizontal plane
-* should have no gradient, since there is no change in elevation.
-*/
-BOOST_AUTO_TEST_CASE( NoGradientRoute )
-{
-    GridWorldRoute routeLog = GridWorldRoute("LMN", GridWorld(Earth::Nottingham, HorizontalGridUnit , VerticalGridUnit));
-    Route route = Route(LogFiles::GPXRoutesDir + logCreation("NoGradientRoute", routeLog), IsFileName);
-    BOOST_CHECK_CLOSE( route.steepestGradient(), 0, DegreeOfAccuracy);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
