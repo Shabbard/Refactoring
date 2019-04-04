@@ -47,6 +47,7 @@ SOURCES += \
     src/gpx-tests/maxSpeedN0733894.cpp \
     # Fix code plz
     # src/gpx-tests/findnameofn0665742.cpp \
+    src/gpx-tests/maxGradient-n0756303.cpp \
     src/gpx-tests/maxspeedn0736188.cpp \
     src/gpx-tests/totalLengthTest_n0755314.cpp \
     src/gpx-tests/netLength-N0704050.cpp\
