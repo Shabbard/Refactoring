@@ -44,13 +44,13 @@ const double PERCENTAGE = 0.1;
  *  USAGE:: Grid point AA
  *  PURPOSE:: To see if the netLength equals 0 when both locations are the same
  *
- *  Generates .GPX log file isameLocation_AA
+ *  Generates .GPX log file isSameLocation_AA-N0745509.gpx
  *
 */
 BOOST_AUTO_TEST_CASE( netLengthWIthSamePoint ) {
 
     GridWorldRoute routeLogFile = GridWorldRoute("AA");
-    Route netLengthAA = Route(LogFiles::GPXRoutesDir + generateLogFile("sameLocation_AA", routeLogFile), IS_FILE_NAME);
+    Route netLengthAA = Route(LogFiles::GPXRoutesDir + generateLogFile("isSameLocation_AA", routeLogFile), IS_FILE_NAME);
     BOOST_CHECK_EQUAL(  netLengthAA.netLength(),  0);
 }
 
@@ -59,12 +59,12 @@ BOOST_AUTO_TEST_CASE( netLengthWIthSamePoint ) {
  *  USAGE:: Grid points AEWUA
  *  PURPOSE:: To see if the netLength equals 0 when the first position and last posistion are the same location
  *
- *  Generates .GPX log file sameLocation_AEWUA-N0745509.gpx
+ *  Generates .GPX log file isSameLocationWIthMultiplePoints-N0745509.gpx
 */
 BOOST_AUTO_TEST_CASE ( firstLastPointAreTheSame ) {
 
     GridWorldRoute routeLogFile = GridWorldRoute("AEWUA");
-    Route netLengthAEWUA= Route(LogFiles::GPXRoutesDir + generateLogFile("sameLocation_AEWUA", routeLogFile), IS_FILE_NAME);
+    Route netLengthAEWUA= Route(LogFiles::GPXRoutesDir + generateLogFile("isSameLocationWIthMultiplePoints", routeLogFile), IS_FILE_NAME);
     BOOST_CHECK_EQUAL(  netLengthAEWUA.netLength(),  0);
 }
 
@@ -132,12 +132,12 @@ BOOST_AUTO_TEST_CASE ( negativeLatitude ) {
  *  USEAGE:: Grid points AFKPU + CityCampus position
  *  PURPOSE:: To test a netLength with negative Longitude values + a netLength value that is close to zero
  *
- *  Generates .GPX log file negatuveLongitude-N0745509..gpx
+ *  Generates .GPX log file negativeLongitude-N0745509..gpx
 */
 BOOST_AUTO_TEST_CASE ( negatuveLongitude ) {
 
     GridWorldRoute routeLogFile = GridWorldRoute("AFKPU",GridWorld(Earth::CityCampus, 10, 0));
-    Route LongitudeMinus = Route(LogFiles::GPXRoutesDir + generateLogFile("negatuveLongitude", routeLogFile), IS_FILE_NAME);
+    Route LongitudeMinus = Route(LogFiles::GPXRoutesDir + generateLogFile("negativeLongitude", routeLogFile), IS_FILE_NAME);
     BOOST_CHECK_EQUAL(LongitudeMinus.netLength(), 22.239016046931543);
 }
 
