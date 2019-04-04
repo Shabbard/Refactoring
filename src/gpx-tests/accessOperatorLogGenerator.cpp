@@ -7,20 +7,12 @@
 using namespace GPS;
 
 namespace GPX {
-    GridWorldRoute singlePositionLog(const std::string & fileName)
-    {
-        GridWorldRoute route = GridWorldRoute("A");
-        std::ofstream fileOutput(LogFiles::GPXRoutesDir + fileName);
-        
-        fileOutput << route.toGPX();
-
-        return route;
-    }
-
+    // Generates a log file based upon a gridworld route string, using that
+    // as the filename.
     GridWorldRoute generateLogFile(const std::string & routeString)
     {
         GridWorldRoute route = GridWorldRoute(routeString);
-        std::ofstream fileOutput(LogFiles::GPXRoutesDir + routeString);
+        std::ofstream fileOutput(LogFiles::GPXRoutesDir + routeString + ".gpx");
 
         fileOutput << route.toGPX();
 
