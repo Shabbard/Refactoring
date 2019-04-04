@@ -5,7 +5,7 @@
 
 using namespace GPS;
 
-BOOST_AUTO_TEST_SUITE(N0774446-TotalHeightGain)
+BOOST_AUTO_TEST_SUITE(N0774446_TotalHeightGain)
 
 const bool isFileName = true;
 
@@ -56,10 +56,11 @@ BOOST_AUTO_TEST_CASE(largeIncrease)
 	Route route = Route(LogFiles::GPXRoutesDir + "N0774446-LargeIncrease.gpx", isFileName);
 	BOOST_CHECK_EQUAL(route.totalHeightGain(), 26000000000);
 }
+
 BOOST_AUTO_TEST_CASE(smallIncrease)
 {
 	Route route = Route(LogFiles::GPXRoutesDir + "N0774446-SmallIncrease.gpx", isFileName);
-	BOOST_CHECK_EQUAL(route.totalHeightGain(), 0.00026, 0.0000000001);
+	BOOST_CHECK_CLOSE(route.totalHeightGain(), 0.00026, 0.0000000001);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

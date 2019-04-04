@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>AFMXY</name>
+        <rtept lat="52.9944" lon="-1.31958">
+            <name>A</name>
+            <ele>-2142.000000</ele>
+        </rtept>
+        <rtept lat="52.9534" lon="-1.31958">
+            <name>F</name>
+            <ele>-2142.000000</ele>
+        </rtept>
+        <rtept lat="52.9125" lon="-1.18403">
+            <name>M</name>
+            <ele>58.000000</ele>
+        </rtept>
+        <rtept lat="52.8306" lon="-1.11625">
+            <name>X</name>
+            <ele>-2142.000000</ele>
+        </rtept>
+        <rtept lat="52.8306" lon="-1.04847">
+            <name>Y</name>
+            <ele>-2142.000000</ele>
+        </rtept>
+    </rte>
+</gpx>
+
