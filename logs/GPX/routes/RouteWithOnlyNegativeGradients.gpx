@@ -10,16 +10,8 @@
             <name>H</name>
             <ele>-1000.000000</ele>
         </rtept>
-        <rtept lat="89.82" lon="44.5">
-            <name>D</name>
-            <ele>-2000.000000</ele>
-        </rtept>
-        <rtept lat="89.82" lon="89">
-            <name>Y</name>
-            <ele>-2000.000000</ele>
-        </rtept>
-        <rtept lat="89.82" lon="135.5">
-            <name>V</name>
+        <rtept lat="89.82" lon="180">
+            <name>C</name>
             <ele>-2000.000000</ele>
         </rtept>
     </rte>
