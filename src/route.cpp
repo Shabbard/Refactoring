@@ -1,3 +1,4 @@
+
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -88,7 +89,7 @@ degrees Route::maxLatitude() const
     return currentMax;
 }
 
-degrees Route::minLongitude() const
+degrees Route::minLongitude() const     //MY FUNCTION
 {
     assert(! positions.empty());
 
