@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>NoGradientRoute</name>
+        <rtept lat="53.0025" lon="-1.33299">
+            <name>G</name>
+            <ele>58.000000</ele>
+        </rtept>
+        <rtept lat="53.0025" lon="-1.18403">
+            <name>H</name>
+            <ele>58.000000</ele>
+        </rtept>
+        <rtept lat="53.0025" lon="-1.03506">
+            <name>I</name>
+            <ele>58.000000</ele>
+        </rtept>
+    </rte>
+</gpx>

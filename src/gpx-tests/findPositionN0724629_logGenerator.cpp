@@ -26,21 +26,17 @@ namespace GPX
     {
         createLogFile("OnePointPositive-N0724629", GridWorldRoute("B", Position(52.9581383, 1.1542364, 53)));
 
-        createLogFile("RepeatedPointsPositive-N0724629", GridWorldRoute("KDLDDK", GridWorld(Position(52.9581383, 1.1542364, 53), HORIZONTAL_GRID_UNIT)));
+        createLogFile("RepeatedPointsPositive-N0724629", GridWorldRoute("KDLDK", GridWorld(Position(52.9581383, 1.1542364, 53), HORIZONTAL_GRID_UNIT)));
 
-        createLogFile("RepeatedPointsNegative-N0724629", GridWorldRoute("KDLDDK", GridWorld(Position(-52.9581383, -1.1542364, -53), HORIZONTAL_GRID_UNIT)));
+        createLogFile("RepeatedPointsNegative-N0724629", GridWorldRoute("KDLDK", GridWorld(Position(-52.9581383, -1.1542364, -53), HORIZONTAL_GRID_UNIT)));
 
         createLogFile("PointsApartPositive-N0724629", GridWorldRoute("KQLD", GridWorld(Position(52.91249953, 1.18402513, 58), HORIZONTAL_GRID_UNIT)));
 
         createLogFile("PointsApartNegative-N0724629", GridWorldRoute("KQLD", GridWorld(Position(-52.91249953, -1.18402513, -58), HORIZONTAL_GRID_UNIT)));
 
-        createLogFile("PointsTooClosePositive-N0724629", GridWorldRoute("ILADN", GridWorld(Earth::CityCampus, HORIZONTAL_GRID_UNIT)));
-
-        createLogFile("PointsTooCloseNegative-N0724629", GridWorldRoute("ILADN", GridWorld(Position(-52.91249953, -1.18402513, -58), HORIZONTAL_GRID_UNIT)));
+        createLogFile("PointsTooClose", GridWorldRoute("ILADN", GridWorld(Earth::CityCampus, HORIZONTAL_GRID_UNIT)));
 
         createLogFile("ZeroValues-N0724629", GridWorldRoute("IEKS", GridWorld(Earth::EquatorialMeridian, 0)));
-
-        createLogFile("NoElevation-N0724629", GridWorldRoute("EAL", GridWorld(Earth::NorthPole, 0)));
 
         std::ofstream openedFile(LogFiles::GPXRoutesDir + "EmptyFile-N0724629.gpx");
         openedFile.close();

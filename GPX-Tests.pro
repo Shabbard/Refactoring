@@ -33,7 +33,7 @@ SOURCES += \
     src/gridworld_track.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
-    src/gpx-tests/accessOperator.cpp \ 
+    src/gpx-tests/accessOperator.cpp \
     src/gpx-tests/accessOperatorLogGenerator.cpp \
     src/gpx-tests/maxLongitudeN0743797.cpp \
     src/gpx-tests/steepestGradient.cpp \
@@ -45,9 +45,15 @@ SOURCES += \
     src/gpx-tests/maxSpeedN0737110.cpp \
     src/gpx-tests/maxlatitude.cpp \
     src/gpx-tests/maxSpeedN0733894.cpp \
+<<<<<<< HEAD
+=======
+    # Fix code plz
+    # src/gpx-tests/findnameofn0665742.cpp \
+    src/gpx-tests/maxGradient-n0756303.cpp \
+>>>>>>> 9d039b021ab1519f7e6fd2cbf0ee7115507de0a3
     src/gpx-tests/maxspeedn0736188.cpp \
     src/gpx-tests/totalLengthTest_n0755314.cpp \
-    src/gpx-tests/netLength-N0704050.cpp \ 
+    src/gpx-tests/netLength-N0704050.cpp\
     src/gpx-tests/restingTimeN0736563.cpp \
     src/gpx-tests/maxGradient-N0740369.cpp \
     src/gpx-tests/MaxElevation-N0749370.cpp \
@@ -55,10 +61,15 @@ SOURCES += \
     src/gpx-tests/minlatitude-n0743587.cpp \
     src/gpx-tests/netLength-N0745509.cpp \
     src/gpx-tests/maxLongitude.cpp \
+<<<<<<< HEAD
     src/gpx-tests/timesVisited-n0763258.cpp
+=======
+    src/gpx-tests/timesVisited-n0763258.cpp \
+>>>>>>> 9d039b021ab1519f7e6fd2cbf0ee7115507de0a3
 
 
     #Breaks code:
+    #src/gpx-tests/findnameofn0665742.cpp \
     #src/gpx-tests/restingTimeN0736563.cpp\
     #Please ensure the a successful build before pushing to the master. Thanks.
 
