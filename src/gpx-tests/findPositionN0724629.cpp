@@ -115,8 +115,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoint
 /**
 * Test case: CanGetPositionWithNegativeValuesInLogFileWithRepeatedPoints
 * Use:       Checks that it is possible to obtain negative values for latitude,
-*            longitude and elevation in a GPX log file with only one point on
-*            the route.
+*            longitude and elevation in a GPX log file with a repeated point.
 * Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithRepeatedPoints )
@@ -139,8 +138,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithRepeatedPoint
 /**
 * Test case: CanGetPositionWithPositiveValuesInLogFileWithPointsApart
 * Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with multiple points,
-*            none of which are more than 'granularity' apart.
+*            longitude and elevation in a GPX log file with a repeated point.
 * Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithPointsApart )
