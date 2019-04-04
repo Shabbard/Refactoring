@@ -58,9 +58,11 @@ SOURCES += \
     src/gpx-tests/maxLongitude.cpp \
     src/gpx-tests/timesVisited-n0763258.cpp \
     src/gpx-tests/maxLongitudeN0732961.cpp \
-    src/gpx-tests/maxLatitudeN0756079.cpp
-    #src/gpx-tests/findPositionN0724629.cpp \
+    src/gpx-tests/maxLatitudeN0756079.cpp \
+    src/gpx-tests/maxElevationN0774756.cpp \
+    src/gpx-tests/netHeightGain-N0701387.cpp
     #src/gpx-tests/maxLatitudeN0756079.cpp \
+    #src/gpx-tests/findPositionN0724629.cpp \
 
     #Breaks code:
     #src/gpx-tests/findnameofn0665742.cpp \
