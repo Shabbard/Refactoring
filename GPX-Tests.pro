@@ -60,7 +60,8 @@ SOURCES += \
     src/gpx-tests/maxLongitudeN0732961.cpp \
     # src/gpx-tests/maxLatitudeN0756079.cpp \
     src/gpx-tests/maxElevationN0774756.cpp \
-    src/gpx-tests/netHeightGain-N0701387.cpp
+    src/gpx-tests/netHeightGain-N0701387.cpp \
+    src/gpx-tests/maxelevation-N0749364.cpp
     #src/gpx-tests/maxLatitudeN0756079.cpp \
     #src/gpx-tests/findPositionN0724629.cpp \
 
