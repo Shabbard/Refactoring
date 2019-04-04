@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(nameof)
 BOOST_AUTO_TEST_CASE(nonExistantPosition)
 {
     const metres granularity = horizontalGridUnit/10;
-    Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName,granularit);
+    Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName,granularity);
     BOOST_CHECK_THROW( route.findNameOf(Position), std::out_of_range);
 }
 
