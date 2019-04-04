@@ -103,6 +103,12 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoint
     BOOST_CHECK_EQUAL( route.findPosition("D").latitude(), thePosition.latitude() );
     BOOST_CHECK_EQUAL( route.findPosition("D").longitude(), thePosition.longitude() );
     BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), thePosition.elevation() );
+
+    Position repeatedPosition = route[3];
+
+    BOOST_CHECK_EQUAL( repeatedPosition.latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( repeatedPosition.longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( repeatedPosition.elevation(), thePosition.elevation() );
 }
 
 
@@ -121,6 +127,12 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithRepeatedPoint
     BOOST_CHECK_EQUAL( route.findPosition("D").latitude(), thePosition.latitude() );
     BOOST_CHECK_EQUAL( route.findPosition("D").longitude(), thePosition.longitude() );
     BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), thePosition.elevation() );
+
+    Position repeatedPosition = route[3];
+
+    BOOST_CHECK_EQUAL( repeatedPosition.latitude(), thePosition.latitude() );
+    BOOST_CHECK_EQUAL( repeatedPosition.longitude(), thePosition.longitude() );
+    BOOST_CHECK_EQUAL( repeatedPosition.elevation(), thePosition.elevation() );
 }
 
 
