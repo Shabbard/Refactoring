@@ -82,12 +82,37 @@ BOOST_AUTO_TEST_CASE ( netLengthWithOnePoint) {
 /*
  *  TEST:: verticalPointsNetLength
  *  USAGE:: Grid points AFKPU
- *  PURPOSE:: TO see the what the largest netLength can be generated:: using grid points that are the furthest away from each other
+ *  PURPOSE:: Test the length length by going vertically down the grid : changing the latitude value
 */
 BOOST_AUTO_TEST_CASE ( verticalPointsNetLength ) {
 
-    Route verticalPointsNetLength = Route(LogFiles::GPXRoutesDir + "AFKPU.gpx", IS_FILE_NAME);
-    BOOST_CHECK_EQUAL(verticalPointsNetLength.netLength(), 400222.2283829503);
+    GridWorldRoute routeLogFile = GridWorldRoute("AFKPU");
+    Route verticalPointsNetLength= Route(LogFiles::GPXRoutesDir + generateLogFile("verticalPoints", routeLogFile), IS_FILE_NAME);
+    BOOST_CHECK_EQUAL(verticalPointsNetLength.netLength(), 40022.222838295034);
+}
+
+/*
+ *  Test:: horizontalPointsNetLength
+ *  USAGE:: Grid points ABCD
+ *  PURPOSE:: To test the netLength of a route with horizontal points : chaning the longitude values
+ *
+*/
+BOOST_AUTO_TEST_CASE( horizontalPointsNetLength ) {
+
+    Route netLengthABCD = Route(LogFiles::GPXRoutesDir + "ABCD.gpx", IS_FILE_NAME);
+    BOOST_CHECK_EQUAL(netLengthABCD.netLength(), 30022.523566211392);
+}
+
+/*
+ *  TEST::longestNetLength
+ *  USAGE:: Grid points AY
+ *  PURPOSE:: Testing the netLength with grid points that are the furthest away from each other
+*/
+BOOST_AUTO_TEST_CASE ( longestNetLength ) {
+
+    GridWorldRoute routeLogFile = GridWorldRoute("AY");
+    Route longestNetLength = Route(LogFiles::GPXRoutesDir + generateLogFile("longestNetLength", routeLogFile), IS_FILE_NAME);
+    BOOST_CHECK_EQUAL(longestNetLength.netLength(), 56605.585199545138  );
 }
 
 /*
@@ -97,20 +122,9 @@ BOOST_AUTO_TEST_CASE ( verticalPointsNetLength ) {
 */
 BOOST_AUTO_TEST_CASE ( UsingMultiplePoints ) {
 
-    Route netLengthABQWE = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", IS_FILE_NAME);
-    BOOST_CHECK_EQUAL(netLengthABQWE.netLength(), 399353.47026921058);
-}
-
-/*
- *  Test:: horizontalPointsNetLength
- *  USAGE:: Grid points ABCD
- *  PURPOSE:: To test the netLength of a route with horizontal points
- *
-*/
-BOOST_AUTO_TEST_CASE( horizontalPointsNetLength ) {
-
-    Route netLengthABCD = Route(LogFiles::GPXRoutesDir + "ABCD.gpx", IS_FILE_NAME);
-    BOOST_CHECK_EQUAL(netLengthABCD.netLength(), 30022.523566211392);
+    GridWorldRoute routeLogFile = GridWorldRoute("ABQWE");
+    Route UsingMultiplePoints = Route(LogFiles::GPXRoutesDir + generateLogFile("UsingMultiplePoints", routeLogFile), IS_FILE_NAME);
+    BOOST_CHECK_EQUAL(UsingMultiplePoints.netLength(), 40030.031421331922 );
 }
 
 /*
