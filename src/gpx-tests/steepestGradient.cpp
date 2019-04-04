@@ -1,7 +1,6 @@
 #include <boost/test/unit_test.hpp>
 #include "logs.h"
 #include "route.h"
-#include "gridworld_route.h"
 
 using namespace GPS;
 
@@ -20,8 +19,6 @@ const metres GRADIENT = 5.71059; // calculated by taking the arctan of 1000/1000
 BOOST_AUTO_TEST_SUITE( Steepest_Gradient )
 
 const bool isFileName = true;
-
-// check if there are any points in the file
 
 // You cannot calculate a gradient from just one point, the program should return 0
 BOOST_AUTO_TEST_CASE( Route_with_one_point )
