@@ -8,7 +8,7 @@
 
 using namespace GPS;
 
-BOOST_AUTO_TEST_SUITE( Track_maxSpeed_N0736188 )
+BOOST_AUTO_TEST_SUITE(Track_maxSpeed_N0736188)
 
 std::string generateLogFile(std::string testName, GridWorldTrack track)
 {
