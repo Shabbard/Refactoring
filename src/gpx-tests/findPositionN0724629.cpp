@@ -8,7 +8,7 @@
 #include "earth.h"
 #include "geometry.h"
 #include "gridworld_route.h"
-#include "findPositionN0724629_logGenerator.cpp"
+#include "findPositionN0724629_logGenerator.h"
 
 using namespace GPS;
 
