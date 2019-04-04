@@ -104,7 +104,7 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
 
 /**
 * Test case: CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoints
-* Use:       Checks that it is possible to obtain negative values for latitude,
+* Use:       Checks that it is possible to obtain positive values for latitude,
 *            longitude and elevation in a GPX log file with only one point on
 *            the route.
 * Test type: Valid
@@ -113,8 +113,28 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoint
 {
     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
 
-    Position thePosition = Position(52.9581383, -1.16913, 58);
-    Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPoints-N0724629.gpx", IS_FILE_NAME, granularity);
+    Position thePosition = Position(52.9761, 1.16915, 53);
+    Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPointsPositive-N0724629.gpx", IS_FILE_NAME, granularity);
+
+    BOOST_CHECK_CLOSE( route.findPosition("D").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_CLOSE( route.findPosition("D").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), thePosition.elevation() );
+}
+
+
+/**
+* Test case: CanGetPositionWithNegativeValuesInLogFileWithRepeatedPoints
+* Use:       Checks that it is possible to obtain negative values for latitude,
+*            longitude and elevation in a GPX log file with only one point on
+*            the route.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithRepeatedPoints )
+{
+    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+
+    Position thePosition = Position(-52.9401, -1.13932, -53);
+    Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPointsNegative-N0724629.gpx", IS_FILE_NAME, granularity);
 
     BOOST_CHECK_CLOSE( route.findPosition("D").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
     BOOST_CHECK_CLOSE( route.findPosition("D").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
