@@ -10,13 +10,10 @@
 
 using namespace GPS;
 
-const bool IsFileName = true;
-
-const degrees DegreeOfAccuracy = 0.01;
-const degrees Gradient = 5.71059;
 const metres HorizontalGridUnit = 10000;
 const metres VerticalGridUnit = 1000;
-
+const degrees DegreeOfAccuracy = 0.01;
+const degrees Gradient = 5.71059;
 /**
 * Grid world in the layout of a 5x5 grid
 * with each point denoted by a character.
@@ -40,6 +37,8 @@ std::string logCreation(std::string testName, GridWorldRoute route)
 }
 
 BOOST_AUTO_TEST_SUITE( SteepestGradientN0826291 )
+
+const bool IsFileName = true;
 /**
 * Tests that a single point gradient is equal to 0
 * since it is not possible to have a gradient from a single point.
