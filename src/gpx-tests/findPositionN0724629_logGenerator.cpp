@@ -24,6 +24,8 @@ namespace GPX
 
     void generateLogFiles()
     {
+        createLogFile("OnePointPositive-N0724629", GridWorldRoute("B", Position(52.9581383, 1.1542364, 53)));
+
         createLogFile("RepeatedPoints-N0724629", GridWorldRoute("KDLDDK", GridWorld(Earth::CliftonCampus, 0)));
 
         createLogFile("PointsApart-N0724629", GridWorldRoute("KQLD", GridWorld(Earth::CityCampus, HORIZONTAL_GRID_UNIT)));

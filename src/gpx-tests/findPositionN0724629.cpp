@@ -18,39 +18,89 @@ const bool IS_FILE_NAME = true;
 const metres HORIZONTAL_GRID_UNIT = 1000;
 const double PERCENTAGE_ACCURACY = 0.1;
 
+
 /**
-* Test case: CanGetNegativeLatitudeInLogFileWithOnePosition
-* Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
+* Test case: CanGetPositionWithPositiveValuesInLogFileWithOnePoint
+* Use:       Checks that it is possible to obtain positive values for latitude,
+*            longitude and elevation in a GPX log file with only one point on
+*            the route.
 * Test type: Valid
 */
-BOOST_AUTO_TEST_CASE( CanGetNegativeLatitudeInLogFileWithOnePosition )
+BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithOnePoint )
 {
     GPX::generateLogFiles();
-    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
-    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), -0.89982, PERCENTAGE_ACCURACY );
+
+    Position thePosition = Position(53.1381, 1.00511, 53);
+    Route route = Route(LogFiles::GPXRoutesDir + "OnePointPositive-N0724629.gpx", IS_FILE_NAME);
+
+    BOOST_CHECK_CLOSE( route.findPosition("B").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_CLOSE( route.findPosition("B").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("B").elevation(), thePosition.elevation() );
 }
 
-/**
-* Test case: CanGetNegativeLongitudeInLogFileWithOnePosition
-* Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
-* Test type: Valid
-*/
-BOOST_AUTO_TEST_CASE( CanGetNegativeLongitudeInLogFileWithOnePosition )
-{
-    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
-    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), -0.898312, PERCENTAGE_ACCURACY );
-}
 
 /**
-* Test case: CanGetNegativeElevationInLogFileWithOnePosition
-* Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
+* Test case: CanGetPositionWithNegativeValuesInLogFileWithOnePoint
+* Use:       Checks that it is possible to obtain negative values for latitude,
+*            longitude and elevation in a GPX log file with only one point on
+*            the route.
 * Test type: Valid
 */
-BOOST_AUTO_TEST_CASE( CanGetNegativeElevationInLogFileWithOnePosition )
+BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithOnePoint )
+{
+    Position thePosition = Position(-0.89982, -0.898312, -20000);
+    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
+
+    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), thePosition.elevation() );
+}
+
+
+/**
+* Test case: CanGetPositionWithZeroValues
+* Use:       Checks that it is possible to obtain zero values for latitude,
+*            longitude and elevation.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositionWithZeroValues )
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "ZeroValues-N0724629.gpx", IS_FILE_NAME);
+
+    BOOST_CHECK_EQUAL( route.findPosition("I").latitude(), 0 );
+    BOOST_CHECK_EQUAL( route.findPosition("I").longitude(), 0 );
+    BOOST_CHECK_EQUAL( route.findPosition("I").elevation(), 0 );
+}
+
+
+/**
+* Test case: ThrowsOutOfRangeIfNameNotFound
+* Use:       Checks that the std::out_of_range exception is thrown if the
+*            specified name is not found.
+* Test type: Invalid
+*/
+BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 {
     Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
-    BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), -20000 );
+
+    BOOST_CHECK_THROW( route.findPosition("K").latitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("K").longitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("K").elevation(), std::out_of_range );
 }
+
+
+/**
+* Test case: ThrowsOutOfRangeIfElevationNotFound
+* Use:       Checks that the std::out_of_range exception is thrown if the
+*            elevation is not found.
+* Test type: Invalid
+*/
+BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "NoElevation-N0724629.gpx", IS_FILE_NAME);
+    BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
+}
+
 
 // /**
 // * Test case: CanGetPositiveLatitudeInLogFileWithRepeatedPoints
@@ -91,141 +141,45 @@ BOOST_AUTO_TEST_CASE( CanGetNegativeElevationInLogFileWithOnePosition )
 //     BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), 58 );
 // }
 
+
 /**
-* Test case: CanGetPositiveLatitudeInLogFileWithPointsApart
-* Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
+* Test case: CanGetPositionWithPositiveValuesInLogFileWithPointsApart
+* Use:       Checks that it is possible to obtain positive values for latitude,
+*            longitude and elevation in a GPX log file with multiple points,
+*            none of which are more than 'granularity' apart.
 * Test type: Valid
 */
-BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithPointsApart )
+BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithPointsApart )
 {
     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
 
-   	Route route = Route(LogFiles::GPXRoutesDir + "PointsApart-N0724629.gpx", IS_FILE_NAME, granularity);
-   	BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), 52.9491, PERCENTAGE_ACCURACY );
+    Position thePosition = Position(52.9491, -1.16915, 53);
+    Route route = Route(LogFiles::GPXRoutesDir + "PointsApart-N0724629.gpx", IS_FILE_NAME, granularity);
+
+    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), thePosition.elevation() );
 }
 
+
 /**
-* Test case: CanGetPositiveLongitudeInLogFileWithPointsApart
-* Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
+* Test case: CanGetPositionWithPositiveValuesInLogFileWithPointsTooClose
+* Use:       Checks that it is possible to obtain positive values for latitude,
+*            longitude and elevation in a GPX log file with multiple points,
+*            none of which are less than 'granularity' apart.
 * Test type: Valid
 */
-BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithPointsApart )
-{
-    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
-
-   	Route route = Route(LogFiles::GPXRoutesDir + "PointsApart-N0724629.gpx", IS_FILE_NAME, granularity);
-   	BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), -1.16915, PERCENTAGE_ACCURACY );
-}
-
-/**
-* Test case: CanGetPositiveElevationInLogFileWithPointsApart
-* Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
-* Test type: Valid
-*/
-BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithPointsApart )
-{
-    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
-
-   	Route route = Route(LogFiles::GPXRoutesDir + "PointsApart-N0724629.gpx", IS_FILE_NAME, granularity);
-   	BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), 53 );
-}
-
-/**
-* Test case: CanGetPositiveLatitudeInLogFileWithPointsTooClose
-* Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
-* Test type: Invalid
-*/
-BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithPointsTooClose )
+BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithPointsTooClose )
 {
     const metres granularity = HORIZONTAL_GRID_UNIT * 5;
 
     Route route = Route(LogFiles::GPXRoutesDir + "PointsTooClose-N0724629.gpx", IS_FILE_NAME, granularity);
+
     BOOST_CHECK_THROW( route.findPosition("A").latitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("A").longitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
 }
 
-/**
-* Test case: CanGetPositiveLongitudeInLogFileWithPointsTooClose
-* Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
-* Test type: Invalid
-*/
-BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithPointsTooClose )
-{
-    const metres granularity = HORIZONTAL_GRID_UNIT * 5;
-
-    Route route = Route(LogFiles::GPXRoutesDir + "PointsTooClose-N0724629.gpx", IS_FILE_NAME, granularity);
-    BOOST_CHECK_THROW( route.findPosition("L").longitude(), std::out_of_range );
-}
-
-/**
-* Test case: CanGetPositiveElevationInLogFileWithPointsTooClose
-* Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
-* Test type: Invalid
-*/
-BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithPointsTooClose )
-{
-    const metres granularity = HORIZONTAL_GRID_UNIT * 5;
-
-    Route route = Route(LogFiles::GPXRoutesDir + "PointsTooClose-N0724629.gpx", IS_FILE_NAME, granularity);
-    BOOST_CHECK_THROW( route.findPosition("O").elevation(), std::out_of_range );
-}
-
-/**
-* Test case: CanGetZeroLatitude
-* Use:       Checks that it is possible to obtain a zero value for latitude in a GPX log file.
-* Test type: Valid (edge case)
-*/
-BOOST_AUTO_TEST_CASE ( CanGetZeroLatitude )
-{
-    Route route = Route(LogFiles::GPXRoutesDir + "ZeroValues-N0724629.gpx", IS_FILE_NAME);
-   	BOOST_CHECK_EQUAL( route.findPosition("I").latitude(), 0 );
-}
-
-/**
-* Test case: CanGetZeroLongitude
-* Use:       Checks that it is possible to obtain a zero value for longitude in a GPX log file.
-* Test type: Valid (edge case)
-*/
-BOOST_AUTO_TEST_CASE ( CanGetZeroLongitude )
-{
-    Route route = Route(LogFiles::GPXRoutesDir + "ZeroValues-N0724629.gpx", IS_FILE_NAME);
-   	BOOST_CHECK_EQUAL( route.findPosition("I").longitude(), 0 );
-}
-
-/**
-* Test case: CanGetZeroLongitude
-* Use:       Checks that it is possible to obtain a zero value for elevation in a GPX log file.
-* Test type: Valid (edge case)
-*/
-BOOST_AUTO_TEST_CASE ( CanGetZeroElevation )
-{
-    Route route = Route(LogFiles::GPXRoutesDir + "ZeroValues-N0724629.gpx", IS_FILE_NAME);
-   	BOOST_CHECK_EQUAL( route.findPosition("I").elevation(), 0 );
-}
-
-/**
-* Test case: ThrowsOutOfRangeIfNameNotFound
-* Use:       Checks that the std::out_of_range exception is thrown if the specified name is not found.
-* Test type: Invalid
-*/
-BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
-{
-	// Generate a GPX log file for the with default GridWorld constructor
-    // GridWorldRoute routeLog = GridWorldRoute("FIWA", GridWorld());
-
-    // Route route = Route(LogFiles::GPXRoutesDir + createLogFile("ThrowsOutOfRangeIfNameNotFound", routeLog), IS_FILE_NAME);
-   	// BOOST_CHECK_THROW( route.findPosition("K").elevation(), std::out_of_range );
-}
-
-/**
-* Test case: ThrowsOutOfRangeIfElevationNotFound
-* Use:       Checks that the std::out_of_range exception is thrown if the elevation is not found.
-* Test type: Invalid
-*/
-BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
-{
-    Route route = Route(LogFiles::GPXRoutesDir + "NoElevation-N0724629.gpx", IS_FILE_NAME);
-   	BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
-}
 
 /**
 * Test case: ThrowsDomainErrorIfFileIsEmpty
