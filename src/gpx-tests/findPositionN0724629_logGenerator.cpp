@@ -26,9 +26,7 @@ namespace GPX
     {
         createLogFile("OnePointPositive-N0724629", GridWorldRoute("B", Position(52.9581383, 1.1542364, 53)));
 
-        createLogFile("RepeatedPointsPositive-N0724629", GridWorldRoute("KDLDK", GridWorld(Position(52.9581383, 1.1542364, 53), HORIZONTAL_GRID_UNIT)));
-
-        createLogFile("RepeatedPointsNegative-N0724629", GridWorldRoute("KDLDK", GridWorld(Position(-52.9581383, -1.1542364, -53), HORIZONTAL_GRID_UNIT)));
+        createLogFile("RepeatedPoints-N0724629", GridWorldRoute("KDLDK", GridWorld(Position(52.9581383, 1.1542364, 53), HORIZONTAL_GRID_UNIT)));
 
         createLogFile("PointsApart-N0724629", GridWorldRoute("KQHEA", GridWorld(Position(52.91249953, 1.18402513, 58), HORIZONTAL_GRID_UNIT)));
 
