@@ -61,7 +61,6 @@ SOURCES += \
     src/gpx-tests/timesVisited-n0763258.cpp \
     src/gpx-tests/maxLongitudeN0732961.cpp \
     src/gpx-tests/maxLatitudeN0756079.cpp
-
     #src/gpx-tests/maxLatitudeN0756079.cpp \
 
 
