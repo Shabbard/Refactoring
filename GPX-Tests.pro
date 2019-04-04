@@ -45,7 +45,8 @@ SOURCES += \
     src/gpx-tests/maxSpeedN0737110.cpp \
     src/gpx-tests/maxlatitude.cpp \
     src/gpx-tests/maxSpeedN0733894.cpp \
-<<<<<<< HEAD
+<<<<<<< HEAD \
+    src/gpx-tests/findnameofn0665742.cpp
 <<<<<<< HEAD \
     src/gpx-tests/findnameofn0665742.cpp
 =======
