@@ -45,9 +45,15 @@ BOOST_AUTO_TEST_CASE(PositionWithPositiveAndNegativeValue)
 //Test to check the function throw out_of_range exception if that Position is not within "granularity" of any stored route points.
 BOOST_AUTO_TEST_CASE(NonExistantPosition)
 {
+<<<<<<< HEAD
     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
     Route route = Route(LogFiles::GPXRoutesDir + "N0665742.gpx", isFileName, granularity);
     BOOST_CHECK_THROW( route.findNameOf(Position(0,0,0.000000)), std::out_of_range);
+=======
+    const metres granularity = horizontalGridUnit/10;
+    Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName,granularity);
+    BOOST_CHECK_THROW( route.findNameOf(Position), std::out_of_range);
+>>>>>>> master
 }
 
 
