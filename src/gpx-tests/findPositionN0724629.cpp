@@ -209,14 +209,4 @@ BOOST_AUTO_TEST_CASE( ThrowsOutOfRangeWhenPointsTooClose )
 }
 
 
-/**
-* Test case: ThrowsDomainErrorIfFileIsEmpty
-* Use:       Checks that the std::domain_error exception is thrown if the log file is empty.
-* Test type: Invalid
-*/
-BOOST_AUTO_TEST_CASE ( ThrowsDomainErrorIfFileIsEmpty )
-{
-   	BOOST_CHECK_THROW( Route(LogFiles::GPXRoutesDir + "EmptyFile-N0724629.gpx", IS_FILE_NAME), std::domain_error );
-}
-
 BOOST_AUTO_TEST_SUITE_END()
