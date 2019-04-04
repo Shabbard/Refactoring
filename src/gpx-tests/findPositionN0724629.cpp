@@ -83,22 +83,9 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 {
     Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", IS_FILE_NAME);
 
-    BOOST_CHECK_THROW( route.findPosition("K").latitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("E").latitude(), std::out_of_range );
     BOOST_CHECK_THROW( route.findPosition("K").longitude(), std::out_of_range );
     BOOST_CHECK_THROW( route.findPosition("K").elevation(), std::out_of_range );
-}
-
-
-/**
-* Test case: ThrowsOutOfRangeIfElevationNotFound
-* Use:       Checks that the std::out_of_range exception is thrown if the
-*            elevation is not found.
-* Test type: Invalid
-*/
-BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
-{
-    Route route = Route(LogFiles::GPXRoutesDir + "NoElevation-N0724629.gpx", IS_FILE_NAME);
-    BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
 }
 
 
