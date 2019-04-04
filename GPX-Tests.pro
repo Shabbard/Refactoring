@@ -38,6 +38,7 @@ SOURCES += \
     src/gpx-tests/maxLongitudeN0743797.cpp \
     src/gpx-tests/steepestGradient.cpp \
     src/gpx-tests/steepestGradientN0742908.cpp \
+    src/gpx-tests/steepestGradient-N0826291.cpp \
     src/gpx-tests/findNameOf.cpp \
     src/gpx-tests/findPositionN0724629.cpp \
     src/gpx-tests/findpositionn0734208.cpp \
@@ -53,12 +54,11 @@ SOURCES += \
     src/gpx-tests/minlatitude-n0743587.cpp \
     src/gpx-tests/netLength-N0745509.cpp \
     src/gpx-tests/maxLongitude.cpp \
-    src/gpx-tests/timesVisited-n0763258.cpp
+    src/gpx-tests/timesVisited-n0763258.cpp \
+    src/gpx-tests/minLongitudeN0735026.cpp
 	    
     #Breaks code:
-    #src/gpx-tests/steepestGradient-N0826291.cpp \
     #src/gpx-tests/restingTimeN0736563.cpp\
-    #src/gpx-tests/steepestGradient-N0826291.cpp \
     #Please ensure the a successful build before pushing to the master. Thanks.
 
 INCLUDEPATH += headers/
