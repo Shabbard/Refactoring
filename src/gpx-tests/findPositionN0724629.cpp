@@ -102,44 +102,24 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfElevationNotFound )
 }
 
 
-// /**
-// * Test case: CanGetPositiveLatitudeInLogFileWithRepeatedPoints
-// * Use:       Checks that it is possible to obtain a positive value for latitude in a GPX log file.
-// * Test type: Valid
-// */
-// BOOST_AUTO_TEST_CASE( CanGetPositiveLatitudeInLogFileWithRepeatedPoints )
-// {
-//     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+/**
+* Test case: CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoints
+* Use:       Checks that it is possible to obtain negative values for latitude,
+*            longitude and elevation in a GPX log file with only one point on
+*            the route.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoints )
+{
+    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
 
-//     Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPoints-N0724629.gpx", IS_FILE_NAME, granularity);
-//     BOOST_CHECK_CLOSE( route.findPosition("D").latitude(), 52.9581383, PERCENTAGE_ACCURACY );
-// }
+    Position thePosition = Position(52.9581383, -1.16913, 58);
+    Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPoints-N0724629.gpx", IS_FILE_NAME, granularity);
 
-// /**
-// * Test case: CanGetPositiveLongitudeInLogFileWithPointsApart
-// * Use:       Checks that it is possible to obtain a positive value for longitude in a GPX log file.
-// * Test type: Valid
-// */
-// BOOST_AUTO_TEST_CASE( CanGetPositiveLongitudeInLogFileWithRepeatedPoints )
-// {
-//     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
-
-//     Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPoints-N0724629.gpx", IS_FILE_NAME, granularity);
-//     BOOST_CHECK_CLOSE( route.findPosition("D").longitude(), 109.322134, PERCENTAGE_ACCURACY );
-// }
-
-// /**
-// * Test case: CanGetPositiveElevationInLogFileWithPointsApart
-// * Use:       Checks that it is possible to obtain a positive value for elevation in a GPX log file.
-// * Test type: Valid
-// */
-// BOOST_AUTO_TEST_CASE( CanGetPositiveElevationInLogFileWithRepeatedPoints )
-// {
-//     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
-
-//     Route route = Route(LogFiles::GPXRoutesDir + "RepeatedPoints-N0724629.gpx", IS_FILE_NAME, granularity);
-//     BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), 58 );
-// }
+    BOOST_CHECK_CLOSE( route.findPosition("D").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_CLOSE( route.findPosition("D").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), thePosition.elevation() );
+}
 
 
 /**
