@@ -89,10 +89,10 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 
 
 /**
-* Test case: ThrowsOutOfRangeIfNameNotFound
+* Test case: ThrowsOutOfRangeIfCaseIncorrect
 * Use:       Checks that the std::out_of_range exception is thrown if the
 *            specified name is in the incorrect case.
-* Test type: Invalid
+* Test type: Invalid Extreme
 */
 BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfCaseIncorrect )
 {
