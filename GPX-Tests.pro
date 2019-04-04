@@ -43,8 +43,8 @@ SOURCES += \
     src/gpx-tests/findpositionn0734208.cpp \
     src/gpx-tests/maxSpeedN0737110.cpp \
     src/gpx-tests/maxlatitude.cpp \
-    src/gpx-tests/maxSpeedN0733894.cpp
-
+    src/gpx-tests/maxSpeedN0733894.cpp \
+    src/gpx-tests/N0774446-TotalHeightGain.cpp \
 
 
 INCLUDEPATH += headers/
