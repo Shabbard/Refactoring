@@ -33,6 +33,7 @@ SOURCES += \
     src/gridworld_track.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
+    src/gpx-tests/maxElevationN0774756.cpp \
     src/gpx-tests/accessOperator.cpp \
     src/gpx-tests/accessOperatorLogGenerator.cpp \
     src/gpx-tests/maxLongitudeN0743797.cpp \
@@ -58,9 +59,7 @@ SOURCES += \
     src/gpx-tests/maxLongitude.cpp \
     src/gpx-tests/timesVisited-n0763258.cpp \
     src/gpx-tests/maxLongitudeN0732961.cpp \
-    src/gpx-tests/maxLatitudeN0756079.cpp \
-    src/gpx-tests/maxElevationN0774756.cpp \
-    src/gpx-tests/netHeightGain-N0701387.cpp
+    src/gpx-tests/netHeightGain-N0701387.cpp    
     #src/gpx-tests/maxLatitudeN0756079.cpp \
     #src/gpx-tests/findPositionN0724629.cpp \
 
