@@ -44,7 +44,11 @@ SOURCES += \
     src/gpx-tests/maxSpeedN0737110.cpp \
     src/gpx-tests/maxlatitude.cpp \
     src/gpx-tests/maxSpeedN0733894.cpp \
+<<<<<<< HEAD
     src/gpx-tests/maxspeedn0736188.cpp
+=======
+    src/gpx-tests/maxspeedn0736188.cpp \
+>>>>>>> bcd65ef872e6932b0626e817c95a91a2c1043a73
     src/gpx-tests/totalLengthTest_n0755314.cpp \
     src/gpx-tests/netLength-N0704050.cpp\
     src/gpx-tests/restingTimeN0736563.cpp \
