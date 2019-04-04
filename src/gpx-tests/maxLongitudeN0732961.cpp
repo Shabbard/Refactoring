@@ -6,53 +6,47 @@
 
 using namespace GPS;
 
-BOOST_AUTO_TEST_SUITE( Route_maxLogitudeEqual )
+BOOST_AUTO_TEST_SUITE( Route_maxLogitudeN0732961 )
 
 const bool isFileName = true;
 const metres horizontalGridUnit = 100000;
 
-BOOST_AUTO_TEST_CASE( ABCD_route )
+//Testing a small route
+BOOST_AUTO_TEST_CASE( Short_route )
 {
    Route route = Route(LogFiles::GPXRoutesDir + "ABCD.gpx", isFileName);
    BOOST_CHECK_CLOSE( route.maxLongitude(), 109.412, 0.0001 );
 }
 
-BOOST_AUTO_TEST_CASE( ABQWE_route )
-{
-   Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName);
-   BOOST_CHECK_CLOSE( route.maxLongitude(), 1.79662, 0.0001 );
-}
-
-BOOST_AUTO_TEST_CASE( AFKPU_route )
-{
-   Route route = Route(LogFiles::GPXRoutesDir + "AFKPU.gpx", isFileName);
-   BOOST_CHECK_CLOSE( route.maxLongitude(), -1.79662, 0.0001 );
-}
-
-BOOST_AUTO_TEST_CASE( ele_absent_route )
-{
-   Route route = Route(LogFiles::GPXRoutesDir + "ele_absent.gpx", isFileName);
-   BOOST_CHECK_CLOSE( route.maxLongitude(), -0.898312, 0.0001);
-}
-
-BOOST_AUTO_TEST_CASE( NorthYorkMoors_route )
-{
-   Route route = Route(LogFiles::GPXRoutesDir + "NorthYorkMoors.gpx", isFileName);
-   BOOST_CHECK_CLOSE( route.maxLongitude(), -1.051742434501648, 0.00000000000001 );
-}
-
-BOOST_AUTO_TEST_CASE( Q_route )
+//Testing A edge case for the shorest route
+BOOST_AUTO_TEST_CASE( Shortest_route )
 {
    Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
    BOOST_CHECK_CLOSE( route.maxLongitude(), -0.898312, 0.0001 );
 }
 
+//Testing the other edge case as it is the longest given
+BOOST_AUTO_TEST_CASE( Longest_route )
+{
+   Route route = Route(LogFiles::GPXRoutesDir + "NorthYorkMoors.gpx", isFileName);
+   BOOST_CHECK_CLOSE( route.maxLongitude(), -1.051742434501648, 0.00000000000001 );
+}
+
+//Testing the function will give the correct output when there is no change in Longitude
+BOOST_AUTO_TEST_CASE( No_Change_In_Longitude_route )
+{
+   Route route = Route(LogFiles::GPXRoutesDir + "AFKPU.gpx", isFileName);
+   BOOST_CHECK_CLOSE( route.maxLongitude(), -1.79662, 0.0001 );
+}
+
+//Testing a route that I generated that goes from north to south
 BOOST_AUTO_TEST_CASE( NottinghamToLondon )
 {
    Route route = Route(LogFiles::GPXRoutesDir + "NottinghamToLondon.gpx", isFileName);
    BOOST_CHECK_CLOSE( route.maxLongitude(), -0.1234130, 0.00001 );
 }
 
+//Testing a route that I generated that goes from south to north
 BOOST_AUTO_TEST_CASE( NottinghamToSheffield )
 {
    Route route = Route(LogFiles::GPXRoutesDir + "NottinghamToSheffield.gpx", isFileName);
@@ -61,27 +55,3 @@ BOOST_AUTO_TEST_CASE( NottinghamToSheffield )
 
 BOOST_AUTO_TEST_SUITE_END()
 
-BOOST_AUTO_TEST_SUITE( Route_maxLogitudeCheckSmallest )
-
-const bool isFileName = true;
-const metres horizontalGridUnit = 100000;
-
-BOOST_AUTO_TEST_CASE( ABCD_route )
-{
-   Route route = Route(LogFiles::GPXRoutesDir + "ABCD.gpx", isFileName);
-   BOOST_CHECK( route.maxLongitude() != 109.142 );
-}
-
-BOOST_AUTO_TEST_CASE( ABQWE_route )
-{
-   Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName);
-   BOOST_CHECK( route.maxLongitude() != -1.79662 );
-}
-
-BOOST_AUTO_TEST_CASE( NorthYorkMoors_route )
-{
-   Route route = Route(LogFiles::GPXRoutesDir + "NorthYorkMoors.gpx", isFileName);
-   BOOST_CHECK( route.maxLongitude() != -1.120702028274536 );
-}
-
-BOOST_AUTO_TEST_SUITE_END()
