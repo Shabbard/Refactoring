@@ -98,4 +98,13 @@ BOOST_AUTO_TEST_CASE( max_ele_when_descending)
     BOOST_CHECK_EQUAL( route.maxElevation(), 58);
 }
 
+//check max elevation when large dataset
+BOOST_AUTO_TEST_CASE( max_ele_large_dataset )
+{
+   Route route = Route(LogFiles::GPXRoutesDir + "NorthYorkMoors.gpx", isFileName);
+   BOOST_CHECK_EQUAL( route.maxElevation(), 505);
+}
+
+
+
 BOOST_AUTO_TEST_SUITE_END()
