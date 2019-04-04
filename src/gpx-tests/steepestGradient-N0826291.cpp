@@ -2,16 +2,9 @@
 #include <fstream>
 #include <string>
 
-#include <iostream>
-#include <cassert>
-#include <cmath>
-#include <stdexcept>
-#include <algorithm>
-
 #include "earth.h"
 #include "logs.h"
 #include "route.h"
-#include "geometry.h"
 #include "gridworld.h"
 #include "gridworld_route.h"
 
@@ -35,7 +28,7 @@ const degrees Gradient = 5.71059314;
 
 std::string logCreation(std::string testName, GridWorldRoute route)
 {
-    std::string fileName = "N0826291" + testName + ".gpx";
+    std::string fileName = "N0826291_" + testName + ".gpx";
     std::ofstream fileOutput(GPS::LogFiles::GPXRoutesDir + fileName);
 
     fileOutput << route.toGPX(true, testName);
