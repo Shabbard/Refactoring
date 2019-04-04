@@ -1,12 +1,19 @@
 #include <boost/test/unit_test.hpp>
 #include "logs.h"
 #include "route.h"
-#include "track.h"
+#include "geometry.h"
 #include <iostream>
 
-BOOST_AUTO_TEST_CASE(Route_maxGradient_n0748944)
+using namespace GPS;
+
+
+const bool isFileName = true;
+
+
+BOOST_AUTO_TEST_CASE(Route_maxGradient_ABCD_is0)
 {
-    GPS::Track Track(/*GPS::LogFiles::GPXRoutesDir +*/GPS::LogFiles::GPXTrackDir + "A1B3C.gpx", true);
-    
-    BOOST_CHECK_EQUAL(track.maxGradient(), 0);
+    Route Route = Route(logFiles::GPXRoutesDir + "ABCD.gpx", isFileName);
+    BOOST_CHECK_EQUAL(route.maxGradient(), 0);
 }
+
+BOOST_AUTO_TEST_SUITE_END()
