@@ -31,13 +31,7 @@ SOURCES += \
     src/gridworld.cpp \
     src/gridworld_route.cpp \
     src/gridworld_track.cpp \
-    src/gpx-tests/maxElevationN0774756.cpp \
-
-    
-    #Breaks code:
-    #src/gpx-tests/maxlongitude.cpp \
-    #src/gpx-tests/restingTimeN0736563.cpp\
-    #Please ensure the a successful build before pushing to the master. Thanks.
+    src/gpx-tests/maxElevationN0774756.cpp
 
 INCLUDEPATH += headers/
 
