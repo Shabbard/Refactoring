@@ -39,8 +39,7 @@ SOURCES += \
     src/gpx-tests/steepestGradient.cpp \
     src/gpx-tests/steepestGradientN0742908.cpp \
     src/gpx-tests/steepestGradient-N0826291.cpp \
-    src/gpx-tests/findNameOf.cpp \
-    src/gpx-tests/findPositionN0724629.cpp \
+    src/gpx-tests/findNameOf.cpp \    
     src/gpx-tests/findpositionn0734208.cpp \
     src/gpx-tests/maxSpeedN0737110.cpp \
     src/gpx-tests/maxlatitude.cpp \
@@ -60,9 +59,10 @@ SOURCES += \
     src/gpx-tests/timesVisited-n0763258.cpp \
     src/gpx-tests/maxLongitudeN0732961.cpp \
     # src/gpx-tests/maxLatitudeN0756079.cpp \
+    src/gpx-tests/maxElevationN0774756.cpp \
     src/gpx-tests/netHeightGain-N0701387.cpp
     #src/gpx-tests/maxLatitudeN0756079.cpp \
-   
+    #src/gpx-tests/findPositionN0724629.cpp \
 
     #Breaks code:
     #src/gpx-tests/findnameofn0665742.cpp \
