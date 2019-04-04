@@ -1,6 +1,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include <fstream>
+#include "gridworld.h"
 #include "gridworld_route.h"
 #include "xmlgenerator.h"
 
@@ -57,7 +58,8 @@ BOOST_AUTO_TEST_CASE( same_Longitude )
 // Checks that the function can differentiate between signed numbers
 BOOST_AUTO_TEST_CASE( mixed_Sign_Longitude )
 {
-   GridWorldRoute routeLog = GridWorldRoute("KLMN");
+   GridWorld gridworld = GridWorld(Earth::EquatorialMeridian, 100000, 0);
+   GridWorldRoute routeLog = GridWorldRoute("KLMN", gridworld);
    Route route = Route(LogFiles::GPXRoutesDir + generateGPX("longitudeSigned-N0743797", routeLog), isFileName);
    BOOST_CHECK_EQUAL( route.maxLongitude(), 1.12345);
 }
@@ -65,15 +67,17 @@ BOOST_AUTO_TEST_CASE( mixed_Sign_Longitude )
 // Checks the function can find the most positive number from all negatively signed ones.
 BOOST_AUTO_TEST_CASE( negative_Signed_Longitude )
 {
-   GridWorldRoute routeLog = GridWorldRoute("PQ");
+   GridWorld gridworld = GridWorld(Earth::EquatorialMeridian, 100000, 0);
+   GridWorldRoute routeLog = GridWorldRoute("PQ", gridworld);
    Route route = Route(LogFiles::GPXRoutesDir + generateGPX("longitudeNegative-N0743797.gpx", routeLog), isFileName);
    BOOST_CHECK_EQUAL( route.maxLongitude(), -1.12345);
 }
 
 // Checks that the function does not use rounding by using longitudes to 15 decimals places.
+// Set granularity to 0 to allow this to work.
 BOOST_AUTO_TEST_CASE( very_Close_Longitude )
 {
-   Route route = Route(LogFiles::GPXRoutesDir + "closeLongitude-N0743797.gpx", isFileName);
+   Route route = Route(LogFiles::GPXRoutesDir + "closeLongitude-N0743797.gpx", isFileName, 0);
    BOOST_CHECK_EQUAL( route.maxLongitude(), -1.199999999999998);
 }
 
