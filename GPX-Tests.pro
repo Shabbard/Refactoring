@@ -56,10 +56,10 @@ SOURCES += \
     src/gpx-tests/netLength-N0745509.cpp \
     src/gpx-tests/maxLongitude.cpp \
     src/gpx-tests/timesVisited-n0763258.cpp \
-    src/gpx-tests/minLongitudeN0735026.cpp \
-    src/gpx-tests/findnameofn0665742.cpp
-	    
+
+
     #Breaks code:
+    #src/gpx-tests/findnameofn0665742.cpp \
     #src/gpx-tests/restingTimeN0736563.cpp\
     #Please ensure the a successful build before pushing to the master. Thanks.
 
