@@ -41,20 +41,10 @@ static std::string saveLogFile(const std::string &name,
 BOOST_AUTO_TEST_SUITE(Route_MaxGradient_N0740369)
 
 /**
- * Checks that a route with no points asserts
- */
-BOOST_AUTO_TEST_CASE(NO_POINTS) {
-  std::string logPath = saveLogFile("no-points", "");
-
-  Route route(logPath, true);
-  BOOST_CHECK_CLOSE(route.maxGradient(), 0.0, CHECK_TOLERANCE);
-}
-
-/**
  * Checks that a route with a singular point returns 0 for maximum gradient
  */
 BOOST_AUTO_TEST_CASE(SINGLE_POINT) {
-  std::string logPath = saveLogFile("single-point", "A");
+  std::string logPath = saveLogFile("flat-route", "A");
 
   Route route(logPath, true);
   BOOST_CHECK_CLOSE(route.maxGradient(), 0.0, CHECK_TOLERANCE);
