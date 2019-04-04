@@ -46,6 +46,7 @@ BOOST_AUTO_TEST_CASE(PositionWithPositiveAndNegativeValue)
 BOOST_AUTO_TEST_CASE(NonExistantPosition)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
     Route route = Route(LogFiles::GPXRoutesDir + "N0665742.gpx", isFileName, granularity);
     BOOST_CHECK_THROW( route.findNameOf(Position(0,0,0.000000)), std::out_of_range);
@@ -53,6 +54,14 @@ BOOST_AUTO_TEST_CASE(NonExistantPosition)
     const metres granularity = horizontalGridUnit/10;
     Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName,granularity);
     BOOST_CHECK_THROW( route.findNameOf(Position), std::out_of_range);
+>>>>>>> master
+=======
+    const metres granularity = horizontalGridUnit/10;
+    Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName,granularity);
+    BOOST_CHECK_THROW( route.findNameOf(Position), std::out_of_range);
+    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+    Route route = Route(LogFiles::GPXRoutesDir + "N0665742.gpx", isFileName, granularity);
+    BOOST_CHECK_THROW( route.findNameOf(Position(0,0,0.000000)), std::out_of_range);
 >>>>>>> master
 }
 

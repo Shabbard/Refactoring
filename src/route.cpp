@@ -110,6 +110,7 @@ degrees Route::maxLongitude() const
         maxLon = std::max(maxLon,pos.longitude());
     }
     return maxLon;
+
 }
 
 metres Route::minElevation() const

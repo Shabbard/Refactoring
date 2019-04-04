@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>negativeLongitude</name>
+        <rtept lat="52.9583" lon="-1.15453">
+            <name>A</name>
+            <ele>53.000000</ele>
+        </rtept>
+        <rtept lat="52.9582" lon="-1.15453">
+            <name>F</name>
+            <ele>53.000000</ele>
+        </rtept>
+        <rtept lat="52.9581" lon="-1.15453">
+            <name>K</name>
+            <ele>53.000000</ele>
+        </rtept>
+        <rtept lat="52.958" lon="-1.15453">
+            <name>P</name>
+            <ele>53.000000</ele>
+        </rtept>
+        <rtept lat="52.958" lon="-1.15453">
+            <name>U</name>
+            <ele>53.000000</ele>
+        </rtept>
+    </rte>
+</gpx>

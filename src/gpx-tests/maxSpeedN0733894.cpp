@@ -7,49 +7,61 @@
 #include "xmlgenerator.h"
 
 using namespace GPS;
+//USED IN THE FILEPATH
+const std::string studentID = "N0733894";
+//USED WHEN GENERATING THE TRACK
+const bool isFileName = true;
 
-std::string studentID = "N0733894";
-bool isFileName = true;
 std::string testName;
 std::string filePath;
 
-// function to generate a log for each file when implemented..
-std::string generateLogs(std::string nameOfTest, GridWorldTrack track)
-{
-    std::string fileName = GPS::LogFiles::GPXTracksDir + studentID + "-" + nameOfTest + ".gpx";
-    std::ofstream fileOutput(fileName);
-
-    fileOutput << track.toGPX(5, true, nameOfTest);
-    fileOutput.close();
-
-   return fileName;
-}
-
 BOOST_AUTO_TEST_SUITE(track_maxSpeed_N0733894)
 
-//CHECK RETURNS 0 WHEN TRACK IS STATIONARY
+/*
+ *  A test to see that the functions returns 0 if is stationary
+ *  this is needed as it is says in the header file that if it is zero it will return 0
+ * */
+
 BOOST_AUTO_TEST_CASE( IS_STATIONARY )
 {
-    //Test name for going in the filename
+    //Test name for going in the filename to allow us to find it and make it unique so they dont get mixed up
     testName = "IS_STATIONARY";
-    //The track string
-    std::string trackString("A1A");
-    GridWorldTrack trackLog = GridWorldTrack(trackString, 10, 0, GridWorld(Earth::CliftonCampus, 1000,1000));
-    filePath = generateLogs(testName, trackLog);
+
+    //The track string that gets put in the GridWorldTrack
+    std::string trackString = "A1A";
+
+    //generating the track [trackString, 10 second time unit, 0 start time]
+    GridWorldTrack trackLog = GridWorldTrack(trackString, 10, 0);
+
+    //Get the log file from the correct directory
+    filePath = GPS::LogFiles::GPXTracksDir + studentID + "-" + testName + ".gpx";
+
+    //Construct the track from gpx data
     Track track = Track(filePath, isFileName, 0);
 
+    //CHECK THE FINAL RESULT MAKES
     BOOST_CHECK_EQUAL(track.maxSpeed(), 0);
 }
 
+//A test to check that the program returns the value that it should return
 BOOST_AUTO_TEST_CASE(COMPARE_MAX_SPEED)
 {
+    //Test name for going in the filename to allow us to find it and make it unique so they dont get mixed up
     testName = "COMPARE_MAX_SPEED";
-    //The track string
-    std::string trackString("A20D30C");
-    GridWorldTrack trackLog = GridWorldTrack(trackString, 10, 0, GridWorld(Earth::CliftonCampus, 1000,1000));
 
-    filePath = generateLogs(testName, trackLog);
+    //The track string that gets put in the GridWorldTrack
+    std::string trackString("A20D30C");
+
+    //generating the track [trackString, 10 second time unit, 0 start time]
+    GridWorldTrack trackLog = GridWorldTrack(trackString, 10, 0);
+
+    //Get the log file from the correct directory
+    filePath = GPS::LogFiles::GPXTracksDir + studentID + "-" + testName + ".gpx";
+
+    //Construct the track from gpx data
     Track track = Track(filePath, isFileName, 0);
+
+    //CHECK THE FINAL RESULT TO THE KNOWN RESULT
     BOOST_CHECK_EQUAL(track.maxSpeed(), 15.013945078867712);
 
 }
