@@ -6,7 +6,7 @@
 #include "earth.h"
 #include "gridworld_route.h"
 
-using namespace GPS:
+using namespace GPS;
 
 std::string createLog(std::string testName, GridWorldRoute routeInfo)
 {
