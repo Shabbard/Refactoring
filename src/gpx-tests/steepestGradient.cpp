@@ -6,7 +6,7 @@
 
 using namespace GPS;
 
-const degrees PERCENTAGE_ACCURACY = 0.01;
+const degrees PERCENTAGE_ACCURACY = 0.1;
 const metres HORIZONTAL_GRID_UNIT = 10000;
 const metres VERTICAL_GRID_UNIT = 1000;
 const metres GRADIENT = 5.71059; // calculated by taking the arctan of 1000/10000

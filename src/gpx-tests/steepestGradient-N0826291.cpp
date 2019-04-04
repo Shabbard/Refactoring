@@ -45,7 +45,7 @@ const bool IsFileName = true;
 */
 BOOST_AUTO_TEST_CASE( SinglePointGradientRoute )
 {
-    GridWorldRoute routeLog = GridWorldRoute("M", GridWorld(Earth::Nottingham, HorizontalGridUnit , VerticalGridUnit));
+    GridWorldRoute routeLog = GridWorldRoute("M", GridWorld(Earth::CliftonCampus, HorizontalGridUnit , VerticalGridUnit));
     Route route = Route(LogFiles::GPXRoutesDir + logCreation("SinglePointGradientRoute", routeLog), IsFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(), 0, DegreeOfAccuracy);
 }
@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE( SinglePointGradientRoute )
 */
 BOOST_AUTO_TEST_CASE( NoGradientRoute )
 {
-    GridWorldRoute routeLog = GridWorldRoute("LMN", GridWorld(Earth::Nottingham, HorizontalGridUnit , VerticalGridUnit));
+    GridWorldRoute routeLog = GridWorldRoute("LMN", GridWorld(Earth::CliftonCampus, HorizontalGridUnit , VerticalGridUnit));
     Route route = Route(LogFiles::GPXRoutesDir + logCreation("NoGradientRoute", routeLog), IsFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(), 0, DegreeOfAccuracy);
 }
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE( NoGradientRoute )
 */
 BOOST_AUTO_TEST_CASE( NegativeGradientRoute )
 {
-    GridWorldRoute routeLog = GridWorldRoute("EIM", GridWorld(Earth::Nottingham, HorizontalGridUnit , VerticalGridUnit));
+    GridWorldRoute routeLog = GridWorldRoute("EIM", GridWorld(Earth::CliftonCampus, HorizontalGridUnit , VerticalGridUnit));
     Route route = Route(LogFiles::GPXRoutesDir + logCreation("NegativeGradientRoute", routeLog), IsFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(), Gradient, DegreeOfAccuracy);
 }
@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE( NegativeGradientRoute )
 */
 BOOST_AUTO_TEST_CASE( PositiveGradientRoute )
 {
-    GridWorldRoute routeLog = GridWorldRoute("UQM", GridWorld(Earth::Nottingham, HorizontalGridUnit , VerticalGridUnit));
+    GridWorldRoute routeLog = GridWorldRoute("UQM", GridWorld(Earth::CliftonCampus, HorizontalGridUnit , VerticalGridUnit));
     Route route = Route(LogFiles::GPXRoutesDir + logCreation("PositiveGradientRoute", routeLog), IsFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(), Gradient, DegreeOfAccuracy);
 }
@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE( PositiveGradientRoute )
 */
 BOOST_AUTO_TEST_CASE( PositiveNegativeGradientRoute )
 {
-    GridWorldRoute routeLog = GridWorldRoute("AGMIE", GridWorld(Earth::Nottingham, HorizontalGridUnit , VerticalGridUnit));
+    GridWorldRoute routeLog = GridWorldRoute("AGMIE", GridWorld(Earth::CliftonCampus, HorizontalGridUnit , VerticalGridUnit));
     Route route = Route(LogFiles::GPXRoutesDir + logCreation("PositiveNegativeGradientRoute", routeLog), IsFileName);
     BOOST_CHECK_CLOSE( route.steepestGradient(), Gradient, DegreeOfAccuracy);
 }
