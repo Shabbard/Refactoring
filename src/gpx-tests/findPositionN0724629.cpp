@@ -153,8 +153,28 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithPointsApart )
 {
     const metres granularity = HORIZONTAL_GRID_UNIT / 10;
 
-    Position thePosition = Position(52.9491, -1.16915, 53);
-    Route route = Route(LogFiles::GPXRoutesDir + "PointsApart-N0724629.gpx", IS_FILE_NAME, granularity);
+    Position thePosition = Position(52.9035, 1.16913, 58);
+    Route route = Route(LogFiles::GPXRoutesDir + "PointsApartPositive-N0724629.gpx", IS_FILE_NAME, granularity);
+
+    BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
+    BOOST_CHECK_EQUAL( route.findPosition("Q").elevation(), thePosition.elevation() );
+}
+
+
+/**
+* Test case: CanGetPositionWithNegativeValuesInLogFileWithPointsApart
+* Use:       Checks that it is possible to obtain negative values for latitude,
+*            longitude and elevation in a GPX log file with multiple points,
+*            none of which are more than 'granularity' apart.
+* Test type: Valid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithPointsApart )
+{
+    const metres granularity = HORIZONTAL_GRID_UNIT / 10;
+
+    Position thePosition = Position(-52.9215, -1.19892, -58);
+    Route route = Route(LogFiles::GPXRoutesDir + "PointsApartNegative-N0724629.gpx", IS_FILE_NAME, granularity);
 
     BOOST_CHECK_CLOSE( route.findPosition("Q").latitude(), thePosition.latitude(), PERCENTAGE_ACCURACY );
     BOOST_CHECK_CLOSE( route.findPosition("Q").longitude(), thePosition.longitude(), PERCENTAGE_ACCURACY );
@@ -164,16 +184,35 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithPointsApart )
 
 /**
 * Test case: CanGetPositionWithPositiveValuesInLogFileWithPointsTooClose
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with multiple points,
-*            none of which are less than 'granularity' apart.
-* Test type: Valid
+* Use:       Checks that an std::out_of_range exception is thrown for points
+*            with positive values for latitude, longitude and elevation that are
+*            less than 'granularity' apart.
+* Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithPositiveValuesInLogFileWithPointsTooClose )
 {
     const metres granularity = HORIZONTAL_GRID_UNIT * 5;
 
-    Route route = Route(LogFiles::GPXRoutesDir + "PointsTooClose-N0724629.gpx", IS_FILE_NAME, granularity);
+    Route route = Route(LogFiles::GPXRoutesDir + "PointsTooClosePositive-N0724629.gpx", IS_FILE_NAME, granularity);
+
+    BOOST_CHECK_THROW( route.findPosition("A").latitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("A").longitude(), std::out_of_range );
+    BOOST_CHECK_THROW( route.findPosition("A").elevation(), std::out_of_range );
+}
+
+
+/**
+* Test case: CanGetPositionWithNegativeValuesInLogFileWithPointsTooClose
+* Use:       Checks that an std::out_of_range exception is thrown for points
+*            with negative values for latitude, longitude and elevation that are
+*            less than 'granularity' apart.
+* Test type: Invalid
+*/
+BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithPointsTooClose )
+{
+    const metres granularity = HORIZONTAL_GRID_UNIT * 5;
+
+    Route route = Route(LogFiles::GPXRoutesDir + "PointsTooCloseNegative-N0724629.gpx", IS_FILE_NAME, granularity);
 
     BOOST_CHECK_THROW( route.findPosition("A").latitude(), std::out_of_range );
     BOOST_CHECK_THROW( route.findPosition("A").longitude(), std::out_of_range );
