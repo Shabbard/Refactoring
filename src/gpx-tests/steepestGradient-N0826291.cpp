@@ -12,7 +12,7 @@ using namespace GPS;
 
 const metres HorizontalGridUnit = 10000;
 const metres VerticalGridUnit = 1000;
-const degrees DegreeOfAccuracy = 0.01;
+const degrees DegreeOfAccuracy = 0.1;
 const degrees Gradient = 5.71059;
 /**
 * Grid world in the layout of a 5x5 grid
