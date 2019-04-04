@@ -33,7 +33,7 @@ SOURCES += \
     src/gridworld_track.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
-    src/gpx-tests/accessOperator.cpp \ 
+    src/gpx-tests/accessOperator.cpp \
     src/gpx-tests/accessOperatorLogGenerator.cpp \
     src/gpx-tests/maxLongitudeN0743797.cpp \
     src/gpx-tests/steepestGradient.cpp \
@@ -45,6 +45,8 @@ SOURCES += \
     src/gpx-tests/maxSpeedN0737110.cpp \
     src/gpx-tests/maxlatitude.cpp \
     src/gpx-tests/maxSpeedN0733894.cpp \
+    src/gpx-tests/findnameofn0665742.cpp \
+    src/gpx-tests/maxspeedn0736188.cpp \
     src/gpx-tests/totalLengthTest_n0755314.cpp \
     src/gpx-tests/netLength-N0704050.cpp\
     src/gpx-tests/restingTimeN0736563.cpp \
@@ -55,9 +57,10 @@ SOURCES += \
     src/gpx-tests/netLength-N0745509.cpp \
     src/gpx-tests/maxLongitude.cpp \
     src/gpx-tests/timesVisited-n0763258.cpp \
-    src/gpx-tests/minLongitudeN0735026.cpp
-	    
+
+
     #Breaks code:
+    #src/gpx-tests/findnameofn0665742.cpp \
     #src/gpx-tests/restingTimeN0736563.cpp\
     #Please ensure the a successful build before pushing to the master. Thanks.
 

@@ -34,13 +34,9 @@ namespace GPX
 
         createLogFile("PointsApartNegative-N0724629", GridWorldRoute("KQLD", GridWorld(Position(-52.91249953, -1.18402513, -58), HORIZONTAL_GRID_UNIT)));
 
-        createLogFile("PointsTooClosePositive-N0724629", GridWorldRoute("ILADN", GridWorld(Earth::CityCampus, HORIZONTAL_GRID_UNIT)));
-
-        createLogFile("PointsTooCloseNegative-N0724629", GridWorldRoute("ILADN", GridWorld(Position(-52.91249953, -1.18402513, -58), HORIZONTAL_GRID_UNIT)));
+        createLogFile("PointsTooClose", GridWorldRoute("ILADN", GridWorld(Earth::CityCampus, HORIZONTAL_GRID_UNIT)));
 
         createLogFile("ZeroValues-N0724629", GridWorldRoute("IEKS", GridWorld(Earth::EquatorialMeridian, 0)));
-
-        createLogFile("NoElevation-N0724629", GridWorldRoute("EAL", GridWorld(Earth::NorthPole, 0)));
 
         std::ofstream openedFile(LogFiles::GPXRoutesDir + "EmptyFile-N0724629.gpx");
         openedFile.close();
