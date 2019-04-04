@@ -60,8 +60,9 @@ SOURCES += \
     src/gpx-tests/minlatitude-n0743587.cpp \
     src/gpx-tests/netLength-N0745509.cpp \
     src/gpx-tests/maxLongitude.cpp \
-    src/gpx-tests/timesVisited-n0763258.cpp \
-	    
+    src/gpx-tests/timesVisited-n0763258.cpp 
+
+
     #Breaks code:
     #src/gpx-tests/restingTimeN0736563.cpp\
     #Please ensure the a successful build before pushing to the master. Thanks.
