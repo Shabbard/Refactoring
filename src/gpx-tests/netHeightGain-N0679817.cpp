@@ -10,27 +10,6 @@
 
 #include <fstream>
 
-
-// The increase in height from the start point to the finishing point.
-// Should return zero if the height difference is negative.
-
-/*
-
-metres Route::totalHeightGain() const
-{
-    assert(! positions.empty());
-
-    metres total = 0.0;
-    for (unsigned int i = 1; i < numPositions(); ++i)
-    {
-        metres deltaV = positions[i].elevation() - positions[i-1].elevation();
-        if (deltaV > 0.0) total += deltaV; // ignore negative height differences
-    }
-    return total;
-}
-
-*/
-
 using namespace GPS;
 
 // Will generate a GPX log file name/location 
