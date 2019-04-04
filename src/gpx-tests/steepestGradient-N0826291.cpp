@@ -28,7 +28,7 @@ const degrees Gradient = 5.71059314;
 
 std::string logCreation(std::string testName, GridWorldRoute route)
 {
-    std::string fileName = "N0826291" + testName + ".gpx";
+    std::string fileName = "N0826291_" + testName + ".gpx";
     std::ofstream fileOutput(GPS::LogFiles::GPXRoutesDir + fileName);
 
     fileOutput << route.toGPX(true, testName);
