@@ -45,7 +45,7 @@ SOURCES += \
     src/gpx-tests/maxSpeedN0737110.cpp \
     src/gpx-tests/maxlatitude.cpp \
     src/gpx-tests/maxSpeedN0733894.cpp \
-    src/gpx-tests/maxspeedn0736188.cpp
+    src/gpx-tests/maxspeedn0736188.cpp \
     src/gpx-tests/totalLengthTest_n0755314.cpp \
     src/gpx-tests/netLength-N0704050.cpp \ 
     src/gpx-tests/restingTimeN0736563.cpp \
@@ -55,7 +55,7 @@ SOURCES += \
     src/gpx-tests/minlatitude-n0743587.cpp \
     src/gpx-tests/netLength-N0745509.cpp \
     src/gpx-tests/maxLongitude.cpp \
-    src/gpx-tests/timesVisited-n0763258.cpp 
+    src/gpx-tests/timesVisited-n0763258.cpp
 
 
     #Breaks code:
