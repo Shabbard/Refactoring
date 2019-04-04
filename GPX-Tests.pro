@@ -31,28 +31,8 @@ SOURCES += \
     src/gridworld.cpp \
     src/gridworld_route.cpp \
     src/gridworld_track.cpp \
-    src/gpx-tests/name.cpp \
-    src/gpx-tests/numpositions.cpp \
-    src/gpx-tests/accessOperator.cpp \ 
-    src/gpx-tests/accessOperatorLogGenerator.cpp \
-    src/gpx-tests/maxLongitudeN0743797.cpp \
-    src/gpx-tests/steepestGradient.cpp \
-    src/gpx-tests/steepestGradientN0742908.cpp \
-    src/gpx-tests/findNameOf.cpp \
-    src/gpx-tests/findPositionN0724629.cpp \
-    src/gpx-tests/findpositionn0734208.cpp \
-    src/gpx-tests/maxSpeedN0737110.cpp \
-    src/gpx-tests/maxlatitude.cpp \
-    src/gpx-tests/maxSpeedN0733894.cpp \
-    src/gpx-tests/totalLengthTest_n0755314.cpp \
-    src/gpx-tests/netLength-N0704050.cpp\
-    src/gpx-tests/restingTimeN0736563.cpp \
-    src/gpx-tests/maxGradient-N0740369.cpp \
-    src/gpx-tests/MaxElevation-N0749370.cpp \
-    src/gpx-tests/minLongitude.cpp \
-    src/gpx-tests/minlatitude-n0743587.cpp \
-    src/gpx-tests/netLength-N0745509.cpp \
-    src/gpx-tests/steepestGradient-N0826291.cpp \
+    src/gpx-tests/maxElevationN0774756.cpp \
+
     
     #Breaks code:
     #src/gpx-tests/maxlongitude.cpp \
