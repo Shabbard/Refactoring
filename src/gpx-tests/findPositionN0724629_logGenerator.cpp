@@ -40,8 +40,6 @@ namespace GPX
 
         createLogFile("ZeroValues-N0724629", GridWorldRoute("IEKS", GridWorld(Earth::EquatorialMeridian, 0)));
 
-        createLogFile("NoElevation-N0724629", GridWorldRoute("EAL", GridWorld(Earth::NorthPole, 0)));
-
         std::ofstream openedFile(LogFiles::GPXRoutesDir + "EmptyFile-N0724629.gpx");
         openedFile.close();
     }
