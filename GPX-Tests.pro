@@ -31,6 +31,7 @@ SOURCES += \
     src/gridworld.cpp \
     src/gridworld_route.cpp \
     src/gridworld_track.cpp \
+    src/gpx-tests/maxElevationN0774756.cpp
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
     src/gpx-tests/accessOperator.cpp \
@@ -59,12 +60,16 @@ SOURCES += \
     src/gpx-tests/maxLongitude.cpp \
     src/gpx-tests/timesVisited-n0763258.cpp \
     src/gpx-tests/maxLongitudeN0732961.cpp \
+    src/gpx-tests/maxLatitudeN0756079.cpp
+
     #src/gpx-tests/maxLatitudeN0756079.cpp \
+
 
     #Breaks code:
     #src/gpx-tests/findnameofn0665742.cpp \
     #src/gpx-tests/restingTimeN0736563.cpp\
     #Please ensure the a successful build before pushing to the master. Thanks.
+
 
 INCLUDEPATH += headers/
 
