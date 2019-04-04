@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(maxSpeedCheck)
 {
     //Tests the function with a pre generated result to test it gives the correct answer
     Track track = Track(LogFiles::GPXTracksDir + nNumber + "_maxspeed.gpx", true, 10);
-    BOOST_CHECK_EQUAL( track.maxSpeed(),500.37539277557767);
+    BOOST_CHECK_EQUAL( track.maxSpeed(),1667.9179759162987);
 
 }
 
