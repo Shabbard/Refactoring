@@ -16,24 +16,6 @@ const std::string studentId("N0675532");
 const metres grid_horizontal = 10000;
 const metres grid_vertical = 100;
 
-/*std::string createLogFile(std::string, GridWorldRoute route)//function to create a log file for each test
-{
-	std::string name = "hello";//the name of the file will be the name of the test, and my student ID will be added onto the end e.g. "isHeightNegativeN0675532"
-	std::ofstream fileOutput(GPS::LogFiles::GPXRoutesDir + name);
-	fileOutput << route.toGPX(true, "hello");
-	fileOutput.close();
-
-	return name;
-}
-*/
-
-/* A B C D E
- * F G H I J
- * K L M N O
- * P Q R S T
- * U V W X Y
- */
-
 //Max Hughes - N0675532
 /*The netHeightGain function calculatesthe net gain of the height over a route.
 *
@@ -130,10 +112,5 @@ BOOST_AUTO_TEST_CASE( isRouteThatReturnsToStartPointZero )
         Route route = Route(LogFiles::GPXRoutesDir + "isLongRoutePositive-N0675532.gpx", isFileName);
         BOOST_CHECK_EQUAL( route.netHeightGain(), 0 );
 }
-
-		
-
-
-
 
 BOOST_AUTO_TEST_SUITE_END()
