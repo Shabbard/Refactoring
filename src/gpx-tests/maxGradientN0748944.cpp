@@ -92,43 +92,19 @@ BOOST_AUTO_TEST_CASE( Route_maxGradient_Down_WRM )
 }
 
 /*Test number 5
- * Testing that the output of the maxGradient returns 0 when elevation is flat*/
+ * Tests the route that carryies out flat from U to W and then continues
+ upwards to M */
 
-BOOST_AUTO_TEST_CASE(Route_maxGradient_flat_ABC_NorthPole)
+BOOST_AUTO_TEST_CASE( Route_maxGradient_Down+Flat_UVWRM_NorthPole )
 {
     GridWorld GradGrid(Earth::NorthPole, GradGridHori, GradGridVerti);
-    GridWorldRoute GradRoute("ABC", GradGrid);
+    GridWorldRoute GradRoute("UVWRM", GradGrid);
 
-    std::string path = MakeLogFile("Route_maxGradiant_ABC", GradRoute);
-    Route route(path, true);
-    BOOST_CHECK_CLOSE(route.maxGradient(), 0.0, GradGridTol);
-}
-
-/*Test number 6
- * Tests that the correct down gradient is calculated */
-
-BOOST_AUTO_TEST_CASE( Route_maxGradient_Down_MRW_NorthPole )
-{
-    GridWorld GradGrid(Earth::NorthPole, GradGridHori, GradGridVerti);
-    GridWorldRoute GradRoute("MRW", GradGrid);
-
-    std::string path = MakeLogFile("Route_maxGradiant_MRW", GradRoute);
-    Route route(path, true);
-    BOOST_CHECK_CLOSE(route.maxGradient(), -Grad, GradGridTol);
-}
-
-/*Test number 7
- * Tests that the correct down gradient is calculated */
-
-BOOST_AUTO_TEST_CASE( Route_maxGradient_Down_WRM_NorthPole )
-{
-    GridWorld GradGrid(Earth::NorthPole, GradGridHori, GradGridVerti);
-    GridWorldRoute GradRoute("WRM", GradGrid);
-
-    std::string path = MakeLogFile("Route_maxGradiant_WRM", GradRoute);
+    std::string path = MakeLogFile("Route_maxGradiant_UVWRM", GradRoute);
     Route route(path, true);
     BOOST_CHECK_CLOSE(route.maxGradient(), Grad, GradGridTol);
 }
+
 BOOST_AUTO_TEST_SUITE_END()
 /* A B C D E
  * F G H I J
