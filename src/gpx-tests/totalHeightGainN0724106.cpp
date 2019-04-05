@@ -6,24 +6,6 @@
 
 using namespace GPS;
 
-/*
- * The main complication with this function is that it ignores all the negative differences
- * between successive route points - that is it ignores any decline between two points in its calculation - it only
- * adds together the inclines.
- * 
- * First of all this test suite will check that two specific points return the correct 
- * value. It will also check that if there are two successive points with a decline in 
- * elevation, the function notices this and returns a value of 0 for these two points.
- * 
- * I will also check that successive points return the correct total height gain, with
- * four tests.
- *      Three points that are consecutive inclines in elevation.
- *      Three points that are consecutive declines in elevation.
- *      Five points with a net incline between all the points.
- *      Five points with a net incline between all the points.
- */
-
-
 BOOST_AUTO_TEST_SUITE( totalHeightGain_N0724106 )
 const bool isFileName = true;
 
