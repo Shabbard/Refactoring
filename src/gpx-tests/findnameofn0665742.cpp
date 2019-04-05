@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 
+using namespace GPS;
 
 
 //Function to build GPX file
@@ -24,8 +25,6 @@ std::string BuildGPXFile(std::string name, GridWorldRoute routePoint)
     return NewFile;
 }
 
-
-using namespace GPS;
 
 
 BOOST_AUTO_TEST_SUITE(route_findnameofn0665742)
@@ -72,7 +71,8 @@ BOOST_AUTO_TEST_CASE(NonExistantPosition)
 BOOST_AUTO_TEST_CASE(MultiplePositionWithSamePositiveValue)
 {
 
-    GridWorldRoute routePoint = GridWorldRoute("GGI",GridWorld(Earth::CliftonCampus,horizontalGridUnit)):
+    GridWorldRoute routePoint = GridWorldRoute("GGI",GridWorld(Earth::CliftonCampus,horizontalGridUnit));
+
     Route route = Route(LogFiles::GPXRoutesDir+ BuildGPXFile( "N0665742-SamePositiveValue", routePoint), isFileName);
     BOOST_CHECK_EQUAL(route.findNameOf(Position(0.089982,109.232,0.000000)),"I");
 }
@@ -81,7 +81,7 @@ BOOST_AUTO_TEST_CASE(MultiplePositionWithSamePositiveValue)
 BOOST_AUTO_TEST_CASE(MultiplePositionWithSameNegativeValue)
 {
 
-    GridWorldRoute routePoint = GridWorldRoute("VVX",GridWorld(Earth::CliftonCampus,horizontalGridUnit)):
+    GridWorldRoute routePoint = GridWorldRoute("VVX",GridWorld(Earth::CliftonCampus,horizontalGridUnit));
     Route route = Route(LogFiles::GPXRoutesDir+ BuildGPXFile( "N0665742-SameNegativeValue", routePoint), isFileName);
     BOOST_CHECK_EQUAL(route.findNameOf(Position(-0.89982,-1.79662,-40000.000000)),"V");
 }
@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE(MultiplePositionWithSameNegativeValue)
 BOOST_AUTO_TEST_CASE(MultiplePositionWithSamePositiveAndNegativeValue)
 {
 
-    GridWorldRoute routePoint = GridWorldRoute("LLY",GridWorld(Earth::CliftonCampus,horizontalGridUnit)):
+    GridWorldRoute routePoint = GridWorldRoute("LLY",GridWorld(Earth::CliftonCampus,horizontalGridUnit));
     Route route = Route(LogFiles::GPXRoutesDir+ BuildGPXFile( "N0665742-SamePositiveAndNegativeValue", routePoint), isFileName);
     BOOST_CHECK_EQUAL(route.findNameOf(Position(1.79964,-1.79662,-40000.000000)),"Y");
 }
@@ -99,8 +99,8 @@ BOOST_AUTO_TEST_CASE(MultiplePositionWithSamePositiveAndNegativeValue)
 //Test to check the function throw out_of_range exception if that Position don't exist.
 BOOST_AUTO_TEST_CASE(NonExistingGridPosition)
 {
-    GridWorldRoute routePoint = GridWorldRoute("DCD",GridWorld()):
-    Route route = Route(LogFiles::GPXRoutesDir + "N0665742-SameZeroValue", isFileName, granularity);
+    GridWorldRoute routePoint = GridWorldRoute("DCD",GridWorld());
+    Route route = Route(LogFiles::GPXRoutesDir+ BuildGPXFile( "N0665742-SameZeroValue", routePoint), isFileName);
     BOOST_CHECK_THROW( route.findNameOf(Position(0,0,0.000000)), std::out_of_range);
 }
 

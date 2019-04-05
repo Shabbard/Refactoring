@@ -8,11 +8,30 @@
 #include "earth.h"
 #include "geometry.h"
 #include "gridworld_route.h"
-#include "findPositionN0724629_logGenerator.h"
+
 
 using namespace GPS;
 
+
+/**
+* Many of the unit tests in the test suite Route_Find_Position_N0724629 require
+* that the GPX log file generator has been run first and/or the generated GPX
+* log files exist.
+*
+* The LogGeneration-N0724629.pro project file will build the log generation
+* program. The following log files should be present in the /logs/GPX/routes
+* directory:
+*   - OnePointPositive-N0724629.gpx
+*   - RepeatedPoints-N0724629.gpx
+*   - PointsApart-N0724629.gpx
+*   - PointsTooClose-N0724629.gpx
+*   - ZeroValues-N0724629.gpx
+*   - EmptyFile-N0724629.gpx
+*/
+
+
 BOOST_AUTO_TEST_SUITE( Route_Find_Position_N0724629 )
+
 
 const bool IS_FILE_NAME = true;
 const metres HORIZONTAL_GRID_UNIT = 1000;
@@ -20,15 +39,12 @@ const metres HORIZONTAL_GRID_UNIT = 1000;
 
 /**
 * Test case: DoesNotThrowExceptionWhenAccessingPositivePositionValues
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with only one point on
-*            the route.
+* Use:       Checks that no exception is thrown when attempting to access a
+*            point on the route with positive values.
 * Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingPositivePositionValues )
 {
-    GPX::generateLogFiles();
-
     Route route = Route(LogFiles::GPXRoutesDir + "OnePointPositive-N0724629.gpx", IS_FILE_NAME);
 
     BOOST_CHECK_NO_THROW( route.findPosition("B").latitude() );
@@ -39,9 +55,8 @@ BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingPositivePositionValues )
 
 /**
 * Test case: DoesNotThrowExceptionWhenAccessingNegativePositionValues
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with only one point on
-*            the route.
+* Use:       Checks that no exception is thrown when attempting to access a
+*            point on the route with negative values.
 * Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingNegativePositionValues )
@@ -94,7 +109,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithOnePoint )
 * Test case: CanGetPositionWithZeroValues
 * Use:       Checks that it is possible to obtain zero values for latitude,
 *            longitude and elevation.
-* Test type: Valid
+* Test type: Valid Extreme (Edge Case)
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithZeroValues )
 {
@@ -126,7 +141,7 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 * Test case: ThrowsOutOfRangeIfCaseIncorrect
 * Use:       Checks that the std::out_of_range exception is thrown if the
 *            specified name is in the incorrect case.
-* Test type: Invalid Extreme
+* Test type: Invalid Extreme (Edge Case)
 */
 BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfCaseIncorrect )
 {
@@ -140,10 +155,10 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfCaseIncorrect )
 
 /**
 * Test case: CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoints
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with only one point on
-*            the route.
-* Test type: Valid
+* Use:       Checks that it is possible to a Position object for a point that is
+*            present multiple tiles in a GPX log file. Checks that each instance
+*            of the point returns an equivalent Position object.
+* Test type: Valid Extreme (Edge Case)
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithRepeatedPoints )
 {
@@ -163,9 +178,10 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithRepeatedPoints )
 
 
 /**
-* Test case: CanGetPositionWithPositiveValuesInLogFileWithAllPointsApart
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with a repeated point.
+* Test case: CanGetPositionWithAllPointsApart
+* Use:       Checks that it is possible to obtain a Position object for all of
+*            the points in a route where none of the points are less than
+*            'granularity' apart.
 * Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithAllPointsApart )
@@ -204,8 +220,9 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithAllPointsApart )
 /**
 * Test case: ThrowsOutOfRangeWhenPointsTooClose
 * Use:       Checks that an std::out_of_range exception is thrown for points
-*            with positive values for latitude, longitude and elevation that are
-*            less than 'granularity' apart.
+*            that are distanced from another point such that they are less than
+*            'granularity' apart and therefore should be considered as a
+*            different location.
 * Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE( ThrowsOutOfRangeWhenPointsTooClose )
@@ -224,7 +241,7 @@ BOOST_AUTO_TEST_CASE( ThrowsOutOfRangeWhenPointsTooClose )
 * Test case: CanGetPositionWithSomePointsApart
 * Use:       Checks that it is possible to obtain positive values for latitude,
 *            longitude and elevation in a GPX log file with a repeated point.
-* Test type: Valid
+* Test type: Valid Extreme (Edge Case)
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithSomePointsApart )
 {
@@ -255,10 +272,13 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithSomePointsApart )
 
 
 /**
-* Test case: CanGetPositionWithSomePointsApart
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with a repeated point.
-* Test type: Valid
+* Test case: ThrowsOutOfRangeForDiscardedPoints
+* Use:       Checks that an std::out_of_range exception is thrown for a point
+*            that are distanced from another point such that they are less than
+*            'granularity' apart, and therefore should be considered as a
+*            different location, in a file where other points are more than
+*            'granularity' apart.
+* Test type: Invalid Extreme (Edge Case)
 */
 BOOST_AUTO_TEST_CASE( ThrowsOutOfRangeForDiscardedPoints )
 {
