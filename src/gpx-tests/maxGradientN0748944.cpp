@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE( Route_maxGradient_Down_WRM )
  * Tests the route that carryies out flat from U to W and then continues
  upwards to M */
 
-BOOST_AUTO_TEST_CASE( Route_maxGradient_Down+Flat_UVWRM_NorthPole )
+BOOST_AUTO_TEST_CASE( Route_maxGradient_DownFlat_UVWRM_NorthPole )
 {
     GridWorld GradGrid(Earth::NorthPole, GradGridHori, GradGridVerti);
     GridWorldRoute GradRoute("UVWRM", GradGrid);
