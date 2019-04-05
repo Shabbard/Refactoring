@@ -54,8 +54,7 @@ BOOST_AUTO_TEST_CASE( ShortRoutes_MaxElevation_route )
    //Tests if the maxElevation function can find the max elevation from GPX files which has a small route.
    Route route1 = Route(LogFiles::GPXRoutesDir + "ShortRouteN0749364.gpx", isFileName);
    BOOST_CHECK_CLOSE(route1.maxElevation(), -1200.0, FloatAccuracyTolerance );
-   Route route2 = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-   BOOST_CHECK_CLOSE(route2.maxElevation(), -20000.0, FloatAccuracyTolerance );
+
 }
 
 
