@@ -5,20 +5,22 @@
 #include "logs.h"
 #include "position.h"
 #include "route.h"
-#include "gridworld_route.h"
-#include "accessOperatorLogGenerator.h"
 
 using namespace GPS;
 
+// Test suite assumes the generation of the relevant log file has been completed
+// using the accessOperatorLogGenerator program. It requires the generation of the A.gpx file
+// as stated throughout the test suite.
+
+// Callum Axon - N0727303
 BOOST_AUTO_TEST_SUITE(Route_accessOperator)
 
 const std::string singlePointFilename = "A.gpx";
-
+const bool isFileName = true;
 
 BOOST_AUTO_TEST_CASE(ItDoesntThrownAnExceptionWhenAccessingAPosition)
 {
-    GridWorldRoute generatedRoute = GPX::singlePositionLog(singlePointFilename);
-    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, true);
+    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, isFileName);
 
     BOOST_CHECK_NO_THROW(route[0]);
 }
@@ -26,9 +28,9 @@ BOOST_AUTO_TEST_CASE(ItDoesntThrownAnExceptionWhenAccessingAPosition)
 // Tests accessing a position on the route under normal circumstances.
 BOOST_AUTO_TEST_CASE(ItCanAccessAPositionAtAnIndex)
 {
-    GridWorldRoute generatedRoute = GPX::singlePositionLog(singlePointFilename);
-    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, true);
+    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, isFileName);
 
+    // decimals represent percentage threshold tolerance.
     BOOST_CHECK_CLOSE(route[0].latitude(), 0.179964, 0.000001);
     BOOST_CHECK_CLOSE(route[0].longitude(), 109.142, 0.000001);
 }
@@ -37,8 +39,7 @@ BOOST_AUTO_TEST_CASE(ItCanAccessAPositionAtAnIndex)
 // access a position at an index greater than the number of positions
 BOOST_AUTO_TEST_CASE(ItThrowsAnExceptionWhenTryingToAccessOutOfRange)
 {
-    GridWorldRoute generatedRoute = GPX::singlePositionLog(singlePointFilename);
-    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, true);
+    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, isFileName);
 
     BOOST_CHECK_THROW(route[1], std::out_of_range);
 }
@@ -48,8 +49,7 @@ BOOST_AUTO_TEST_CASE(ItThrowsAnExceptionWhenTryingToAccessOutOfRange)
 // even with the unsigned value and not get converted to a smaller, accessible index
 BOOST_AUTO_TEST_CASE(ItDoesntAcceptANegativeIndex)
 {
-    GridWorldRoute generatedRoute = GPX::singlePositionLog(singlePointFilename);
-    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, true);
+    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, isFileName);
 
     BOOST_CHECK_THROW(route[-1], std::out_of_range);
 }
@@ -59,8 +59,7 @@ BOOST_AUTO_TEST_CASE(ItDoesntAcceptANegativeIndex)
 BOOST_AUTO_TEST_CASE(ItHandlesAnIntegerOverflowWithAnOutOfRange)
 {
     const unsigned int maximumUIntIndex = std::numeric_limits<unsigned int>::max();
-    GridWorldRoute generatedRoute = GPX::singlePositionLog(singlePointFilename);
-    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, true);
+    Route route = Route(LogFiles::GPXRoutesDir + singlePointFilename, isFileName);
 
     BOOST_CHECK_THROW(route[maximumUIntIndex], std::out_of_range);
 }
