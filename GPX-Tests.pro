@@ -33,14 +33,11 @@ SOURCES += \
     src/gridworld_track.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
-<<<<<<< HEAD
     src/gpx-tests/minLatitudeN0727890.cpp \
-=======
     src/gpx-tests/maxElevationN0774756.cpp \
     src/gpx-tests/accessOperator.cpp \
     src/gpx-tests/accessOperatorLogGenerator.cpp \
     src/gpx-tests/maxLongitudeN0743797.cpp \
->>>>>>> 9a3c667afe9f7ac421fdc6f2da514cb02dcb249a
     src/gpx-tests/steepestGradient.cpp \
     src/gpx-tests/steepestGradientN0742908.cpp \
     src/gpx-tests/steepestGradient-N0826291.cpp \

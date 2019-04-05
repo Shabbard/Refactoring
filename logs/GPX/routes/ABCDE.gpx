@@ -2,23 +2,23 @@
 <gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
     <rte>
         <name>ABCDE</name>
-        <rtept lat="50.3232" lon="147.443">
+        <rtept lat="20.9911" lon="169.303">
             <name>A</name>
             <ele>0.000000</ele>
         </rtept>
-        <rtept lat="50.3232" lon="147.584">
+        <rtept lat="20.9911" lon="169.4">
             <name>B</name>
             <ele>0.000000</ele>
         </rtept>
-        <rtept lat="50.3232" lon="147.724">
+        <rtept lat="20.9911" lon="169.496">
             <name>C</name>
             <ele>0.000000</ele>
         </rtept>
-        <rtept lat="50.3232" lon="147.864">
+        <rtept lat="20.9911" lon="169.592">
             <name>D</name>
             <ele>0.000000</ele>
         </rtept>
-        <rtept lat="50.3232" lon="148.004">
+        <rtept lat="20.9911" lon="169.688">
             <name>E</name>
             <ele>0.000000</ele>
         </rtept>
