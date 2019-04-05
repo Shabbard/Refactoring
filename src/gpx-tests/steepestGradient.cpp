@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE( Route_with_positive_and_negative_gradients )
     BOOST_CHECK_CLOSE( route.steepestGradient(),  GRADIENT, PERCENTAGE_ACCURACY);
 }
 
-// checks values with a larger positive than negative gradient
+// checks values with a larger positive than negative gradient, should return a positive gradient
 BOOST_AUTO_TEST_CASE( Route_with_large_positive_and_small_negative_gradients )
 {
     Route route = Route(LogFiles::GPXRoutesDir + "RouteWithLargePositiveAndSmallNegativeGradients.gpx", isFileName);
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE( Route_with_large_positive_and_small_negative_gradients )
     BOOST_CHECK_CLOSE( route.steepestGradient(),  GRADIENT, PERCENTAGE_ACCURACY);
 }
 
-// checks values with a larger negative than positive gradient
+// checks values with a larger negative than positive gradient, should return a positive gradient
 BOOST_AUTO_TEST_CASE( Route_with_small_positive_and_large_negative_gradients )
 {
     Route route = Route(LogFiles::GPXRoutesDir + "RouteWithSmallPositiveAndLargeNegativeGradients.gpx", isFileName);
