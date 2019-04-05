@@ -10,7 +10,7 @@
 
 using namespace GPS;
 
-BOOST_AUTO_TEST_SUITE( N0751891_minElevation )
+BOOST_AUTO_TEST_SUITE(N0751891_minElevation)
 
 const bool isFileName = true;
 

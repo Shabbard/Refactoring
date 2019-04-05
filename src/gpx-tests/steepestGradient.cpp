@@ -44,18 +44,18 @@ BOOST_AUTO_TEST_CASE( Route_with_two_horizontal_points )
     BOOST_CHECK_CLOSE( route.steepestGradient(),  0, PERCENTAGE_ACCURACY);
 }
 
-// check values with only negative gradients, should return a positive gradient
-BOOST_AUTO_TEST_CASE( Route_with_only_negative_gradients )
-{
-    Route route = Route(LogFiles::GPXRoutesDir + "RouteWithOnlyNegativeGradients.gpx", isFileName);
-
-    BOOST_CHECK_CLOSE( route.steepestGradient(),  GRADIENT, PERCENTAGE_ACCURACY);
-}
-
 // check different values with only positive gradients, should return a positive gradient
 BOOST_AUTO_TEST_CASE( Route_with_only_positive_gradients )
 {
     Route route = Route(LogFiles::GPXRoutesDir + "RouteWithOnlyPositiveGradients.gpx", isFileName);
+
+    BOOST_CHECK_CLOSE( route.steepestGradient(),  GRADIENT, PERCENTAGE_ACCURACY);
+}
+
+// check values with only negative gradients, should return a positive gradient
+BOOST_AUTO_TEST_CASE( Route_with_only_negative_gradients )
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "RouteWithOnlyNegativeGradients.gpx", isFileName);
 
     BOOST_CHECK_CLOSE( route.steepestGradient(),  GRADIENT, PERCENTAGE_ACCURACY);
 }
@@ -68,6 +68,20 @@ BOOST_AUTO_TEST_CASE( Route_with_positive_and_negative_gradients )
     BOOST_CHECK_CLOSE( route.steepestGradient(),  GRADIENT, PERCENTAGE_ACCURACY);
 }
 
-// check values with the steepest gradient being at the beginning, middle and end of the list of points
+// checks values with a larger positive than negative gradient
+BOOST_AUTO_TEST_CASE( Route_with_large_positive_and_small_negative_gradients )
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "RouteWithLargePositiveAndSmallNegativeGradients.gpx", isFileName);
+
+    BOOST_CHECK_CLOSE( route.steepestGradient(),  GRADIENT, PERCENTAGE_ACCURACY);
+}
+
+// checks values with a larger negative than positive gradient
+BOOST_AUTO_TEST_CASE( Route_with_small_positive_and_large_negative_gradients )
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "RouteWithSmallPositiveAndLargeNegativeGradients.gpx", isFileName);
+
+    BOOST_CHECK_CLOSE( route.steepestGradient(),  GRADIENT, PERCENTAGE_ACCURACY);
+}
 
 BOOST_AUTO_TEST_SUITE_END()
