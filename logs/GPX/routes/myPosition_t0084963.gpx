@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>myPosition</name>
+	<rtept lat="52.9123436" lon="1.1893666">
+            <name>PP</name>
+            <ele>16.000000</ele>
+        </rtept>
+	<rtept lat="-52.9123436" lon="-1.1893666">
+            <name>NN</name>
+            <ele>16.000000</ele>
+        </rtept>
+	<rtept lat="52.0123436" lon="-1.1893666">
+            <name>PN</name>
+            <ele>16.000000</ele>
+        </rtept>
+	<rtept lat="-52.9123436" lon="1.1893666">
+            <name>NP</name>
+            <ele>16.000000</ele>
+        </rtept>
+        <rtept lat="52.9123436" lon="-1.1893665">
+            <name>Clifton Campus</name>
+            <ele>16.000000</ele>
+        </rtept>
+	<rtept lat="52.9588404" lon="-1.1511104">
+            <name>Clifton Campus</name>
+            <ele>16.000000</ele>
+        </rtept>
+	<rtept lat="3.1468059" lon="101.6897678">
+            <name>Clifton Campus</name>
+            <ele>15.000000</ele>
+        </rtept>
+    </rte>
+</gpx>
