@@ -21,8 +21,10 @@ BOOST_AUTO_TEST_CASE(stationary)
 {
     //Tests cases where the track is completly stationary
 
-    //Loads track data where
+    //Loads track data which consists of only traveling to the same point(A1A3A)
     GPS::Track stationary(dir + "Stationary.gpx", true);
+
+
     BOOST_CHECK_EQUAL(stationary.restingTime(), 40);
 }
 
@@ -30,9 +32,23 @@ BOOST_AUTO_TEST_CASE (singlePointTrack)
 {
     //If there is not enought arguments in the gpx data to calculate resting time then the function should throw an invalid argument exception
 
-    //Loads GPX data which only contains one point
+    //Loads GPX data which only contains one point (A)
     GPS::Track singlePointTrack(dir + "SinglePointTrack.gpx", true);
     BOOST_CHECK_THROW(singlePointTrack.restingTime(), std::invalid_argument);
+}
+
+BOOST_AUTO_TEST_CASE(oneTravel)
+{
+    //Tests data where the track consists of traveling to a single point
+
+    //Loads data where the track travels once to different point (A1B)
+    GPS::Track moving(dir + "OneTravelTest1.gpx", true);
+    GPS::Track stationary(dir + "OneTravelTest2.gpx", true);
+
+    BOOST_CHECK_EQUAL(moving.restingTime(), 0);
+    BOOST_CHECK_EQUAL(stationary.restingTime(), 10);
+
+
 }
 
 BOOST_AUTO_TEST_CASE (onlyElevationChanges)
