@@ -33,7 +33,7 @@ std::string generateLogFile(std::string testName, GridWorldRoute routeLog)
 }
 
 
-BOOST_AUTO_TEST_SUITE( Route_netLength )
+BOOST_AUTO_TEST_SUITE( Route_netLength_N0745509 )
 
 const bool IS_FILE_NAME = true;
 const metres HORIZONTAL_GRID_UNIT = 10000;
