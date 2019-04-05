@@ -99,6 +99,31 @@ BOOST_AUTO_TEST_CASE(test_acc_long)
 
 
 
+//tests to be proformed on the elevation 
+
+//test to see if negative number can be held/retived from the points 
+BOOST_AUTO_TEST_CASE(find_neg_ele)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Zero_values.gpx", isFileName);
+     BOOST_CHECK_EQUAL( route.findPosition("D").elevation(), -500.000000 );
+}
+
+//testing to see if a value of zero can be held/retrived by the elevation
+BOOST_AUTO_TEST_CASE(find_zero_ele)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_elevation.gpx", isFileName);
+     BOOST_CHECK_EQUAL( route.findPosition("M").elevation(), 0.000000);
+}
+
+//testing to ensure that the values held by the elevatin is accurate 
+BOOST_AUTO_TEST_CASE(test_acc_ele)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_elevation.gpx", isFileName);
+    const double percentage = 0.1;
+    BOOST_CHECK_CLOSE( route.findPosition("C").elevation() , -600.000000,percentage);
+}
+
+
 
 BOOST_AUTO_TEST_SUITE_END()
 
