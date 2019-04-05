@@ -9,9 +9,12 @@
 #include "geometry.h"
 #include "gridworld_route.h"
 
+
 using namespace GPS;
 
+
 BOOST_AUTO_TEST_SUITE( Route_Find_Position_N0724629 )
+
 
 const bool IS_FILE_NAME = true;
 const metres HORIZONTAL_GRID_UNIT = 1000;
