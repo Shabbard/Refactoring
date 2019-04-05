@@ -25,7 +25,7 @@ SOURCES += \
     src/xmlparser.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
-    src/gpx-tests/maxLongitudeN0743797.cpp \
+    src/gpx-tests/minLatitudeN0727890.cpp \
     src/gpx-tests/steepestGradient.cpp \
     src/gpx-tests/findNameOf.cpp
 
