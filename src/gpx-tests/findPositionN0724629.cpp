@@ -13,6 +13,23 @@
 using namespace GPS;
 
 
+/**
+* Many of the unit tests in the test suite Route_Find_Position_N0724629 require
+* that the GPX log file generator has been run first and/or the generated GPX
+* log files exist.
+*
+* The LogGeneration-N0724629.pro project file will build the log generation
+* program. The following log files should be present in the /logs/GPX/routes
+* directory:
+*   - OnePointPositive-N0724629.gpx
+*   - RepeatedPoints-N0724629.gpx
+*   - PointsApart-N0724629.gpx
+*   - PointsTooClose-N0724629.gpx
+*   - ZeroValues-N0724629.gpx
+*   - EmptyFile-N0724629.gpx
+*/
+
+
 BOOST_AUTO_TEST_SUITE( Route_Find_Position_N0724629 )
 
 
