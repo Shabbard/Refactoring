@@ -69,13 +69,13 @@ SOURCES += \
     src/gpx-tests/minLongitudeN0735026.cpp \
     src/gpx-tests/totalHeightGainN0724106.cpp \
     src/gpx-tests/netLength-N0731739.cpp 
+    src/gpx-tests/findnameofn0665742.cpp \
     # src/gpx-tests/maxGradientN0748944.cpp \
     #src/gpx-tests/maxLatitudeN0756079.cpp \
     #src/gpx-tests/findPositionN0724629.cpp \
     #src/gpx-tests/totalTimeN0774540.cpp \
 
     #Breaks code:
-    #src/gpx-tests/findnameofn0665742.cpp \
     #src/gpx-tests/restingTimeN0736563.cpp\
     #Please ensure the a successful build before pushing to the master. Thanks.
 
