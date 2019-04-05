@@ -10,31 +10,39 @@ using namespace GPS;
 
 BOOST_AUTO_TEST_SUITE(Track_maxSpeed_N0736188)
 
-std::string generateLogFile(std::string testName, GridWorldTrack track)
-{
-    std::string fileName = testName + ".gpx";
-
-    std::ofstream fileOutput(GPS::LogFiles::GPXTracksDir + fileName);
-    fileOutput << track.toGPX(2,true,testName);
-    fileOutput.close();
-
-    return fileName;
-}
+//student id
+std::string nNumber  = "n0736188";
 
 
 BOOST_AUTO_TEST_CASE(stationaryTrackTest)
 {
-    GridWorldTrack trackLog = GridWorldTrack("A1B",3,0);
-    std::string logFile  = generateLogFile("stationaryTrackTest", trackLog);
-    Track track = Track(LogFiles::GPXTracksDir + logFile, true, 10);
+   //Tests if the track is stationary (1 point)
+    Track track = Track(LogFiles::GPXTracksDir + nNumber + "_stationary.gpx", true, 10);
     BOOST_CHECK_EQUAL( track.maxSpeed(), 0);
-
-
-
 
 }
 
-//need to pass position list somehow?
+
+BOOST_AUTO_TEST_CASE(maxSpeedCheck)
+{
+    //Tests the function with a pre generated result to test it gives the correct answer
+    Track track = Track(LogFiles::GPXTracksDir + nNumber + "_maxspeed.gpx", true, 10);
+    BOOST_CHECK_EQUAL( track.maxSpeed(),1667.9179759162987);
+
+}
+
+BOOST_AUTO_TEST_CASE(normalAndReverse)
+{
+    //Tests if reversing a track results in the same max speed
+    Track normal = Track(LogFiles::GPXTracksDir + nNumber + "_normal.gpx", true, 10);
+    Track reverse = Track(LogFiles::GPXTracksDir + nNumber + "_reverse.gpx", true, 10);
+
+    BOOST_CHECK_EQUAL( normal.maxSpeed(), reverse.maxSpeed());
+
+}
+
+
+
 
 
 BOOST_AUTO_TEST_SUITE_END()

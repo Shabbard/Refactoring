@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>longPositiveNetGain</name>
+        <rtept lat="53.1381" lon="-1.45248">
+            <name>A</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="53.1381" lon="-1.30336">
+            <name>B</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="53.1381" lon="-1.15424">
+            <name>C</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="53.1381" lon="-1.00511">
+            <name>D</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="53.1381" lon="-0.855991">
+            <name>E</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="53.0481" lon="-0.855991">
+            <name>J</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="52.9581" lon="-0.855991">
+            <name>O</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="52.8682" lon="-0.855991">
+            <name>T</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="52.7782" lon="-0.855991">
+            <name>Y</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="52.7782" lon="-1.00511">
+            <name>X</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="52.7782" lon="-1.15424">
+            <name>W</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="52.7782" lon="-1.30336">
+            <name>V</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="52.7782" lon="-1.45248">
+            <name>U</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="52.8682" lon="-1.45248">
+            <name>P</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="52.9581" lon="-1.45248">
+            <name>K</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="53.0481" lon="-1.45248">
+            <name>F</name>
+            <ele>-147.000000</ele>
+        </rtept>
+        <rtept lat="53.0481" lon="-1.30336">
+            <name>G</name>
+            <ele>-47.000000</ele>
+        </rtept>
+        <rtept lat="53.0481" lon="-1.15424">
+            <name>H</name>
+            <ele>-47.000000</ele>
+        </rtept>
+        <rtept lat="53.0481" lon="-1.00511">
+            <name>I</name>
+            <ele>-47.000000</ele>
+        </rtept>
+        <rtept lat="52.9581" lon="-1.00511">
+            <name>N</name>
+            <ele>-47.000000</ele>
+        </rtept>
+        <rtept lat="52.8682" lon="-1.00511">
+            <name>S</name>
+            <ele>-47.000000</ele>
+        </rtept>
+        <rtept lat="52.8682" lon="-1.15424">
+            <name>R</name>
+            <ele>-47.000000</ele>
+        </rtept>
+        <rtept lat="52.8682" lon="-1.30336">
+            <name>Q</name>
+            <ele>-47.000000</ele>
+        </rtept>
+        <rtept lat="52.9581" lon="-1.30336">
+            <name>L</name>
+            <ele>-47.000000</ele>
+        </rtept>
+        <rtept lat="52.9581" lon="-1.15424">
+            <name>M</name>
+            <ele>53.000000</ele>
+        </rtept>
+    </rte>
+</gpx>
