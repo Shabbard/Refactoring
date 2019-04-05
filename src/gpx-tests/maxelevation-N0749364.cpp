@@ -24,47 +24,49 @@ float FloatAccuracyTolerance = 0.1;
  * If any of the elevations are larger than the value or none of them equal the value then the test will fail.
  */
 
-//Tests for Pre-made logs
-// The purpose of the tests for the pre-made is to test the max elevation function with elevation from a variety of different routes
-BOOST_AUTO_TEST_CASE( ABCD_MaxElevation_route )
-{  //Checks if the max elevation of the ABCD route equals 0.0
+
+BOOST_AUTO_TEST_CASE( Zero_MaxElevation_route )
+{  //Tests if the maxElevation function handle a route with the max elevation of 0
    Route route = Route(LogFiles::GPXRoutesDir + "ABCD.gpx", isFileName);
    BOOST_CHECK_CLOSE(route.maxElevation(), 0.0, FloatAccuracyTolerance );
    //(test, max elevation (what your checking for), accuracy)
 
 }
 
-BOOST_AUTO_TEST_CASE( ABQWE_MaxElevation_route )
-{
-   //Checks if the max elevation of the ABQWE route equals -20000.0
+BOOST_AUTO_TEST_CASE( Positive_MaxElevation_route )
+{  //Tests if the maxElevation function handle a route with a postive max elevation
+   Route route = Route(LogFiles::GPXRoutesDir + "PositiveElevationN0749364.gpx", isFileName);
+   BOOST_CHECK_CLOSE(route.maxElevation(), 53.0, FloatAccuracyTolerance );
+
+}
+
+
+BOOST_AUTO_TEST_CASE( Negative_MaxElevation_route )
+{  //Tests if the maxElevation function handle a route with a negative max elevation
    Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName);
    BOOST_CHECK_CLOSE(route.maxElevation(), -20000.0, FloatAccuracyTolerance );
 
 }
 
-BOOST_AUTO_TEST_CASE( AFKPU_MaxElevation_route )
-{
-   //Checks if the max elevation of the AFPKU route equals -40000.0
-   Route route = Route(LogFiles::GPXRoutesDir + "AFKPU.gpx", isFileName);
-   BOOST_CHECK_CLOSE(route.maxElevation(), -40000.0, FloatAccuracyTolerance );
-}
 
-BOOST_AUTO_TEST_CASE( NorthYorkMoors_MaxElevation_route )
+BOOST_AUTO_TEST_CASE( ShortRoutes_MaxElevation_route )
 {
-   //Checks if the max elevation of the NorthYorkMoors route equals 505.0
-   Route route = Route(LogFiles::GPXRoutesDir + "NorthYorkMoors.gpx", isFileName);
-   BOOST_CHECK_CLOSE(route.maxElevation(), 505.0, FloatAccuracyTolerance ); //max elevation should be 517.0 but it does not detect 517, the next biggest elevation is 505 which
+   //Tests if the maxElevation function can find the max elevation from GPX files which has a small route.
+   Route route1 = Route(LogFiles::GPXRoutesDir + "ShortRouteN0749364.gpx", isFileName);
+   BOOST_CHECK_CLOSE(route1.maxElevation(), -1200.0, FloatAccuracyTolerance );
+   Route route2 = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
+   BOOST_CHECK_CLOSE(route2.maxElevation(), -20000.0, FloatAccuracyTolerance );
 }
 
 
-BOOST_AUTO_TEST_CASE( Q_MaxElevation_route )
+BOOST_AUTO_TEST_CASE( LongRoute_MaxElevation_route )
 {
-   //Checks if the max elevation of the Q route equals -20000.0
-   Route route = Route(LogFiles::GPXRoutesDir + "Q.gpx", isFileName);
-   BOOST_CHECK_CLOSE(route.maxElevation(), -20000.0, FloatAccuracyTolerance );
+   //Tests if the maxElevation function can find the max elevation from a GPX file which has a long route.
+   Route route = Route(LogFiles::GPXRoutesDir + "LongRouteN0749364.gpx", isFileName);
+   BOOST_CHECK_CLOSE(route.maxElevation(), 0.0, FloatAccuracyTolerance );
 }
 
-//Tests for Generated Logs
+
 BOOST_AUTO_TEST_CASE(Uphill_MaxElevation_route)
 {
    /* Tests generated routes with elevations which increase towards the end of the route,
