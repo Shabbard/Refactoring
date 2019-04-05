@@ -1,6 +1,8 @@
 execs/gpx
 execs/gpx-tests
 execs/nmea-tests
+execs/findPositionN0724629_logGenerator
+.vscode/
 *.pro.user
 *.o
 .qmake.stash

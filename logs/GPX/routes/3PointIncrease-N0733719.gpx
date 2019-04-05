@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="gpxgenerator.com">
+<wpt lat="56.82381140060988" lon="-5.094487804963478">
+    <ele>9.15</ele>
+    <time>2019-04-02T19:32:01Z</time>
+</wpt>
+<wpt lat="56.78791075257304" lon="-5.028226513459572">
+    <ele>764.19</ele>
+    <time>2019-04-02T20:39:34Z</time>
+</wpt>
+<wpt lat="56.79543205939417" lon="-5.014836926057228">
+    <ele>1234.39</ele>
+    <time>2019-04-02T20:53:28Z</time>
+</wpt>
+</gpx>
