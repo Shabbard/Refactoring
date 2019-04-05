@@ -3,8 +3,6 @@
 #include "logs.h"
 #include "route.h"
 #include "track.h"
-#include "gridworld.h"
-#include "gridworld_route.h"
 #include <iostream>
 #include <fstream>
 
@@ -70,18 +68,8 @@ BOOST_AUTO_TEST_CASE( PositiveNegativeRoute )
 //Check for minElevation when expected values are 0
 BOOST_AUTO_TEST_CASE( ZeroValueRoutes )
 {
-    Route routeMNO = Route(LogFiles::GPXRoutesDir + "N0751891-Zero-Zero.gpx", isFileName);
-    BOOST_CHECK_CLOSE( routeMNO.minElevation(), 0, 0.1 );
     Route routeFGH = Route(LogFiles::GPXRoutesDir + "N0751891-Value-Zero.gpx", isFileName);
     BOOST_CHECK_CLOSE( routeFGH.minElevation(), 0, 0.1 );
-    Route routeDIN = Route(LogFiles::GPXRoutesDir + "N0751891-Zero-Value.gpx", isFileName);
-    BOOST_CHECK_CLOSE( routeDIN.minElevation(), -1000.0, 0.1 );
-    Route routeABCD = Route(LogFiles::GPXRoutesDir + "ABCD.gpx", isFileName);
-    BOOST_CHECK_CLOSE(routeABCD.minElevation(), 0.0, 0.1 ); //All zero
-    Route routeABQWE = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName);
-    BOOST_CHECK_CLOSE(routeABQWE.minElevation(), -40000.0, 0.1 ); // 0 Lattitude
-    Route routeAFKPU = Route(LogFiles::GPXRoutesDir + "AFKPU.gpx", isFileName);
-    BOOST_CHECK_CLOSE(routeAFKPU.minElevation(), -40000.0, 0.1 ); // 0 Longitude
 }
 
 
@@ -96,12 +84,10 @@ BOOST_AUTO_TEST_CASE( LargeDatasetRoute )
 //Check for minElevation with large values
 BOOST_AUTO_TEST_CASE( LargeValueRoutes )
 {
-    Route routeABCD = Route(LogFiles::GPXRoutesDir + "N0751891-Large-Large.gpx", isFileName);
-    BOOST_CHECK_CLOSE(routeABCD.minElevation(), -20000.0, 0.1 );
-    Route routeEFGH = Route(LogFiles::GPXRoutesDir + "N0751891-Small-Large.gpx", isFileName);
-    BOOST_CHECK_CLOSE(routeEFGH.minElevation(), -20000.0, 0.1 );
-    Route routeIJKL = Route(LogFiles::GPXRoutesDir + "N0751891-Large-Small.gpx", isFileName);
-    BOOST_CHECK_CLOSE(routeIJKL.minElevation(), -1000.0, 0.1 );
+    Route routeAINM = Route(LogFiles::GPXRoutesDir + "N0751891-Large-Negative.gpx", isFileName);
+    BOOST_CHECK_CLOSE(routeAINM.minElevation(), -20000.0, 0.1 );
+    Route routeEFGH = Route(LogFiles::GPXRoutesDir + "N0751891-Large-Positive.gpx", isFileName);
+    BOOST_CHECK_CLOSE(routeEFGH.minElevation(), 10000.0, 0.1 );
 }
 
 BOOST_AUTO_TEST_SUITE_END()
