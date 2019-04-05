@@ -72,8 +72,7 @@ SOURCES += \
     src/gpx-tests/maxlatitude_N0745180.cpp \
     src/gpx-tests/totalTime_N0751567.cpp \
     src/gpx-tests/minElevationN0749943.cpp \
-    #Changing Unit tests to be more efficient will be changed back in next commit 
-    # src/gpx-tests/minElevation-N0751891.cpp \
+    src/gpx-tests/minElevation-N0751891.cpp \
     src/gpx-tests/maxelevation-N0749364.cpp \
     src/gpx-tests/restingTime-N0747947.cpp \
     src/gpx-tests/MinimumElevationTests-N0749369.cpp
