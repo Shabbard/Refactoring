@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
 <gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
     <rte>
-        <name>diagUpRoute</name>
-        <rtept lat="52.9143" lon="-1.18105">
-            <name>E</name>
-            <ele>-142.000000</ele>
+        <name>test</name>
+        <rtept lat="-0.179964" lon="109.232">
+            <name>V</name>
+            <ele>0.000000</ele>
         </rtept>
-        <rtept lat="52.9134" lon="-1.18254">
+        <rtept lat="0.089982" lon="109.412">
             <name>I</name>
-            <ele>-42.000000</ele>
+            <ele>0.000000</ele>
         </rtept>
-        <rtept lat="52.9125" lon="-1.18403">
-            <name>M</name>
-            <ele>58.000000</ele>
+        <rtept lat="-0.089982" lon="109.502">
+            <name>T</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="0.179964" lon="109.142">
+            <name>A</name>
+            <ele>0.000000</ele>
         </rtept>
     </rte>
 </gpx>
