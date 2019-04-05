@@ -8,7 +8,6 @@
 #include "earth.h"
 #include "geometry.h"
 #include "gridworld_route.h"
-#include "findPositionN0724629_logGenerator.h"
 
 using namespace GPS;
 
@@ -27,8 +26,6 @@ const metres HORIZONTAL_GRID_UNIT = 1000;
 */
 BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingPositivePositionValues )
 {
-    GPX::generateLogFiles();
-
     Route route = Route(LogFiles::GPXRoutesDir + "OnePointPositive-N0724629.gpx", IS_FILE_NAME);
 
     BOOST_CHECK_NO_THROW( route.findPosition("B").latitude() );
