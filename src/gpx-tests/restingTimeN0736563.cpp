@@ -37,7 +37,8 @@ BOOST_AUTO_TEST_CASE (singlePointTrack)
 
 BOOST_AUTO_TEST_CASE (onlyElevationChanges)
 {
-    //Ensures that elevation is taken into account when calculating the resting time
+    //Resting time is determined by the granularity value. Which only accounts for changes on the horizontal.
+    //This tests case ensures that changes in elevation do effect the resting time.
 
     //For all of the following track data lon and lat stay the same between each point
 
@@ -46,8 +47,8 @@ BOOST_AUTO_TEST_CASE (onlyElevationChanges)
     //Loads track data where ele changes twice times then travels to the same point twice (C1H1M1M1M)
     GPS::Track elevationTest2(dir + "EleTest2.gpx", true);
 
-    BOOST_CHECK_EQUAL(elevationTest1.restingTime(), 0);
-    BOOST_CHECK_EQUAL(elevationTest2.restingTime(), 20);
+    BOOST_CHECK_EQUAL(elevationTest1.restingTime(), 40);
+    BOOST_CHECK_EQUAL(elevationTest2.restingTime(), 40);
 }
 
 BOOST_AUTO_TEST_CASE(onlyLonChanges)
