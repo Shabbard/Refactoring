@@ -30,7 +30,7 @@ const bool isFileName = true;
 BOOST_AUTO_TEST_CASE(find_latitude)
 {
     Route route = Route(LogFiles::GPXRoutesDir + "N0704377_GenPosNum.gpx", isFileName);
-    BOOST_CHECK_EQUAL( route.findPosition("T").latitude(), 89.9955);
+    BOOST_CHECK_EQUAL( route.findPosition("K").latitude(), 52.9581);
 }
 
 //tests the latitude can hold a negative value,  and thats it can by retived
