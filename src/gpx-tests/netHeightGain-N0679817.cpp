@@ -32,12 +32,16 @@ std::string generateTheLogs(std::string testName, GridWorldRoute route)
 BOOST_AUTO_TEST_SUITE( Route_netHeightGain )
 
 const bool isFileName = true;
+const metres grid_horizontal = 10000;
+const metres grid_vertical = 100;
 
-// Checks that a negative/0 NetGain returns a zero.
+
+// Checks that a negative/0 NetGain returns a 0.
 BOOST_AUTO_TEST_CASE( checkNegativeNetGain )
 {
 
-	GridWorldRoute routeLog = GridWorldRoute("SM");
+	GridWorld space(Earth::CityCampus, grid_horizontal, grid_vertical);	
+	GridWorldRoute routeLog = GridWorldRoute("GF", space);
 	Route route = Route(LogFiles::GPXRoutesDir + generateTheLogs("negativeNetGain", routeLog), isFileName);
 	BOOST_CHECK_EQUAL( route.netHeightGain(), 0 );
 
@@ -47,7 +51,8 @@ BOOST_AUTO_TEST_CASE( checkNegativeNetGain )
 BOOST_AUTO_TEST_CASE( checkSinglePointRoute )
 {
 
-        GridWorldRoute routeLog = GridWorldRoute("A");
+        GridWorld space(Earth::CityCampus, grid_horizontal, grid_vertical);
+        GridWorldRoute routeLog = GridWorldRoute("A", space);
         Route route = Route(LogFiles::GPXRoutesDir + generateTheLogs("singlePointRoute", routeLog), isFileName);
         BOOST_CHECK_EQUAL( route.netHeightGain(), 0 );
 
@@ -57,7 +62,8 @@ BOOST_AUTO_TEST_CASE( checkSinglePointRoute )
 BOOST_AUTO_TEST_CASE( checkCircleRoute )
 {
 
-        GridWorldRoute routeLog = GridWorldRoute("ACMKA");
+	GridWorld space(Earth::CityCampus, grid_horizontal, grid_vertical);
+        GridWorldRoute routeLog = GridWorldRoute("ACMKA", space);
         Route route = Route(LogFiles::GPXRoutesDir + generateTheLogs("circleRoute", routeLog), isFileName);
         BOOST_CHECK_EQUAL( route.netHeightGain(), 0 );
 
@@ -67,7 +73,8 @@ BOOST_AUTO_TEST_CASE( checkCircleRoute )
 BOOST_AUTO_TEST_CASE( checkLongNegativeNetGain )
 {
 
-        GridWorldRoute routeLog = GridWorldRoute("MGACEOYXUQ");
+	GridWorld space(Earth::CityCampus, grid_horizontal, grid_vertical);
+        GridWorldRoute routeLog = GridWorldRoute("MGACEOYXUQ", space);
         Route route = Route(LogFiles::GPXRoutesDir + generateTheLogs("longNegativeNetGain", routeLog), isFileName);
         BOOST_CHECK_EQUAL( route.netHeightGain(), 0 );
 
@@ -77,9 +84,20 @@ BOOST_AUTO_TEST_CASE( checkLongNegativeNetGain )
 BOOST_AUTO_TEST_CASE( checkLongPositiveNetGain )
 {
 
-        GridWorldRoute routeLog = GridWorldRoute("ACEOYWUKLM");
+	GridWorld space(Earth::CityCampus, grid_horizontal, grid_vertical);
+        GridWorldRoute routeLog = GridWorldRoute("ABCDEJOTYXWVUPKFGHINSRQLM", space);
         Route route = Route(LogFiles::GPXRoutesDir + generateTheLogs("longPositiveNetGain", routeLog), isFileName);
-        BOOST_CHECK_EQUAL( route.netHeightGain(), 0 );
+        BOOST_CHECK_EQUAL( route.netHeightGain(), 200 );
+
+}
+
+BOOST_AUTO_TEST_CASE( checkPositiveNetGain )
+{
+
+	GridWorld space(Earth::CityCampus, grid_horizontal, grid_vertical);
+        GridWorldRoute routeLog = GridWorldRoute("LM", space);
+        Route route = Route(LogFiles::GPXRoutesDir + generateTheLogs("positiveNetGain", routeLog), isFileName);
+        BOOST_CHECK_EQUAL( route.netHeightGain(), 100 );
 
 }
 

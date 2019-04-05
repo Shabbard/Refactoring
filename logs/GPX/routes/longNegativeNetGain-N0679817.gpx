@@ -2,45 +2,45 @@
 <gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
     <rte>
         <name>longNegativeNetGain</name>
-        <rtept lat="0" lon="109.322">
+        <rtept lat="52.9581" lon="-1.15424">
             <name>M</name>
-            <ele>0.000000</ele>
+            <ele>53.000000</ele>
         </rtept>
-        <rtept lat="0.089982" lon="109.232">
+        <rtept lat="53.0481" lon="-1.30336">
             <name>G</name>
-            <ele>0.000000</ele>
+            <ele>-47.000000</ele>
         </rtept>
-        <rtept lat="0.179964" lon="109.142">
+        <rtept lat="53.1381" lon="-1.45248">
             <name>A</name>
-            <ele>0.000000</ele>
+            <ele>-147.000000</ele>
         </rtept>
-        <rtept lat="0.179964" lon="109.322">
+        <rtept lat="53.1381" lon="-1.15424">
             <name>C</name>
-            <ele>0.000000</ele>
+            <ele>-147.000000</ele>
         </rtept>
-        <rtept lat="0.179964" lon="109.502">
+        <rtept lat="53.1381" lon="-0.855991">
             <name>E</name>
-            <ele>0.000000</ele>
+            <ele>-147.000000</ele>
         </rtept>
-        <rtept lat="0" lon="109.502">
+        <rtept lat="52.9581" lon="-0.855991">
             <name>O</name>
-            <ele>0.000000</ele>
+            <ele>-147.000000</ele>
         </rtept>
-        <rtept lat="-0.179964" lon="109.502">
+        <rtept lat="52.7782" lon="-0.855991">
             <name>Y</name>
-            <ele>0.000000</ele>
+            <ele>-147.000000</ele>
         </rtept>
-        <rtept lat="-0.179964" lon="109.412">
+        <rtept lat="52.7782" lon="-1.00511">
             <name>X</name>
-            <ele>0.000000</ele>
+            <ele>-147.000000</ele>
         </rtept>
-        <rtept lat="-0.179964" lon="109.142">
+        <rtept lat="52.7782" lon="-1.45248">
             <name>U</name>
-            <ele>0.000000</ele>
+            <ele>-147.000000</ele>
         </rtept>
-        <rtept lat="-0.089982" lon="109.232">
+        <rtept lat="52.8682" lon="-1.30336">
             <name>Q</name>
-            <ele>0.000000</ele>
+            <ele>-47.000000</ele>
         </rtept>
     </rte>
 </gpx>
