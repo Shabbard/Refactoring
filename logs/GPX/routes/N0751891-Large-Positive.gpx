@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>EFGH</name>
+        <rtept lat="0.0089982" lon="109.331">
+            <name>E</name>
+            <ele>20000.000000</ele>
+        </rtept>
+        <rtept lat="0.0044991" lon="109.313">
+            <name>F</name>
+            <ele>20000.000000</ele>
+        </rtept>
+        <rtept lat="0.0044991" lon="109.318">
+            <name>G</name>
+            <ele>10000.000000</ele>
+        </rtept>
+        <rtept lat="0.0044991" lon="109.322">
+            <name>H</name>
+            <ele>10000.000000</ele>
+        </rtept>
+    </rte>
+</gpx>
+
