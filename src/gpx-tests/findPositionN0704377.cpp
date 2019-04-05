@@ -65,7 +65,67 @@ BOOST_AUTO_TEST_CASE(test_acc_lat)
 }
 
 
+//longatude tests the test here are aim at the longitude spacificly
 
+
+BOOST_AUTO_TEST_CASE(find_long)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longatude.gpx", isFileName);
+     BOOST_CHECK_EQUAL( route.findPosition("F").longitude(), 49.5625 );
+}
+
+//test to ensure that negative values can be used as longatude values
+BOOST_AUTO_TEST_CASE(find_neg_long)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longatude.gpx", isFileName);
+     BOOST_CHECK_EQUAL( route.findPosition("J").longitude(), -49.5625 );
+}
+
+// tests to ensure that in the case that the longatude is a zero point value
+BOOST_AUTO_TEST_CASE(find_ZP_long)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longatude.gpx", isFileName);
+     BOOST_CHECK_EQUAL( route.findPosition("R").longitude(), 0 );
+}
+
+//test the accracy of the data held in the longatude
+BOOST_AUTO_TEST_CASE(test_acc_long)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longatude_Ac.gpx", isFileName);
+    const double percentage = 0.1;
+    BOOST_CHECK_CLOSE( route.findPosition("Y").longitude() , 109.331, percentage);
+}
+
+
+
+//longatude tests the test here are aim at the longitude spacificly
+BOOST_AUTO_TEST_CASE(find_long)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName);
+     BOOST_CHECK_EQUAL( route.findPosition("E").longitude(), 1.79662 );
+}
+
+//test to ensure that negative values can be used as longatude values
+BOOST_AUTO_TEST_CASE(find_neg_long)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName);
+     BOOST_CHECK_EQUAL( route.findPosition("B").longitude(), -0.898312 );
+}
+
+// tests to ensure that in the case that the longatude is a zero point value
+BOOST_AUTO_TEST_CASE(find_ZP_long)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx", isFileName);
+     BOOST_CHECK_EQUAL( route.findPosition("W").longitude(), 0 );
+}
+
+//test the accracy of the data held in the longatude
+BOOST_AUTO_TEST_CASE(test_acc_long)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "AFKPU.gpx", isFileName);
+    const double percentage = 0.1;
+    BOOST_CHECK_CLOSE( route.findPosition("U").longitude() , -1.79662, percentage);
+}
 
 
 
