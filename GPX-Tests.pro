@@ -76,7 +76,7 @@ SOURCES += \
     #src/gpx-tests/findPositionN0724629.cpp \
     #src/gpx-tests/totalTimeN0774540.cpp \
     #src/gpx-tests/maxlongitude.cpp \
-    #src/gpx-tests/maxGradient-N0740369.cpp \
+    #src/gpx-tests/maxGradient-N0740369.cpp
 
     #Breaks code:
     #src/gpx-tests/restingTimeN0736563.cpp\
