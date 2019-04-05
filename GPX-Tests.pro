@@ -69,6 +69,7 @@ SOURCES += \
     src/gpx-tests/netLength-N0731739.cpp \ 
     src/gpx-tests/minLongitudeN0735026.cpp \
     src/gpx-tests/findnameofn0665742.cpp \
+    src/gpx-tests/maxlatitude_N0745180.cpp \
     #src/gpx-tests/MinElevation-N0751891.cpp \
 	src/gpx-tests/totalTime_N0751567.cpp
     # src/gpx-tests/maxGradientN0748944.cpp \
