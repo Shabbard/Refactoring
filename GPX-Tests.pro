@@ -33,6 +33,7 @@ SOURCES += \
     src/gridworld_track.cpp \
     src/gpx-tests/name.cpp \
     src/gpx-tests/numpositions.cpp \
+    src/gpx-tests/minLatitudeN0727890.cpp \
     src/gpx-tests/maxElevationN0774756.cpp \
     src/gpx-tests/accessOperator.cpp \
     src/gpx-tests/accessOperatorLogGenerator.cpp \
@@ -70,19 +71,20 @@ SOURCES += \
     src/gpx-tests/findnameofn0665742.cpp \
     src/gpx-tests/maxlatitude_N0745180.cpp \
     src/gpx-tests/totalTime_N0751567.cpp \
-    src/gpx-tests/minElevationN0749943.cpp
-    
+    src/gpx-tests/minElevationN0749943.cpp \
+    src/gpx-tests/MinElevation-N0751891.cpp \
+    src/gpx-tests/maxelevation-N0749364.cpp 
+
+    # src/gpx-tests/totalTimeN0774540.cpp \
     # src/gpx-tests/maxGradientN0748944.cpp \
     # src/gpx-tests/maxLatitudeN0756079.cpp \
     # src/gpx-tests/findPositionN0724629.cpp \
-    # src/gpx-tests/totalTimeN0774540.cpp \
     # src/gpx-tests/maxlongitude.cpp \
     # src/gpx-tests/maxGradient-N0740369.cpp \
 
     #Breaks code:
     #src/gpx-tests/restingTimeN0736563.cpp\
     #src/gpx-tests/maxLatitudeN0756079.cpp \
-    # fix code plz src/gpx-tests/maxelevation-N0749364.cpp \
     #Please ensure the a successful build before pushing to the master. Thanks.
 
 INCLUDEPATH += headers/

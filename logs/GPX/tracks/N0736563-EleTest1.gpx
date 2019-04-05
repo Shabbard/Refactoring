@@ -4,18 +4,18 @@
         <name>C1H1M1R1W</name>
         <trkseg>
             <name>C-H</name>
-            <trkpt lat="0.179964" lon="109.322">
+            <trkpt lat="0" lon="109.322">
                 <ele>-100.000000</ele>
                 <time>0</time>
             </trkpt>
-            <trkpt lat="0.089982" lon="109.322">
+            <trkpt lat="0" lon="109.322">
                 <ele>-50.000000</ele>
                 <time>10</time>
             </trkpt>
         </trkseg>
         <trkseg>
             <name>H-M</name>
-            <trkpt lat="0.089982" lon="109.322">
+            <trkpt lat="0" lon="109.322">
                 <ele>-50.000000</ele>
                 <time>10</time>
             </trkpt>
@@ -30,18 +30,18 @@
                 <ele>0.000000</ele>
                 <time>20</time>
             </trkpt>
-            <trkpt lat="-0.089982" lon="109.322">
+            <trkpt lat="0" lon="109.322">
                 <ele>-50.000000</ele>
                 <time>30</time>
             </trkpt>
         </trkseg>
         <trkseg>
             <name>R-W</name>
-            <trkpt lat="-0.089982" lon="109.322">
+            <trkpt lat="0" lon="109.322">
                 <ele>-50.000000</ele>
                 <time>30</time>
             </trkpt>
-            <trkpt lat="-0.179964" lon="109.322">
+            <trkpt lat="0" lon="109.322">
                 <ele>-100.000000</ele>
                 <time>40</time>
             </trkpt>
