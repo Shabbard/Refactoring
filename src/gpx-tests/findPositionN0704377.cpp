@@ -73,14 +73,14 @@ BOOST_AUTO_TEST_CASE(test_acc_lat)
 //testing function ablility to find the longitude
 BOOST_AUTO_TEST_CASE(find_long)
 {
-    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longatude.gpx", isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longitude.gpx", isFileName);
      BOOST_CHECK_EQUAL( route.findPosition("F").longitude(), 49.5625 );
 }
 
 //test to ensure that negative values can be used as longitude values
 BOOST_AUTO_TEST_CASE(find_neg_long)
 {
-    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longatude.gpx", isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longitude.gpx", isFileName);
      BOOST_CHECK_EQUAL( route.findPosition("J").longitude(), -49.5625 );
 }
 
@@ -88,14 +88,14 @@ BOOST_AUTO_TEST_CASE(find_neg_long)
 //its still able to take it in as an argurment
 BOOST_AUTO_TEST_CASE(find_ZP_long)
 {
-    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longatude.gpx", isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longitude.gpx", isFileName);
      BOOST_CHECK_EQUAL( route.findPosition("R").longitude(), 0 );
 }
 
 //test the accracy of the positions longitude ensuring that is the right value that is help by the gpx file
 BOOST_AUTO_TEST_CASE(test_acc_long)
 {
-    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longatude_Ac.gpx", isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longitude_Ac.gpx", isFileName);
     const double percentage = 0.1;
     BOOST_CHECK_CLOSE( route.findPosition("Y").longitude() , 109.331, percentage);
 }
@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_CASE(test_throw2)
 
 BOOST_AUTO_TEST_CASE(test_position_values)
 {
-    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Single.gpx", isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Gen_Single.gpx", isFileName);
 
     const double percentage = 0.1;
     BOOST_CHECK_CLOSE( route.findPosition("T").latitude() , -0.0044991,percentage);
@@ -171,7 +171,7 @@ BOOST_AUTO_TEST_CASE(test_position_values)
 
 BOOST_AUTO_TEST_CASE(test_position2_values)
 {
-    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Single2.gpx", isFileName);
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Gen_Single2.gpx", isFileName);
 
     const double percentage = 0.1;
     BOOST_CHECK_CLOSE( route.findPosition("P").latitude() , 52.9098,percentage);
