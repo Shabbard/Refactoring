@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>ABCDEFGHIJKLMNOPQRSTUVWXY</name>
+        <rtept lat="-89.3947" lon="86.2771">
+            <name>A</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.3947" lon="98.3787">
+            <name>B</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.3947" lon="110.48">
+            <name>C</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.3947" lon="122.582">
+            <name>D</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.3947" lon="134.683">
+            <name>E</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.4847" lon="86.2771">
+            <name>F</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.4847" lon="98.3787">
+            <name>G</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.4847" lon="110.48">
+            <name>H</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.4847" lon="122.582">
+            <name>I</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.4847" lon="134.683">
+            <name>J</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.5747" lon="86.2771">
+            <name>K</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.5747" lon="98.3787">
+            <name>L</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.5747" lon="110.48">
+            <name>M</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.5747" lon="122.582">
+            <name>N</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.5747" lon="134.683">
+            <name>O</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.6647" lon="86.2771">
+            <name>P</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.6647" lon="98.3787">
+            <name>Q</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.6647" lon="110.48">
+            <name>R</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.6647" lon="122.582">
+            <name>S</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.6647" lon="134.683">
+            <name>T</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.7546" lon="86.2771">
+            <name>U</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.7546" lon="98.3787">
+            <name>V</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.7546" lon="110.48">
+            <name>W</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.7546" lon="122.582">
+            <name>X</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="-89.7546" lon="134.683">
+            <name>Y</name>
+            <ele>0.000000</ele>
+        </rtept>
+    </rte>
+</gpx>
