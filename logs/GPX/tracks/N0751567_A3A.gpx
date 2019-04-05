@@ -1,0 +1,29 @@
+?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <trk>
+        <name>A3A_N0751567</name>
+        <trkseg>
+            <name>A-A</name>
+            <trkpt lat="0.179964" lon="109.142">
+                <ele>0.000000</ele>
+                <time>0</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.151">
+                <ele>0.000000</ele>
+                <time>1</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.16">
+                <ele>0.000000</ele>
+                <time>2</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.169">
+                <ele>0.000000</ele>
+                <time>3</time>
+            </trkpt>
+            <trkpt lat="0.179964" lon="109.178">
+                <ele>0.000000</ele>
+                <time>4</time>
+            </trkpt>
+	    </trkseg>
+	</trk>
+</gpx>        

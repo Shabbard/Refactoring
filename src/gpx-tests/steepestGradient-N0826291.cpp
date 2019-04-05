@@ -36,7 +36,6 @@ std::string logCreation(std::string testName, GridWorldRoute route)
 
     return fileName;
 }
-
 BOOST_AUTO_TEST_SUITE( SteepestGradientN0826291 )
 
 const bool IsFileName = true;
