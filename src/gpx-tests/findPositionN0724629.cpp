@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithNegativeValuesInLogFileWithOnePoint )
 * Test case: CanGetPositionWithZeroValues
 * Use:       Checks that it is possible to obtain zero values for latitude,
 *            longitude and elevation.
-* Test type: Valid
+* Test type: Valid Extreme (Edge Case)
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithZeroValues )
 {
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfNameNotFound )
 * Test case: ThrowsOutOfRangeIfCaseIncorrect
 * Use:       Checks that the std::out_of_range exception is thrown if the
 *            specified name is in the incorrect case.
-* Test type: Invalid Extreme
+* Test type: Invalid Extreme (Edge Case)
 */
 BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfCaseIncorrect )
 {
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfCaseIncorrect )
 * Use:       Checks that it is possible to a Position object for a point that is
 *            present multiple tiles in a GPX log file. Checks that each instance
 *            of the point returns an equivalent Position object.
-* Test type: Valid
+* Test type: Valid Extreme (Edge Case)
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithRepeatedPoints )
 {
@@ -224,7 +224,7 @@ BOOST_AUTO_TEST_CASE( ThrowsOutOfRangeWhenPointsTooClose )
 * Test case: CanGetPositionWithSomePointsApart
 * Use:       Checks that it is possible to obtain positive values for latitude,
 *            longitude and elevation in a GPX log file with a repeated point.
-* Test type: Valid
+* Test type: Valid Extreme (Edge Case)
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithSomePointsApart )
 {
@@ -261,7 +261,7 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithSomePointsApart )
 *            'granularity' apart, and therefore should be considered as a
 *            different location, in a file where other points are more than
 *            'granularity' apart.
-* Test type: Invalid Extreme
+* Test type: Invalid Extreme (Edge Case)
 */
 BOOST_AUTO_TEST_CASE( ThrowsOutOfRangeForDiscardedPoints )
 {
