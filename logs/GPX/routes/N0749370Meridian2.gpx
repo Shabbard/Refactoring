@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>BDNTXQMLGCEIYWVKFBDPURSJCGMNSULIBFKRWYODPIJWXLGDIAQM</name>
+        <rtept lat="0.0530894" lon="-0.0265002">
+            <name>B</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0530894" lon="0.0265002">
+            <name>D</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="0.0265002">
+            <name>N</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="-0.0265447" lon="0.0530004">
+            <name>T</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0530894" lon="0.0265002">
+            <name>X</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0265447" lon="-0.0265002">
+            <name>Q</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="0">
+            <name>M</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="-0.0265002">
+            <name>L</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="-0.0265002">
+            <name>G</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0.0530894" lon="0">
+            <name>C</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0530894" lon="0.0530004">
+            <name>E</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="0.0265002">
+            <name>I</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="-0.0530894" lon="0.0530004">
+            <name>Y</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0530894" lon="0">
+            <name>W</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0530894" lon="-0.0265002">
+            <name>V</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="-0.0530004">
+            <name>K</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="-0.0530004">
+            <name>F</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0530894" lon="-0.0265002">
+            <name>B</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0530894" lon="0.0265002">
+            <name>D</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0265447" lon="-0.0530004">
+            <name>P</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0530894" lon="-0.0530004">
+            <name>U</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0265447" lon="0">
+            <name>R</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="-0.0265447" lon="0.0265002">
+            <name>S</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="0.0530004">
+            <name>J</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0530894" lon="0">
+            <name>C</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="-0.0265002">
+            <name>G</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="0">
+            <name>M</name>
+            <ele>0.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="0.0265002">
+            <name>N</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="-0.0265447" lon="0.0265002">
+            <name>S</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="-0.0530894" lon="-0.0530004">
+            <name>U</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="-0.0265002">
+            <name>L</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="0.0265002">
+            <name>I</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0.0530894" lon="-0.0265002">
+            <name>B</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="-0.0530004">
+            <name>F</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="-0.0530004">
+            <name>K</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0265447" lon="0">
+            <name>R</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="-0.0530894" lon="0">
+            <name>W</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0530894" lon="0.0530004">
+            <name>Y</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="0.0530004">
+            <name>O</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0530894" lon="0.0265002">
+            <name>D</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0265447" lon="-0.0530004">
+            <name>P</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="0.0265002">
+            <name>I</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="0.0530004">
+            <name>J</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0530894" lon="0">
+            <name>W</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0530894" lon="0.0265002">
+            <name>X</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="-0.0265002">
+            <name>L</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="-0.0265002">
+            <name>G</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0.0530894" lon="0.0265002">
+            <name>D</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="0.0265447" lon="0.0265002">
+            <name>I</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0.0530894" lon="-0.0530004">
+            <name>A</name>
+            <ele>-2700.000000</ele>
+        </rtept>
+        <rtept lat="-0.0265447" lon="-0.0265002">
+            <name>Q</name>
+            <ele>-1350.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="0">
+            <name>M</name>
+            <ele>0.000000</ele>
+        </rtept>
+    </rte>
+</gpx>
+
