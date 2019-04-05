@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_SUITE ( Route_netHeightGain )
 
 //These tests test to see that when there is no change in elevation, the function outputs 0 instead of other values, such as the first value of the elevation. 
 //For example, if the elevation is 20, but stays at 20, the function should return 0, not 20.
-BOOST_AUTO_TEST_CASE ( no_elevation_change )
+BOOST_AUTO_TEST_CASE ( no_elevation_change_n0701387 )
 {
 
 	//Generating log files when the test is called to run.
@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE ( no_elevation_change )
 
 
 //This group of tests check to see that the function correctly calculates net elevation when elevation is increasing multiple times with each point moving. 
-BOOST_AUTO_TEST_CASE ( positive_elevation_change )
+BOOST_AUTO_TEST_CASE ( positive_elevation_change_n0701387 )
 {
 
 	//Generating log files when the test is called to run.
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE ( positive_elevation_change )
 }
 
 //These tests ensure that when elevation is negative, the function will return 0, as the function is designed to ignore negative elevations or any negative net height calculation.
-BOOST_AUTO_TEST_CASE ( negative_elevation_change )
+BOOST_AUTO_TEST_CASE ( negative_elevation_change_n0701387 )
 {
 
 	//Generating log files when the test is called to run.
@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE ( negative_elevation_change )
 
 
 //These tests are designed to test the function against unusual values, to ensure the function persists when given difficult or missing values.
-BOOST_AUTO_TEST_CASE ( unexpected_values ) 
+BOOST_AUTO_TEST_CASE ( unexpected_values_n0701387 ) 
 {
 	//Generating a GPX log file that will contain blank elevation and the default city of Pontiak.
 	GridWorldRoute gridworldroute = GridWorldRoute("ABC");

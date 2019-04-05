@@ -65,15 +65,22 @@ metres Route::netHeightGain() const
 
 degrees Route::minLatitude() const
 {
+    if (positions.empty()) {
+        throw std::out_of_range("Cannot get the minimum latitude of an empty route");
+    }
+
     degrees lowestLatitude = positions[0].latitude();
+
+    double epsilon = 0.0001;
 
     for (int i = 0; i < positions.size(); i++)
     {
-        if (lowestLatitude < positions[i].latitude())
+        if ( (positions[i].latitude() - lowestLatitude) < epsilon)
         {
             lowestLatitude = positions[i].latitude();
         }
     }
+
     return lowestLatitude;
 }
 

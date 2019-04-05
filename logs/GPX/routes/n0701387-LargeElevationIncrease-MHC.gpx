@@ -8,11 +8,11 @@
         </rtept>
         <rtept lat="52.9671" lon="-1.15424">
             <name>H</name>
-            <ele>2053.000000</ele>
+            <ele>20053.000000</ele>
         </rtept>
         <rtept lat="52.9761" lon="-1.15424">
             <name>C</name>
-            <ele>4053.000000</ele>
+            <ele>40053.000000</ele>
         </rtept>
     </rte>
 </gpx>

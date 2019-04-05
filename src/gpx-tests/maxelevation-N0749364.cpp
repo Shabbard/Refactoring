@@ -118,5 +118,5 @@ BOOST_AUTO_TEST_CASE(Flat_MaxElevation_route)
 }
 
 
+BOOST_AUTO_TEST_SUITE_END()
 
-}

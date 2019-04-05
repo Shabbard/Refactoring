@@ -2,13 +2,13 @@
 <gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
     <rte>
         <name>diagUpRoute</name>
-        <rtept lat="53.0925" lon="-0.886094">
+        <rtept lat="52.9143" lon="-1.18105">
             <name>E</name>
-            <ele>-1942.000000</ele>
+            <ele>-142.000000</ele>
         </rtept>
-        <rtept lat="53.0025" lon="-1.03506">
+        <rtept lat="52.9134" lon="-1.18254">
             <name>I</name>
-            <ele>-942.000000</ele>
+            <ele>-42.000000</ele>
         </rtept>
         <rtept lat="52.9125" lon="-1.18403">
             <name>M</name>
