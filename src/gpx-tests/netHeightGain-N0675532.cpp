@@ -12,7 +12,6 @@
 
 using namespace GPS;
 
-const std::string studentId("N0675532");
 const metres grid_horizontal = 10000;
 const metres grid_vertical = 100;
 
