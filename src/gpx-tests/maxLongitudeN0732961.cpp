@@ -39,6 +39,7 @@ BOOST_AUTO_TEST_CASE( No_Change_In_Longitude_route )
    BOOST_CHECK_CLOSE( route.maxLongitude(), -1.79662, 0.0001 );
 }
 
+// Testing the fuction gives the correct output when the point has already been visited once
 BOOST_AUTO_TEST_CASE( Repeated_Point_route )
 {
    Route route = Route(LogFiles::GPXRoutesDir + "ABA.gpx", isFileName);
