@@ -19,9 +19,8 @@ const metres HORIZONTAL_GRID_UNIT = 1000;
 
 /**
 * Test case: DoesNotThrowExceptionWhenAccessingPositivePositionValues
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with only one point on
-*            the route.
+* Use:       Checks that no exception is thrown when attempting to access a
+*            point on the route with positive values.
 * Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingPositivePositionValues )
@@ -36,9 +35,8 @@ BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingPositivePositionValues )
 
 /**
 * Test case: DoesNotThrowExceptionWhenAccessingNegativePositionValues
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with only one point on
-*            the route.
+* Use:       Checks that no exception is thrown when attempting to access a
+*            point on the route with negative values.
 * Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( DoesNotThrowExceptionWhenAccessingNegativePositionValues )
@@ -137,9 +135,9 @@ BOOST_AUTO_TEST_CASE ( ThrowsOutOfRangeIfCaseIncorrect )
 
 /**
 * Test case: CanGetPositionWithPositiveValuesInLogFileWithRepeatedPoints
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with only one point on
-*            the route.
+* Use:       Checks that it is possible to a Position object for a point that is
+*            present multiple tiles in a GPX log file. Checks that each instance
+*            of the point returns an equivalent Position object.
 * Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithRepeatedPoints )
@@ -160,9 +158,10 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithRepeatedPoints )
 
 
 /**
-* Test case: CanGetPositionWithPositiveValuesInLogFileWithAllPointsApart
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with a repeated point.
+* Test case: CanGetPositionWithAllPointsApart
+* Use:       Checks that it is possible to obtain a Position object for all of
+*            the points in a route where none of the points are less than
+*            'granularity' apart.
 * Test type: Valid
 */
 BOOST_AUTO_TEST_CASE( CanGetPositionWithAllPointsApart )
@@ -201,8 +200,9 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithAllPointsApart )
 /**
 * Test case: ThrowsOutOfRangeWhenPointsTooClose
 * Use:       Checks that an std::out_of_range exception is thrown for points
-*            with positive values for latitude, longitude and elevation that are
-*            less than 'granularity' apart.
+*            that are distanced from another point such that they are less than
+*            'granularity' apart and therefore should be considered as a
+*            different location.
 * Test type: Invalid
 */
 BOOST_AUTO_TEST_CASE( ThrowsOutOfRangeWhenPointsTooClose )
@@ -252,10 +252,13 @@ BOOST_AUTO_TEST_CASE( CanGetPositionWithSomePointsApart )
 
 
 /**
-* Test case: CanGetPositionWithSomePointsApart
-* Use:       Checks that it is possible to obtain positive values for latitude,
-*            longitude and elevation in a GPX log file with a repeated point.
-* Test type: Valid
+* Test case: ThrowsOutOfRangeForDiscardedPoints
+* Use:       Checks that an std::out_of_range exception is thrown for a point
+*            that are distanced from another point such that they are less than
+*            'granularity' apart, and therefore should be considered as a
+*            different location, in a file where other points are more than
+*            'granularity' apart.
+* Test type: Invalid Extreme
 */
 BOOST_AUTO_TEST_CASE( ThrowsOutOfRangeForDiscardedPoints )
 {
