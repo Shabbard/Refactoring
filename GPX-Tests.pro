@@ -84,7 +84,6 @@ SOURCES += \
     #Breaks code:
     #src/gpx-tests/restingTimeN0736563.cpp\
     #src/gpx-tests/maxLatitudeN0756079.cpp \
-    # fix code plz src/gpx-tests/maxelevation-N0749364.cpp \
     #Please ensure the a successful build before pushing to the master. Thanks.
 
 INCLUDEPATH += headers/
