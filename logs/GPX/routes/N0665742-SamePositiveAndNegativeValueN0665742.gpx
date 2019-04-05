@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
 <gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
     <rte>
-        <name>flatRoute</name>
-        <rtept lat="52.9143" lon="-1.187">
-            <name>A</name>
-            <ele>-142.000000</ele>
+        <name>N0665742-SamePositiveAndNegativeValue</name>
+        <rtept lat="52.9125" lon="-2.67368">
+            <name>L</name>
+            <ele>58.000000</ele>
         </rtept>
-        <rtept lat="52.9143" lon="-1.18551">
-            <name>B</name>
-            <ele>-142.000000</ele>
+        <rtept lat="52.9125" lon="-2.67368">
+            <name>L</name>
+            <ele>58.000000</ele>
         </rtept>
-        <rtept lat="52.9143" lon="-1.18403">
-            <name>C</name>
-            <ele>-142.000000</ele>
+        <rtept lat="51.1129" lon="1.79528">
+            <name>Y</name>
+            <ele>58.000000</ele>
         </rtept>
     </rte>
 </gpx>
