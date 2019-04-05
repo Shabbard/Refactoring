@@ -39,6 +39,12 @@ BOOST_AUTO_TEST_CASE( No_Change_In_Longitude_route )
    BOOST_CHECK_CLOSE( route.maxLongitude(), -1.79662, 0.0001 );
 }
 
+BOOST_AUTO_TEST_CASE( Repeated_Point_route )
+{
+   Route route = Route(LogFiles::GPXRoutesDir + "ABA.gpx", isFileName);
+   BOOST_CHECK_CLOSE( route.maxLongitude(), 109.232, 0.0001 );
+}
+
 //Testing a route that I generated that goes from north to south
 BOOST_AUTO_TEST_CASE( NottinghamToLondon )
 {
