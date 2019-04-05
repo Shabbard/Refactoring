@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE( RestingAtOnePoint )
     std::string testFilePath(LogFiles::GPXTracksDir + StudentIDPrefix + "_" + GPXName + ".gpx");
 
     GridWorldTrack gridworldTrack = GridWorldTrack(GPXName, 60, 0,
-                                    GridWorld(Earth::CliftonCampus, 1000, 0));
+                                    GridWorld(Earth::CliftonCampus, 100, 0));
 
     GPXImport(testFilePath, gridworldTrack.toGPX(60, true, GPXName));
 
@@ -50,13 +50,58 @@ BOOST_AUTO_TEST_CASE( RestingAtTwoPoints )
     std::string testFilePath(LogFiles::GPXTracksDir + StudentIDPrefix + "_" + GPXName + ".gpx");
 
     GridWorldTrack gridworldTrack = GridWorldTrack(GPXName, 60, 0,
-                                    GridWorld(Earth::CliftonCampus, 1000, 0));
+                                    GridWorld(Earth::CityCampus, 100, 0));
 
     GPXImport(testFilePath, gridworldTrack.toGPX(60, true, GPXName));
 
     Track track = Track(testFilePath, true);
 
     BOOST_CHECK_EQUAL( track.restingTime(), 120 );
+}
+
+BOOST_AUTO_TEST_CASE( SingleRestAtStart )
+{
+    const std::string GPXName("B1B1C1D");
+    std::string testFilePath(LogFiles::GPXTracksDir + StudentIDPrefix + "_" + GPXName + ".gpx");
+
+    GridWorldTrack gridworldTrack = GridWorldTrack(GPXName, 60, 0,
+                                    GridWorld(Earth::CityCampus, 100, 0));
+
+    GPXImport(testFilePath, gridworldTrack.toGPX(60, true, GPXName));
+
+    Track track = Track(testFilePath, true);
+
+    BOOST_CHECK_EQUAL( track.restingTime(), 60 );
+}
+
+BOOST_AUTO_TEST_CASE( SingleRestAtEnd )
+{
+    const std::string GPXName("A4B3C1C");
+    std::string testFilePath(LogFiles::GPXTracksDir + StudentIDPrefix + "_" + GPXName + ".gpx");
+
+    GridWorldTrack gridworldTrack = GridWorldTrack(GPXName, 60, 0,
+                                    GridWorld(Earth::CliftonCampus, 100, 0));
+
+    GPXImport(testFilePath, gridworldTrack.toGPX(60, true, GPXName));
+
+    Track track = Track(testFilePath, true);
+
+    BOOST_CHECK_EQUAL( track.restingTime(), 60 );
+}
+
+BOOST_AUTO_TEST_CASE( RestingAtMultiplePoints )
+{
+    const std::string GPXName("A1A3F2F3G1G");
+    std::string testFilePath(LogFiles::GPXTracksDir + StudentIDPrefix + "_" + GPXName + ".gpx");
+
+    GridWorldTrack gridworldTrack = GridWorldTrack(GPXName, 60, 0,
+                                    GridWorld(Earth::NorthPole, 100, 0));
+
+    GPXImport(testFilePath, gridworldTrack.toGPX(60, true, GPXName));
+
+    Track track = Track(testFilePath, true);
+
+    BOOST_CHECK_EQUAL( track.restingTime(), 240 );
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -74,11 +74,11 @@ SOURCES += \
     src/gpx-tests/minElevationN0749943.cpp \
     src/gpx-tests/MinElevation-N0751891.cpp \
     src/gpx-tests/maxelevation-N0749364.cpp 
-    
+
+    # src/gpx-tests/totalTimeN0774540.cpp \
     # src/gpx-tests/maxGradientN0748944.cpp \
     # src/gpx-tests/maxLatitudeN0756079.cpp \
     # src/gpx-tests/findPositionN0724629.cpp \
-    # src/gpx-tests/totalTimeN0774540.cpp \
     # src/gpx-tests/maxlongitude.cpp \
     # src/gpx-tests/maxGradient-N0740369.cpp \
 
