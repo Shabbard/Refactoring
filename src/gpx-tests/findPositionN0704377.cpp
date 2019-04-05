@@ -123,6 +123,20 @@ BOOST_AUTO_TEST_CASE(test_acc_ele)
     BOOST_CHECK_CLOSE( route.findPosition("C").elevation() , -600.000000,percentage);
 }
 
+//tests to throw out non excisting values so test arnt there
+
+BOOST_AUTO_TEST_CASE(test_throw)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_Longatude.gpx", isFileName);
+    BOOST_CHECK_THROW( route.findPosition("M"), std::out_of_range  );
+}
+
+BOOST_AUTO_TEST_CASE(test_throw2)
+{
+    Route route = Route(LogFiles::GPXRoutesDir + "N0704377_elevation.gpx", isFileName);
+    BOOST_CHECK_THROW( route.findPosition("Y"), std::out_of_range  );
+}
+
 
 
 BOOST_AUTO_TEST_SUITE_END()
