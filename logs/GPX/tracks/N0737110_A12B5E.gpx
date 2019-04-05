@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
 <gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
     <trk>
-        <name>A10B15C</name>
+        <name>A12B5E</name>
         <trkseg>
             <name>A-B</name>
             <trkpt lat="0.0179964" lon="109.304">
@@ -16,104 +16,72 @@
                 <ele>-2000.000000</ele>
                 <time>120</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.307">
+            <trkpt lat="0.0179964" lon="109.306">
                 <ele>-2000.000000</ele>
                 <time>180</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.308">
+            <trkpt lat="0.0179964" lon="109.307">
                 <ele>-2000.000000</ele>
                 <time>240</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.309">
+            <trkpt lat="0.0179964" lon="109.308">
                 <ele>-2000.000000</ele>
                 <time>300</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.31">
+            <trkpt lat="0.0179964" lon="109.309">
                 <ele>-2000.000000</ele>
                 <time>360</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.31">
+            <trkpt lat="0.0179964" lon="109.309">
                 <ele>-2000.000000</ele>
                 <time>420</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.311">
+            <trkpt lat="0.0179964" lon="109.31">
                 <ele>-2000.000000</ele>
                 <time>480</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.312">
+            <trkpt lat="0.0179964" lon="109.311">
                 <ele>-2000.000000</ele>
                 <time>540</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.313">
+            <trkpt lat="0.0179964" lon="109.312">
                 <ele>-2000.000000</ele>
                 <time>600</time>
             </trkpt>
-        </trkseg>
-        <trkseg>
-            <name>B-C</name>
-            <trkpt lat="0.0179964" lon="109.313">
-                <ele>-2000.000000</ele>
-                <time>600</time>
-            </trkpt>
-            <trkpt lat="0.0179964" lon="109.314">
+            <trkpt lat="0.0179964" lon="109.312">
                 <ele>-2000.000000</ele>
                 <time>660</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.314">
+            <trkpt lat="0.0179964" lon="109.313">
                 <ele>-2000.000000</ele>
                 <time>720</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.315">
+        </trkseg>
+        <trkseg>
+            <name>B-E</name>
+            <trkpt lat="0.0179964" lon="109.313">
+                <ele>-2000.000000</ele>
+                <time>720</time>
+            </trkpt>
+            <trkpt lat="0.0179964" lon="109.319">
                 <ele>-2000.000000</ele>
                 <time>780</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.316">
+            <trkpt lat="0.0179964" lon="109.324">
                 <ele>-2000.000000</ele>
                 <time>840</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.316">
+            <trkpt lat="0.0179964" lon="109.329">
                 <ele>-2000.000000</ele>
                 <time>900</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.317">
+            <trkpt lat="0.0179964" lon="109.335">
                 <ele>-2000.000000</ele>
                 <time>960</time>
             </trkpt>
-            <trkpt lat="0.0179964" lon="109.317">
+            <trkpt lat="0.0179964" lon="109.34">
                 <ele>-2000.000000</ele>
                 <time>1020</time>
-            </trkpt>
-            <trkpt lat="0.0179964" lon="109.318">
-                <ele>-2000.000000</ele>
-                <time>1080</time>
-            </trkpt>
-            <trkpt lat="0.0179964" lon="109.319">
-                <ele>-2000.000000</ele>
-                <time>1140</time>
-            </trkpt>
-            <trkpt lat="0.0179964" lon="109.319">
-                <ele>-2000.000000</ele>
-                <time>1200</time>
-            </trkpt>
-            <trkpt lat="0.0179964" lon="109.32">
-                <ele>-2000.000000</ele>
-                <time>1260</time>
-            </trkpt>
-            <trkpt lat="0.0179964" lon="109.32">
-                <ele>-2000.000000</ele>
-                <time>1320</time>
-            </trkpt>
-            <trkpt lat="0.0179964" lon="109.321">
-                <ele>-2000.000000</ele>
-                <time>1380</time>
-            </trkpt>
-            <trkpt lat="0.0179964" lon="109.322">
-                <ele>-2000.000000</ele>
-                <time>1440</time>
-            </trkpt>
-            <trkpt lat="0.0179964" lon="109.322">
-                <ele>-2000.000000</ele>
-                <time>1500</time>
             </trkpt>
         </trkseg>
     </trk>
