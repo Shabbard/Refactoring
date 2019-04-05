@@ -32,6 +32,7 @@ std::string GPX_Generated_Logs(std::string file, GridWorldRoute route)
 BOOST_AUTO_TEST_SUITE(Route_maxLatitude_N0745180)
 
 const degrees current_value = 0.179964;
+const degrees current_value_2 = 1.179964;
 const degrees percentage_acc = 0.1;
 
 // Test to see if the correct latitude is selected from a single point
@@ -71,7 +72,7 @@ BOOST_AUTO_TEST_CASE(neg_pos_latitude)
 
     GridWorldRoute routeLog = GridWorldRoute("MRH");
     Route route = Route(LogFiles::GPXRoutesDir + "ABQWE.gpx",true);
-    BOOST_CHECK_CLOSE( route.maxLatitude(), current_value, percentage_acc);
+    BOOST_CHECK_CLOSE( route.maxLatitude(), current_value_2, percentage_acc);
 
 }
 
