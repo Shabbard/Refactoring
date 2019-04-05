@@ -24,7 +24,7 @@ using namespace GPS;
  */
 
 
-BOOST_AUTO_TEST_SUITE( Route_totalHeightGain )
+BOOST_AUTO_TEST_SUITE( totalHeightGain_N0724106 )
 const bool isFileName = true;
 
 BOOST_AUTO_TEST_CASE ( twoPositionsIncline ) {
