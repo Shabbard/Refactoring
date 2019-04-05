@@ -51,7 +51,6 @@ BOOST_AUTO_TEST_CASE(MultiPointSinged){
 }
 
 // Checks for errors thrown for 0 values in latitude and longitude
-// on custom created GPX files
 
 BOOST_AUTO_TEST_CASE(ZeroLatLon){
 
@@ -65,21 +64,25 @@ BOOST_AUTO_TEST_CASE(ZeroLatLon){
     BOOST_CHECK_EQUAL( route.minLatitude(), 0 );
 }
 
+// Checks for errors when each multi point route is made up
+// of the same point and only that point
 
-BOOST_AUTO_TEST_CASE(InvalidFile){
-//Throws exception
-    //Route route = Route(LogFiles::GPXRoutesDir + "invalid.gpx", true);
-    //BOOST_CHECK_THROW( route.minLatitude(), std::domain_error);
+BOOST_AUTO_TEST_CASE(DuplicatePoint){
 
-    //route = Route(LogFiles::GPXRoutesDir + "invalid", true);
-    //BOOST_CHECK_THROW( route.minLatitude(), std::invalid_argument);
+    Route route = Route(LogFiles::GPXRoutesDir + "DuplicatePointA-N0743587.gpx", true);
+    BOOST_CHECK_EQUAL( route.minLatitude(), 0.017996399999999999);
+
+    route = Route(LogFiles::GPXRoutesDir + "DuplicatePointQ-N0743587.gpx", true);
+    BOOST_CHECK_EQUAL( route.minLatitude(), -0.0089981999999999996);
 }
 
-BOOST_AUTO_TEST_CASE(NullCase){
-//Throws IOException
-    //Route route = Route(LogFiles::GPXRoutesDir + "NullPosition-N0743587.gpx", true);
-    //BOOST_CHECK_EQUAL( route.minLatitude(), false);
-}
+// Checks for errors when the points are the samllest distance
+// apart that will still return a value (20m)
 
+BOOST_AUTO_TEST_CASE(PointsMeterApart){
+
+    Route route = Route(LogFiles::GPXRoutesDir + "PointsMeterApart-N0743587.gpx", true);
+    BOOST_CHECK_EQUAL( route.minLatitude(), 0.00017996399999999999 );
+}
 
 BOOST_AUTO_TEST_SUITE_END()

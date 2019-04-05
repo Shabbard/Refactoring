@@ -41,6 +41,7 @@ SOURCES += \
     src/gpx-tests/steepestGradientN0742908.cpp \
     src/gpx-tests/steepestGradient-N0826291.cpp \
     src/gpx-tests/findNameOf.cpp \
+    src/gpx-tests/findNameOfGPXGenerator.cpp \
     src/gpx-tests/findPositionN0724629.cpp \
     src/gpx-tests/findPositionN0724629_logGenerator.cpp \
     src/gpx-tests/findpositionn0734208.cpp \
@@ -53,6 +54,9 @@ SOURCES += \
     src/gpx-tests/totalLengthTest_n0755314.cpp \
     src/gpx-tests/netLength-N0704050.cpp\
     src/gpx-tests/restingTimeN0736563.cpp \
+    src/gpx-tests/maxlongitude.cpp \
+    src/gpx-tests/maxGradient-N0740369.cpp \
+    src/gpx-tests/netHeightGain-N0679817.cpp
     src/gpx-tests/maxGradient-N0740369.cpp \
     src/gpx-tests/MaxElevation-N0749370.cpp \
     src/gpx-tests/minLongitude.cpp \
@@ -62,7 +66,9 @@ SOURCES += \
     src/gpx-tests/timesVisited-n0763258.cpp \
     src/gpx-tests/maxLongitudeN0732961.cpp \
     src/gpx-tests/netHeightGain-N0701387.cpp \
-    src/gpx-tests/maxelevation-N0749364.cpp
+    src/gpx-tests/maxelevation-N0749364.cpp \
+    src/gpx-tests/minLongitudeN0735026.cpp \
+    src/gpx-tests/maxGradientN0748944.cpp \
     #src/gpx-tests/maxLatitudeN0756079.cpp \
     #src/gpx-tests/findPositionN0724629.cpp \
 
