@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <rte>
+        <name>UVWRSNM</name>
+        <rtept lat="-1.77741" lon="107.548">
+            <name>U</name>
+            <ele>66984.000000</ele>
+        </rtept>
+        <rtept lat="-1.77741" lon="108.435">
+            <name>V</name>
+            <ele>66984.000000</ele>
+        </rtept>
+        <rtept lat="-1.77741" lon="109.322">
+            <name>W</name>
+            <ele>66984.000000</ele>
+        </rtept>
+        <rtept lat="-0.888707" lon="109.322">
+            <name>R</name>
+            <ele>33492.000000</ele>
+        </rtept>
+        <rtept lat="-0.888707" lon="110.209">
+            <name>S</name>
+            <ele>33492.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="110.209">
+            <name>N</name>
+            <ele>33492.000000</ele>
+        </rtept>
+        <rtept lat="0" lon="109.322">
+            <name>M</name>
+            <ele>0.000000</ele>
+        </rtept>
+    </rte>
+</gpx>
+
