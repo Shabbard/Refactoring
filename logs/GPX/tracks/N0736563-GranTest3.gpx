@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<gpx version="1.1" creator="NTU" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+    <trk>
+        <name>A1F1K</name>
+        <trkseg>
+            <name>A-F</name>
+            <trkpt lat="0.000179964" lon="109.322">
+                <ele>0.000000</ele>
+                <time>0</time>
+            </trkpt>
+            <trkpt lat="8.9982e-05" lon="109.322">
+                <ele>0.000000</ele>
+                <time>10</time>
+            </trkpt>
+        </trkseg>
+        <trkseg>
+            <name>F-K</name>
+            <trkpt lat="8.9982e-05" lon="109.322">
+                <ele>0.000000</ele>
+                <time>10</time>
+            </trkpt>
+            <trkpt lat="0" lon="109.322">
+                <ele>0.000000</ele>
+                <time>20</time>
+            </trkpt>
+        </trkseg>
+    </trk>
+</gpx>

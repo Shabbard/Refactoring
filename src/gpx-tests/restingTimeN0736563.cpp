@@ -81,6 +81,29 @@ BOOST_AUTO_TEST_CASE(onlyLatChanges)
     BOOST_CHECK_EQUAL(latTest2.restingTime(), 20);
 }
 
+BOOST_AUTO_TEST_CASE(testGranularity)
+{
+    //Test cases to ensure that granularity is acounted for when calculating rest time
+
+    //Loads a track where the distance between each point is less than the granularity (A1B1C)
+    GPS::Track granTest1(dir + "GranTest1.gpx", true, 20.5);
+    //Loads a track and then sets the ganularity to 0 (A1C1F)
+    GPS::Track granTest2(dir + "GranTest2.gpx", true, 0);
+    //Loads a track where the distance between each point is less than the granularity (A1F1K)
+    GPS::Track granTest3(dir + "GranTest3.gpx", true, 20.5);
+    //Loads a track where the distance between each point is greater than the granularity (A1K1U)
+    GPS::Track granTest4(dir + "GranTest4.gpx", true, 20);
+    //Loads a track where there is a mix of points greater than and less than furhter apart than the granularity (A1K1P1U)
+    GPS::Track granTest5(dir + "GranTest5.gpx", true, 20.5);
+
+    BOOST_CHECK_EQUAL(granTest1.restingTime(), 20);
+    BOOST_CHECK_EQUAL(granTest2.restingTime(), 0);
+    BOOST_CHECK_EQUAL(granTest3.restingTime(), 20);
+    BOOST_CHECK_EQUAL(granTest4.restingTime(), 0);
+    BOOST_CHECK_EQUAL(granTest5.restingTime(), 20);
+
+}
+
 BOOST_AUTO_TEST_SUITE_END();
 
 
