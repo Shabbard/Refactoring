@@ -18,7 +18,7 @@ using namespace GPS;
 //these test will test the ablilty to find and gathere these positional data
 
 
-BOOST_AUTO_TEST_SUITE( Route_findPosition )
+BOOST_AUTO_TEST_SUITE(Route_findPosition)
 
 const bool isFileName = true;
 
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(test_acc_lat)
 {
     Route route = Route(LogFiles::GPXRoutesDir + "N0704377_GenX.gpx", isFileName);
     const double percentage = 0.1;
-    BOOST_CHECK_CLOSE( route.findPosition("T").latitude() , 52.9536, percentage);
+    BOOST_CHECK_CLOSE( route.findPosition("T").latitude() , -0.00269946, percentage);
 }
 
 
