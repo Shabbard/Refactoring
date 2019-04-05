@@ -5,7 +5,7 @@
 using namespace GPS;
 
 const degrees PERCENTAGE_ACCURACY = 0.1;
-const metres GRADIENT = 5.71059; // calculated by taking the arctan of 1000/10000
+const metres GRADIENT = 5.71059; // calculated by taking the arctan of 1000/10000, these being the horizontal and vertical distances in the Gridworld
 
 /* The steepest gradient is the largest gradient by magnitude.
  * 

@@ -19,7 +19,7 @@ void GPXImport(const std::string filepath, const std::string createGPX)
     out.close();
 }
 
-BOOST_AUTO_TEST_SUITE( restingTime )
+BOOST_AUTO_TEST_SUITE( restingTime_n0747947 )
 
 const bool isFileName = true;
 
