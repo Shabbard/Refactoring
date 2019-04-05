@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE( multiple_point_route )
 // Checks comparisons are compared to the right precision
 BOOST_AUTO_TEST_CASE( two_points_close_together )
 {
-    //generateLog("twoPointsCloseTogether", GridWorldRoute("OMN", GridWorld(Earth::CliftonCampus,0.01,0)));
+    generateLog("twoPointsCloseTogether", GridWorldRoute("OMN", GridWorld(Earth::CliftonCampus,0.01,0)));
 
     Route testRoute(LogFiles::GPXRoutesDir + studID + "twoPointsCloseTogether.gpx",true,0);
     BOOST_CHECK_EQUAL(testRoute.minLongitude(), -1.18403);
