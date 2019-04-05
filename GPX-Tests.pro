@@ -70,7 +70,8 @@ SOURCES += \
     src/gpx-tests/findnameofn0665742.cpp \
     src/gpx-tests/maxlatitude_N0745180.cpp \
     src/gpx-tests/totalTime_N0751567.cpp \
-    src/gpx-tests/minElevationN0749943.cpp
+    src/gpx-tests/minElevationN0749943.cpp \
+    src/gpx-tests/MinElevation-N0751891.cpp
     
     # src/gpx-tests/maxGradientN0748944.cpp \
     # src/gpx-tests/maxLatitudeN0756079.cpp \
