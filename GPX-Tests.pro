@@ -74,7 +74,7 @@ SOURCES += \
     src/gpx-tests/minElevationN0749943.cpp \
     src/gpx-tests/minElevation-N0751891.cpp \
     src/gpx-tests/maxelevation-N0749364.cpp \
-    src/gpx-tests/restingTime-N0747947.cpp \
+    # src/gpx-tests/restingTime-N0747947.cpp \
     src/gpx-tests/MinimumElevationTests-N0749369.cpp\
     src/gpx-tests/findPositionN0704377.cpp
 
