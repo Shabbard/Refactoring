@@ -66,6 +66,7 @@ SOURCES += \
     src/gpx-tests/maxLongitudeN0732961.cpp \
     src/gpx-tests/netHeightGain-N0701387.cpp \
     src/gpx-tests/totalHeightGainN0724106.cpp \
+    src/gpx-tests/timesVisitedByNameN0753746.cpp \
     src/gpx-tests/netLength-N0731739.cpp \ 
     src/gpx-tests/minLongitudeN0735026.cpp \
     src/gpx-tests/findnameofn0665742.cpp \
