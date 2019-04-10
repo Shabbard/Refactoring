@@ -42,6 +42,7 @@ BOOST_AUTO_TEST_CASE(caseSensitive)
 BOOST_AUTO_TEST_CASE(nullParam)
 {
     BOOST_CHECK_EQUAL(route.timesVisited(""), 0);
+    BOOST_CHECK_EQUAL(route.timesVisited(NULL), 0);
 }
 
 // Check for weird characters
