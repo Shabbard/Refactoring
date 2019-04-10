@@ -6,11 +6,12 @@
 
 using namespace GPS;
 
-BOOST_AUTO_TEST_SUITE(Route_timesVisitedByName)
 
 const bool isFileName = true;
 const metres units = 10000;
 Route route = Route(LogFiles::GPXRoutesDir + "n0753746-TimesVisitedByName.gpx", isFileName);
+
+BOOST_AUTO_TEST_SUITE(Route_timesVisitedByName)
 
 // Check the whole route with no errors
 BOOST_AUTO_TEST_CASE(noErrors)
