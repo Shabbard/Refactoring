@@ -71,7 +71,7 @@ SOURCES += \
     src/gpx-tests/minLongitudeN0735026.cpp \
     src/gpx-tests/findnameofn0665742.cpp \
     src/gpx-tests/maxlatitude_N0745180.cpp \
-    src/gpx-tests/totalTime_N0751567.cpp \
+    # src/gpx-tests/totalTime_N0751567.cpp \
     src/gpx-tests/minElevationN0749943.cpp \
     src/gpx-tests/minElevation-N0751891.cpp \
     src/gpx-tests/maxelevation-N0749364.cpp \
