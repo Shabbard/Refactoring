@@ -46,13 +46,13 @@ SOURCES += \
     src/gpx-tests/findPositionN0724629.cpp \
     src/gpx-tests/findpositionn0734208.cpp \
     src/gpx-tests/maxSpeedN0737110.cpp \
-    src/gpx-tests/maxlatitude.cpp \
+    # src/gpx-tests/maxlatitude.cpp \
     src/gpx-tests/maxSpeedN0733894.cpp \
     src/gpx-tests/N0774446-TotalHeightGain.cpp \
     src/gpx-tests/maxGradient-n0756303.cpp \
     src/gpx-tests/maxspeedn0736188.cpp \
     src/gpx-tests/totalLengthTest_n0755314.cpp \
-    src/gpx-tests/netLength-N0704050.cpp\
+    # src/gpx-tests/netLength-N0704050.cpp\
     src/gpx-tests/restingTimeN0736563.cpp \
     src/gpx-tests/netHeightGain-N0679817.cpp \
     # src/gpx-tests/netHeightGain-N0675532.cpp \ 
