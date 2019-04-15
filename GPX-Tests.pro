@@ -77,8 +77,8 @@ SOURCES += \
     src/gpx-tests/maxelevation-N0749364.cpp \
     # src/gpx-tests/restingTime-N0747947.cpp \
     src/gpx-tests/MinimumElevationTests-N0749369.cpp\
-    src/gpx-tests/findPositionN0704377.cpp \
-    src/gpx-tests/totalheightgain-n0673737.cpp
+    src/gpx-tests/findPositionN0704377.cpp
+    # src/gpx-tests/totalheightgain-n0673737.cpp
 
     # src/gpx-tests/totalTimeN0774540.cpp \
     # src/gpx-tests/maxGradientN0748944.cpp \
