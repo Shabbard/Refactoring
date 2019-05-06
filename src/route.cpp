@@ -361,7 +361,6 @@ Route::Route(std::string source, bool isFileName, metres granularity)
     unsigned int numPositions;
 
 
-
     source = runThroughFile(source, isFileName);
     source = checkAndGetElementContent(source, GPXSTRING);
     source = checkAndGetElementContent(source, RTESTRING);
