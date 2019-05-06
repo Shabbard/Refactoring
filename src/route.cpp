@@ -34,7 +34,7 @@ metres Route::netLength() const
     Position firstPosition = positions[0];
     Position lastPosition = positions[positions.size() - 1];
 
-    if ( areSameLocation(firstPosition, lastPosition) )
+    if (areSameLocation(firstPosition, lastPosition))
     {
         return 0;
     }
@@ -44,28 +44,30 @@ metres Route::netLength() const
 
 metres Route::totalHeightGain() const
 {
-    assert(! positions.empty());
+    assert(!positions.empty());
 
     metres total = 0.0;
     for (unsigned int i = 1; i < numPositions(); ++i)
     {
-        metres deltaV = positions[i].elevation() - positions[i-1].elevation();
-        if (deltaV > 0.0) total += deltaV; // ignore negative height differences
+        metres deltaV = positions[i].elevation() - positions[i - 1].elevation();
+        if (deltaV > 0.0)
+            total += deltaV; // ignore negative height differences
     }
     return total;
 }
 
 metres Route::netHeightGain() const
 {
-    assert(! positions.empty());
+    assert(!positions.empty());
 
     metres deltaV = positions.back().elevation() - positions.front().elevation();
-    return std::max(deltaV,0.0); // ignore negative height differences
+    return std::max(deltaV, 0.0); // ignore negative height differences
 }
 
 degrees Route::minLatitude() const
 {
-    if (positions.empty()) {
+    if (positions.empty())
+    {
         throw std::out_of_range("Cannot get the minimum latitude of an empty route");
     }
 
@@ -75,7 +77,7 @@ degrees Route::minLatitude() const
 
     for (int i = 0; i < positions.size(); i++)
     {
-        if ( (positions[i].latitude() - lowestLatitude) < epsilon)
+        if ((positions[i].latitude() - lowestLatitude) < epsilon)
         {
             lowestLatitude = positions[i].latitude();
         }
@@ -88,110 +90,113 @@ degrees Route::maxLatitude() const
 {
     degrees currentMax = positions[0].latitude();
 
-    for(int i = 0; i < positions.size(); i++){
-        if(positions[i].latitude() > currentMax)
+    for (int i = 0; i < positions.size(); i++)
+    {
+        if (positions[i].latitude() > currentMax)
             currentMax = positions[i].latitude();
     }
 
     return currentMax;
 }
 
-degrees Route::minLongitude() const     //MY FUNCTION
+degrees Route::minLongitude() const //MY FUNCTION
 {
-    assert(! positions.empty());
+    assert(!positions.empty());
 
     degrees minLon = positions.front().longitude();
-    for (const Position& pos : positions)
+    for (const Position &pos : positions)
     {
-        minLon = std::min(minLon,pos.longitude());
+        minLon = std::min(minLon, pos.longitude());
     }
     return minLon;
 }
 
 degrees Route::maxLongitude() const
 {
-    assert(! positions.empty());
+    assert(!positions.empty());
 
     degrees maxLon = positions.front().longitude();
-    for (const Position& pos : positions)
+    for (const Position &pos : positions)
     {
-        maxLon = std::max(maxLon,pos.longitude());
+        maxLon = std::max(maxLon, pos.longitude());
     }
     return maxLon;
-
 }
 
 metres Route::minElevation() const
 {
-    assert(! positions.empty());
+    assert(!positions.empty());
 
     degrees minEle = positions.front().elevation();
-    for (const Position& pos : positions)
+    for (const Position &pos : positions)
     {
-        minEle = std::min(minEle,pos.elevation());
+        minEle = std::min(minEle, pos.elevation());
     }
     return minEle;
 }
 
 metres Route::maxElevation() const
 {
-    assert(! positions.empty());
+    assert(!positions.empty());
 
     degrees maxEle = positions.front().elevation();
-    for (const Position& pos : positions)
+    for (const Position &pos : positions)
     {
-        maxEle = std::max(maxEle,pos.elevation());
+        maxEle = std::max(maxEle, pos.elevation());
     }
     return maxEle;
 }
 
 degrees Route::maxGradient() const
 {
-    assert(! positions.empty());
+    assert(!positions.empty());
 
-    if (positions.size() == 1) return 0.0;
+    if (positions.size() == 1)
+        return 0.0;
 
-    degrees maxGrad = -halfRotation/2; // minimum possible value
+    degrees maxGrad = -halfRotation / 2; // minimum possible value
     for (unsigned int i = 1; i < positions.size(); ++i)
     {
-        metres deltaH = Position::distanceBetween(positions[i],positions[i-1]);
-        metres deltaV = positions[i].elevation() - positions[i-1].elevation();
-        degrees grad = radToDeg(std::atan(deltaV/deltaH));
-        maxGrad = std::max(maxGrad,grad);
+        metres deltaH = Position::distanceBetween(positions[i], positions[i - 1]);
+        metres deltaV = positions[i].elevation() - positions[i - 1].elevation();
+        degrees grad = radToDeg(std::atan(deltaV / deltaH));
+        maxGrad = std::max(maxGrad, grad);
     }
     return maxGrad;
 }
 
 degrees Route::minGradient() const
 {
-    assert(! positions.empty());
+    assert(!positions.empty());
 
-    if (positions.size() == 1) return 0.0;
+    if (positions.size() == 1)
+        return 0.0;
 
-    degrees minGrad = halfRotation/2; // maximum possible value
+    degrees minGrad = halfRotation / 2; // maximum possible value
     for (unsigned int i = 1; i < positions.size(); ++i)
     {
-        metres deltaH = Position::distanceBetween(positions[i],positions[i-1]);
-        metres deltaV = positions[i].elevation() - positions[i-1].elevation();
-        degrees grad = radToDeg(std::atan(deltaV/deltaH));
-        minGrad = std::min(minGrad,grad);
+        metres deltaH = Position::distanceBetween(positions[i], positions[i - 1]);
+        metres deltaV = positions[i].elevation() - positions[i - 1].elevation();
+        degrees grad = radToDeg(std::atan(deltaV / deltaH));
+        minGrad = std::min(minGrad, grad);
     }
     return minGrad;
 }
 
 degrees Route::steepestGradient() const
 {
-    assert(! positions.empty());
+    assert(!positions.empty());
 
-    if (positions.size() == 1) return 0.0;
+    if (positions.size() == 1)
+        return 0.0;
 
-    degrees maxGrad = -halfRotation/2; // minimum possible value
+    degrees maxGrad = -halfRotation / 2; // minimum possible value
     for (unsigned int i = 1; i < positions.size(); ++i)
     {
-        metres deltaH = Position::distanceBetween(positions[i],positions[i-1]);
-        metres deltaV = positions[i].elevation() - positions[i-1].elevation();
-        degrees grad = radToDeg(std::atan(deltaV/deltaH));
-        maxGrad = std::max(maxGrad,std::abs(grad));
+        metres deltaH = Position::distanceBetween(positions[i], positions[i - 1]);
+        metres deltaV = positions[i].elevation() - positions[i - 1].elevation();
+        degrees grad = radToDeg(std::atan(deltaV / deltaH));
+        maxGrad = std::max(maxGrad, std::abs(grad));
     }
     return maxGrad;
 }
@@ -201,7 +206,7 @@ Position Route::operator[](unsigned int idx) const
     return positions.at(idx);
 }
 
-Position Route::findPosition(const std::string & soughtName) const
+Position Route::findPosition(const std::string &soughtName) const
 {
     auto nameIt = std::find(positionNames.begin(), positionNames.end(), soughtName);
 
@@ -211,14 +216,14 @@ Position Route::findPosition(const std::string & soughtName) const
     }
     else
     {
-        return positions[std::distance(positionNames.begin(),nameIt)];
+        return positions[std::distance(positionNames.begin(), nameIt)];
     }
 }
 
-std::string Route::findNameOf(const Position & soughtPos) const
+std::string Route::findNameOf(const Position &soughtPos) const
 {
     auto posIt = std::find_if(positions.begin(), positions.end(),
-                              [&] (const Position& pos) {return areSameLocation(pos,soughtPos);});
+                              [&](const Position &pos) { return areSameLocation(pos, soughtPos); });
 
     if (posIt == positions.end())
     {
@@ -226,31 +231,36 @@ std::string Route::findNameOf(const Position & soughtPos) const
     }
     else
     {
-        return positionNames[std::distance(positions.begin(),posIt)];
+        return positionNames[std::distance(positions.begin(), posIt)];
     }
 }
 
-unsigned int Route::timesVisited(const std::string & soughtName) const
+unsigned int Route::timesVisited(const std::string &soughtName) const
 {
     unsigned int timesVisited{0};
 
-    try{
+    try
+    {
 
         Position position = this->findPosition(soughtName);
-        for (const auto &i: positions)
-            if (areSameLocation(i, position)) timesVisited++;
-        
-    } catch(const std::out_of_range& e){}
+        for (const auto &i : positions)
+            if (areSameLocation(i, position))
+                timesVisited++;
+    }
+    catch (const std::out_of_range &e)
+    {
+    }
 
     return timesVisited;
 }
 
-unsigned int Route::timesVisited(const Position & soughtPos) const
+unsigned int Route::timesVisited(const Position &soughtPos) const
 {
     unsigned int timesVisited{0};
 
-    for (const auto &i: positions)
-        if (areSameLocation(i, soughtPos)) timesVisited++;
+    for (const auto &i : positions)
+        if (areSameLocation(i, soughtPos))
+            timesVisited++;
 
     return timesVisited;
 }
@@ -262,103 +272,191 @@ std::string Route::buildReport() const
 
 Route::Route(std::string source, bool isFileName, metres granularity)
 {
-    using namespace std;
-    using namespace XML::Parser;
-    string lat,lon,ele,name,temp,temp2;
-    metres deltaH,deltaV;
-    ostringstream oss,oss2;
-    unsigned int num;
-    this->granularity = granularity;
-    if (isFileName){
-        ifstream fs(source);
-        if (! fs.good()) throw invalid_argument("Error opening source file '" + source + "'.");
-        oss << "Source file '" << source << "' opened okay." << endl;
-        while (fs.good()) {
-            getline(fs, temp);
-            oss2 << temp << endl;
+
+
+    ////////////////////////////////////////////////////////////////
+    //                checkAndGetElementContent()                 //
+    // Function to check that each element is in the file         //
+    ////////////////////////////////////////////////////////////////
+
+
+    auto checkAndGetElementContent = [](std::string source, std::string type)
+    {
+        if (!XML::Parser::elementExists(source, type))  { throw std::domain_error("No " + type + " element."); }
+        return XML::Parser::getElementContent(XML::Parser::getElement(source, type));        
+    };
+    
+
+    ////////////////////////////////////////////////////////
+    //           checkAndGetElementAttribute()            //
+    // Function to check that each element is in the file //
+    ////////////////////////////////////////////////////////
+
+
+    auto checkAndGetElementAttribute = [](std::string source, std::string type)
+    {
+        if (!XML::Parser::attributeExists(source, type)) { throw std::domain_error("No " + type + " attribute."); }
+        return XML::Parser::getElementAttribute(source, type); 
+    };
+
+    ///////////////////////////////////////////////////////
+    //                  runThroughFile()                 //
+    // Function to get the stream of strings from a file //
+    ///////////////////////////////////////////////////////
+
+    auto runThroughFile = [](std::string source, bool isFileName)
+    {
+        std::ostringstream ossPrivate, ossToReturn;
+        if (isFileName)
+        {
+            std::ifstream fs(source);
+            if (!fs.good())
+                throw std::invalid_argument("Error opening source file '" + source + "'.");
+            ossPrivate << "Source file '" << source << "' opened okay." << std::endl;
+            while (fs.good())
+            {
+                std::string fileLine;
+                getline(fs, fileLine);
+                ossToReturn << fileLine << std::endl;
+            }
+            //source = oss2.str();     
+            return ossToReturn.str(); 
         }
-        source = oss2.str();
-    }
-    if (! elementExists(source,"gpx")) throw domain_error("No 'gpx' element.");
-    temp = getElement(source, "gpx");
-    source = getElementContent(temp);
-    if (! elementExists(source,"rte")) throw domain_error("No 'rte' element.");
-    temp = getElement(source, "rte");
-    source = getElementContent(temp);
-    if (elementExists(source, "name")) {
-        temp = getAndEraseElement(source, "name");
-        routeName = getElementContent(temp);
-        oss << "Route name is: " << routeName << endl;
-    }
-    num = 0;
-    if (! elementExists(source,"rtept")) throw domain_error("No 'rtept' element.");
-    temp = getAndEraseElement(source, "rtept");
-    if (! attributeExists(temp,"lat")) throw domain_error("No 'lat' attribute.");
-    if (! attributeExists(temp,"lon")) throw domain_error("No 'lon' attribute.");
-    lat = getElementAttribute(temp, "lat");
-    lon = getElementAttribute(temp, "lon");
-    temp = getElementContent(temp);
-    if (elementExists(temp, "ele")) {
-        temp2 = getElement(temp, "ele");
-        ele = getElementContent(temp2);
-        Position startPos = Position(lat,lon,ele);
-        positions.push_back(startPos);
-        oss << "Position added: " << startPos.toString() << endl;
-        ++num;
-    } else {
-        Position startPos = Position(lat,lon);
-        positions.push_back(startPos);
-        oss << "Position added: " << startPos.toString() << endl;
-        ++num;
-    }
-    if (elementExists(temp,"name")) {
-        temp2 = getElement(temp,"name");
-        name = getElementContent(temp2);
-    }
-    positionNames.push_back(name);
+    };
+
+
+    ////////////////////////
+    // Constant variables //
+    ////////////////////////
+
+
+    const std::string GPXSTRING = "gpx";
+    const std::string RTESTRING = "rte";
+    const std::string NAMESTRING = "name";
+    const std::string RTEPTSTRING = "rtept";
+    const std::string LATSTRING = "lat";
+    const std::string LONSTRING = "lon";
+    const std::string ELESTRING = "ele";
+
+    //////////////////////////////////////////////////
+    // Variables that need to be changed throughout //
+    //////////////////////////////////////////////////
+
+
+    std::string lat, lon, ele, name, temp, temp2;
+    metres deltaH, deltaV;
+    
+    setGranularity(granularity);
+
+    
+
     Position prevPos = positions.back(), nextPos = positions.back();
-    while (elementExists(source, "rtept")) {
-        temp = getAndEraseElement(source, "rtept");
-        if (! attributeExists(temp,"lat")) throw domain_error("No 'lat' attribute.");
-        if (! attributeExists(temp,"lon")) throw domain_error("No 'lon' attribute.");
-        lat = getElementAttribute(temp, "lat");
-        lon = getElementAttribute(temp, "lon");
-        temp = getElementContent(temp);
-        if (elementExists(temp, "ele")) {
-            temp2 = getElement(temp, "ele");
-            ele = getElementContent(temp2);
-            nextPos = Position(lat,lon,ele);
-        } else nextPos = Position(lat,lon);
-        if (areSameLocation(nextPos, prevPos)) oss << "Position ignored: " << nextPos.toString() << endl;
-        else {
-            if (elementExists(temp,"name")) {
-                temp2 = getElement(temp,"name");
-                name = getElementContent(temp2);
-            } else name = ""; // Fixed bug by adding this.
-            positions.push_back(nextPos);
-            positionNames.push_back(name);
-            oss << "Position added: " << nextPos.toString() << endl;
-            ++num;
-            prevPos = nextPos;
+    std::ostringstream stringStream;
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    // numPositions is incremented to show updated position throughout the function //
+    //////////////////////////////////////////////////////////////////////////////////
+
+    unsigned int numPositions;
+
+
+
+    source = runThroughFile(source, isFileName);
+    source = checkAndGetElementContent(source, GPXSTRING);
+    source = checkAndGetElementContent(source, RTESTRING);
+
+    if (XML::Parser::elementExists(source, NAMESTRING)) 
+    {    
+        routeName = XML::Parser::getElementContent(XML::Parser::getAndEraseElement(source, NAMESTRING));
+        stringStream << "Route name is: " << routeName << std::endl;
+    }
+
+    if (!XML::Parser::elementExists(source, RTEPTSTRING)) { throw std::domain_error("No 'rtept' element."); }
+
+    numPositions = 0;
+    
+    while (XML::Parser::elementExists(source, RTEPTSTRING))
+    {
+        std::string routePoint = XML::Parser::getAndEraseElement(source, RTEPTSTRING);
+        lat = checkAndGetElementAttribute(routePoint, LATSTRING);
+        lon = checkAndGetElementAttribute(routePoint, LONSTRING);
+        
+        routePoint = XML::Parser::getElementContent(routePoint);
+
+        if (XML::Parser::elementExists(routePoint, ELESTRING)) { ele = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, ELESTRING)); }
+        else { ele = "0"; /* default no elevation */ }
+
+        if (areSameLocation(nextPos, prevPos)) stringStream << "Position ignored: " << nextPos.toString() << std::endl;
+
+        if (positions.size() > 0)
+        {
+            Position startPos = Position(lat, lon, ele);
+            stringStream << "Position added: " << startPos.toString() << std::endl;
+            positions.push_back(startPos);   
+            prevPos = positions.back(), nextPos = positions.back();
+        }
+
+        ++numPositions;
+
+        if (XML::Parser::elementExists(routePoint, NAMESTRING)) { name = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, NAMESTRING)); }
+        
+        positionNames.push_back(name);
+
+        while (XML::Parser::elementExists(source, "rtept")) 
+        {
+            temp = XML::Parser::getAndEraseElement(source, "rtept");
+            if (! XML::Parser::attributeExists(temp,"lat")) throw std::domain_error("No 'lat' attribute.");
+            if (! XML::Parser::attributeExists(temp,"lon")) throw std::domain_error("No 'lon' attribute.");
+            lat = XML::Parser::getElementAttribute(temp, "lat");
+            lon = XML::Parser::getElementAttribute(temp, "lon");
+            temp = XML::Parser::getElementContent(temp);
+            if (XML::Parser::elementExists(temp, "ele")) {
+                temp2 = XML::Parser::getElement(temp, "ele");
+                ele = XML::Parser::getElementContent(temp2);
+                nextPos = Position(lat,lon,ele);
+            } else nextPos = Position(lat,lon);
+            if (areSameLocation(nextPos, prevPos)) stringStream << "Position ignored: " << nextPos.toString() << std::endl;
+            else {
+                if (XML::Parser::elementExists(temp,"name")) 
+                {
+                    temp2 = XML::Parser::getElement(temp,"name");
+                    name = XML::Parser::getElementContent(temp2);
+                } 
+                else name = ""; // Fixed bug by adding this.
+                positions.push_back(nextPos);
+                positionNames.push_back(name);
+                stringStream << "Position added: " << nextPos.toString() << std::endl;
+                ++numPositions;
+                prevPos = nextPos;
+            }
         }
     }
-    oss << num << " positions added." << endl;
+    
+
+    stringStream << numPositions << " positions added." << std::endl;
+
     routeLength = 0;
-    for (unsigned int i = 1; i < num; ++i ) {
-        deltaH = Position::distanceBetween(positions[i-1], positions[i]);
-        deltaV = positions[i-1].elevation() - positions[i].elevation();
-        routeLength += sqrt(pow(deltaH,2) + pow(deltaV,2));
+
+    for (unsigned int i = 1; i < numPositions; ++i)
+    {
+        deltaH = Position::distanceBetween(positions[i - 1], positions[i]);
+        deltaV = positions[i - 1].elevation() - positions[i].elevation();
+        routeLength += sqrt(pow(deltaH, 2) + pow(deltaV, 2));
     }
-    report = oss.str();
+    
+    report = stringStream.str();
+    
 }
 
 void Route::setGranularity(metres granularity)
 {
-    bool implemented = false;
+    bool implemented = true;
     assert(implemented);
+    this->granularity = granularity;
 }
 
-bool Route::areSameLocation(const Position & p1, const Position & p2) const
+bool Route::areSameLocation(const Position &p1, const Position &p2) const
 {
-    return (Position::distanceBetween(p1,p2) < granularity);
+    return (Position::distanceBetween(p1, p2) < granularity);
 }
