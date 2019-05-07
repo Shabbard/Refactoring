@@ -92,112 +92,110 @@ speed Track::maxRateOfDescent() const
 
 Track::Track(std::string source, bool isFileName, metres granularity)
 {
-    using namespace std;
-    using namespace XML::Parser;
-    string mergedTrkSegs,trkseg,lat,lon,ele,name,time,temp,temp2;
+    std::string mergedTrkSegs,trkseg,lat,lon,ele,name,time,temp,temp2;
     metres deltaH,deltaV;
     seconds startTime, currentTime, timeElapsed;
-    ostringstream oss,oss2;
+    std::ostringstream oss,oss2;
     unsigned int num;
     this->granularity = granularity;
     if (isFileName) {
-        ifstream fs(source);
-        if (! fs.good()) throw invalid_argument("Error opening source file '" + source + "'.");
-        oss << "Source file '" << source << "' opened okay." << endl;
+        std::ifstream fs(source);
+        if (! fs.good()) throw std::invalid_argument("Error opening source file '" + source + "'.");
+        oss << "Source file '" << source << "' opened okay." << std::endl;
         while (fs.good()) {
             getline(fs, temp);
-            oss2 << temp << endl;
+            oss2 << temp << std::endl;
         }
         source = oss2.str();
     }
-    if (! elementExists(source,"gpx")) throw domain_error("No 'gpx' element.");
-    temp = getElement(source, "gpx");
-    source = getElementContent(temp);
-    if (! elementExists(source,"trk")) throw domain_error("No 'trk' element.");
-    temp = getElement(source, "trk");
-    source = getElementContent(temp);
-    if (elementExists(source, "name")) {
-        temp = getAndEraseElement(source, "name");
-        routeName = getElementContent(temp);
-        oss << "Track name is: " << routeName << endl;
+    if (! XML::Parser::elementExists(source,"gpx")) throw std::domain_error("No 'gpx' element.");
+    temp = XML::Parser::getElement(source, "gpx");
+    source = XML::Parser::getElementContent(temp);
+    if (! XML::Parser::elementExists(source,"trk")) throw std::domain_error("No 'trk' element.");
+    temp = XML::Parser::getElement(source, "trk");
+    source = XML::Parser::getElementContent(temp);
+    if (XML::Parser::elementExists(source, "name")) {
+        temp = XML::Parser::getAndEraseElement(source, "name");
+        routeName = XML::Parser::getElementContent(temp);
+        oss << "Track name is: " << routeName << std::endl;
     }
-    while (elementExists(source, "trkseg")) {
-        temp = getAndEraseElement(source, "trkseg");
-        trkseg = getElementContent(temp);
-        getAndEraseElement(trkseg, "name");
+    while (XML::Parser::elementExists(source, "trkseg")) {
+        temp = XML::Parser::getAndEraseElement(source, "trkseg");
+        trkseg = XML::Parser::getElementContent(temp);
+        XML::Parser::getAndEraseElement(trkseg, "name");
         mergedTrkSegs += trkseg;
     }
     if (! mergedTrkSegs.empty()) source = mergedTrkSegs;
     num = 0;
-    if (! elementExists(source,"trkpt")) throw domain_error("No 'trkpt' element.");
-    temp = getAndEraseElement(source, "trkpt");
-    if (! attributeExists(temp,"lat")) throw domain_error("No 'lat' attribute.");
-    if (! attributeExists(temp,"lon")) throw domain_error("No 'lon' attribute.");
-    lat = getElementAttribute(temp, "lat");
-    lon = getElementAttribute(temp, "lon");
-    temp = getElementContent(temp);
-    if (elementExists(temp, "ele")) {
-        temp2 = getElement(temp, "ele");
-        ele = getElementContent(temp2);
+    if (! XML::Parser::elementExists(source,"trkpt")) throw std::domain_error("No 'trkpt' element.");
+    temp = XML::Parser::getAndEraseElement(source, "trkpt");
+    if (! XML::Parser::attributeExists(temp,"lat")) throw std::domain_error("No 'lat' attribute.");
+    if (! XML::Parser::attributeExists(temp,"lon")) throw std::domain_error("No 'lon' attribute.");
+    lat = XML::Parser::getElementAttribute(temp, "lat");
+    lon = XML::Parser::getElementAttribute(temp, "lon");
+    temp = XML::Parser::getElementContent(temp);
+    if (XML::Parser::elementExists(temp, "ele")) {
+        temp2 = XML::Parser::getElement(temp, "ele");
+        ele = XML::Parser::getElementContent(temp2);
         Position startPos = Position(lat,lon,ele);
         positions.push_back(startPos);
-        oss << "Start position added: " << startPos.toString() << endl;
+        oss << "Start position added: " << startPos.toString() << std::endl;
         ++num;
     } else {
         Position startPos = Position(lat,lon);
         positions.push_back(startPos);
-        oss << "Start position added: " << startPos.toString() << endl;
+        oss << "Start position added: " << startPos.toString() << std::endl;
         ++num;
     }
-    if (elementExists(temp,"name")) {
-        temp2 = getElement(temp,"name");
-        name = getElementContent(temp2);
+    if (XML::Parser::elementExists(temp,"name")) {
+        temp2 = XML::Parser::getElement(temp,"name");
+        name = XML::Parser::getElementContent(temp2);
     }
     positionNames.push_back(name);
     arrived.push_back(0);
     departed.push_back(0);
-    if (! elementExists(temp,"time")) throw domain_error("No 'time' element.");
-    temp2 = getElement(temp,"time");
-    time = getElementContent(temp2);
+    if (! XML::Parser::elementExists(temp,"time")) throw std::domain_error("No 'time' element.");
+    temp2 = XML::Parser::getElement(temp,"time");
+    time = XML::Parser::getElementContent(temp2);
     startTime = currentTime = stringToTime(time);
     Position prevPos = positions.back(), nextPos = positions.back();
-    while (elementExists(source, "trkpt")) {
-        temp = getAndEraseElement(source, "trkpt");
-        if (! attributeExists(temp,"lat")) throw domain_error("No 'lat' attribute.");
-        if (! attributeExists(temp,"lon")) throw domain_error("No 'lon' attribute.");
-        lat = getElementAttribute(temp, "lat");
-        lon = getElementAttribute(temp, "lon");
-        temp = getElementContent(temp);
-        if (elementExists(temp, "ele")) {
-            temp2 = getElement(temp, "ele");
-            ele = getElementContent(temp2);
+    while (XML::Parser::elementExists(source, "trkpt")) {
+        temp = XML::Parser::getAndEraseElement(source, "trkpt");
+        if (! XML::Parser::attributeExists(temp,"lat")) throw std::domain_error("No 'lat' attribute.");
+        if (! XML::Parser::attributeExists(temp,"lon")) throw std::domain_error("No 'lon' attribute.");
+        lat = XML::Parser::getElementAttribute(temp, "lat");
+        lon = XML::Parser::getElementAttribute(temp, "lon");
+        temp = XML::Parser::getElementContent(temp);
+        if (XML::Parser::elementExists(temp, "ele")) {
+            temp2 = XML::Parser::getElement(temp, "ele");
+            ele = XML::Parser::getElementContent(temp2);
             nextPos = Position(lat,lon,ele);
         } else nextPos = Position(lat,lon);
-        if (! elementExists(temp,"time")) throw domain_error("No 'time' element.");
-        temp2 = getElement(temp,"time");
-        time = getElementContent(temp2);
+        if (! XML::Parser::elementExists(temp,"time")) throw std::domain_error("No 'time' element.");
+        temp2 = XML::Parser::getElement(temp,"time");
+        time = XML::Parser::getElementContent(temp2);
         currentTime = stringToTime(time);
         if (areSameLocation(nextPos, prevPos)) {
             // If we're still at the same location, then we haven't departed yet.
             departed.back() = currentTime - startTime;
-            oss << "Position ignored: " << nextPos.toString() << endl;
+            oss << "Position ignored: " << nextPos.toString() << std::endl;
         } else {
-            if (elementExists(temp,"name")) {
-                temp2 = getElement(temp,"name");
-                name = getElementContent(temp2);
+            if (XML::Parser::elementExists(temp,"name")) {
+                temp2 = XML::Parser::getElement(temp,"name");
+                name = XML::Parser::getElementContent(temp2);
             } else name = ""; // Fixed bug by adding this.
             positions.push_back(nextPos);
             positionNames.push_back(name);
             timeElapsed = currentTime - startTime;
             arrived.push_back(timeElapsed);
             departed.push_back(timeElapsed);
-            oss << "Position added: " << nextPos.toString() << endl;
-            oss << " at time: " << to_string(timeElapsed) << endl;
+            oss << "Position added: " << nextPos.toString() << std::endl;
+            oss << " at time: " << std::to_string(timeElapsed) << std::endl;
             ++num;
             prevPos = nextPos;
         }
     }
-    oss << num << " positions added." << endl;
+    oss << num << " positions added." << std::endl;
     routeLength = 0;
     for (unsigned int i = 1; i < num; ++i ) {
         deltaH = Position::distanceBetween(positions[i-1], positions[i]);

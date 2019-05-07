@@ -322,6 +322,7 @@ Route::Route(std::string source, bool isFileName, metres granularity)
             //source = oss2.str();     
             return ossToReturn.str(); 
         }
+        return source;
     };
 
 
@@ -388,26 +389,32 @@ Route::Route(std::string source, bool isFileName, metres granularity)
 
         if (areSameLocation(nextPos, prevPos)) stringStream << "Position ignored: " << nextPos.toString() << std::endl;
 
-        if (positions.size() > 0)
+        if (!positions.empty())
         {
             Position startPos = Position(lat, lon, ele);
             stringStream << "Position added: " << startPos.toString() << std::endl;
             positions.push_back(startPos);   
-            prevPos = positions.back(), nextPos = positions.back();
+            prevPos = positions.back();
+            nextPos = positions.back();
+        }
+        else {
+            Position startPos = Position(lat,lon);
+            positions.push_back(startPos);
+            stringStream << "Position added: " << startPos.toString() << std::endl;
+            //++numPositions;
         }
 
-        ++numPositions;
+
 
         if (XML::Parser::elementExists(routePoint, NAMESTRING)) { name = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, NAMESTRING)); }
         
         positionNames.push_back(name);
-
-        while (XML::Parser::elementExists(source, "rtept")) 
+        while (XML::Parser::elementExists(source, RTEPTSTRING))
         {
-            temp = XML::Parser::getAndEraseElement(source, "rtept");
+            temp = XML::Parser::getAndEraseElement(source, RTEPTSTRING);
             if (! XML::Parser::attributeExists(temp,"lat")) throw std::domain_error("No 'lat' attribute.");
             if (! XML::Parser::attributeExists(temp,"lon")) throw std::domain_error("No 'lon' attribute.");
-            lat = XML::Parser::getElementAttribute(temp, "lat");
+               lat = XML::Parser::getElementAttribute(temp, "lat");
             lon = XML::Parser::getElementAttribute(temp, "lon");
             temp = XML::Parser::getElementContent(temp);
             if (XML::Parser::elementExists(temp, "ele")) {
