@@ -1,4 +1,4 @@
-#include <sstream>
+    `#include <sstream>
 #include <fstream>
 #include <iostream>
 #include <cassert>
@@ -130,6 +130,10 @@ Track::Track(std::string source, bool isFileName, metres granularity)
         return XML::Parser::getElementAttribute(source, type); 
     };
 
+    ///////////////////////////////////////////////////////
+    //               checkAndGetElement()                 //
+    //      returns the element that is requested        //
+    ///////////////////////////////////////////////////////
 
     auto checkAndGetElement = [](std::string source, std::string type)
     {
