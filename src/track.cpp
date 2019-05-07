@@ -89,6 +89,20 @@ speed Track::maxRateOfDescent() const
     }
     return ms;
 }
+void checkElementExistsThrow(std::string source, std::string type)
+{
+    if (! XML::Parser::elementExists(source,type)) throw std::domain_error("No " + type + " element.");
+}
+void checkAttributeExistsThrow(std::string source, std::string type)
+{
+    if (! XML::Parser::attributeExists(source,type)) throw std::domain_error("No " + type + " element.");
+}
+
+bool checkElementExistsBool(std::string source, std::string type)
+{
+    if (! XML::Parser::attributeExists(source,type))    {return false;}
+    return true;
+}
 
 Track::Track(std::string source, bool isFileName, metres granularity)
 {
@@ -116,6 +130,12 @@ Track::Track(std::string source, bool isFileName, metres granularity)
         return XML::Parser::getElementAttribute(source, type); 
     };
 
+
+    auto checkAndGetElement = [](std::string source, std::string type)
+    {
+        if (!XML::Parser::elementExists(source, type)) { throw std::domain_error("No " + type + " attribute."); }
+        return XML::Parser::getElement(source, type); 
+    };
     ///////////////////////////////////////////////////////
     //                  runThroughFile()                 //
     // Function to get the stream of strings from a file //
@@ -154,7 +174,7 @@ Track::Track(std::string source, bool isFileName, metres granularity)
     const std::string GPXSTRING = "gpx";
     const std::string RTKSTRING = "trk";
     const std::string TRKSEGSTRING = "trkseg";
-    const std::string TRKPTSTIRNG = "trkpt";
+    const std::string TRKPTSTRING = "trkpt";
     const std::string NAMESTRING = "name";
     const std::string LATSTRING = "lat";
     const std::string LONSTRING = "lon";
@@ -185,11 +205,16 @@ Track::Track(std::string source, bool isFileName, metres granularity)
     source = checkAndGetElementContent(source, RTKSTRING);
 
 
-    if (XML::Parser::elementExists(source, NAMESTRING)) {
-        routeName = checkAndGetElementContent(checkAndEraseElement(source,NAMESTRING), NAMESTRING);
+    // if (XML::Parser::elementExists(source, NAMESTRING)) {
+    //     routeName = checkAndGetElementContent(checkAndEraseElement(source,NAMESTRING), NAMESTRING);
+    //     stringStream << "Track name is: " << routeName << std::endl;
+    // }
+
+    if (XML::Parser::elementExists(source, "name")) {
+        temp = XML::Parser::getAndEraseElement(source, "name");
+        routeName = XML::Parser::getElementContent(temp);
         stringStream << "Track name is: " << routeName << std::endl;
     }
-
     while (XML::Parser::elementExists(source, "trkseg")) {
         
         trkseg = XML::Parser::getElementContent(XML::Parser::getAndEraseElement(source, "trkseg"));
@@ -203,18 +228,24 @@ Track::Track(std::string source, bool isFileName, metres granularity)
     numOfPosition = 0;
 
     
-    if (! XML::Parser::elementExists(source,"trkpt")) throw std::domain_error("No 'trkpt' element.");
-    temp = XML::Parser::getAndEraseElement(source, "trkpt");
-    if (! XML::Parser::attributeExists(temp,"lat")) throw std::domain_error("No 'lat' attribute.");
-    if (! XML::Parser::attributeExists(temp,"lon")) throw std::domain_error("No 'lon' attribute.");
+    // if (! XML::Parser::elementExists(source,"trkpt")) throw std::domain_error("No 'trkpt' element.");
+    // temp = XML::Parser::getAndEraseElement(source, "trkpt");
+    // if (! XML::Parser::attributeExists(temp,"lat")) throw std::domain_error("No 'lat' attribute.");
+    // if (! XML::Parser::attributeExists(temp,"lon")) throw std::domain_error("No 'lon' attribute.");
 
+    checkElementExistsThrow(source, TRKPTSTRING);
+    temp = checkAndEraseElement(source, TRKPTSTRING);
+    checkAttributeExistsThrow(checkAndEraseElement(source, TRKPTSTRING), LATSTRING);
+    checkAttributeExistsThrow(checkAndEraseElement(source, TRKPTSTRING), LONSTRING);
 
     lat = checkAndGetElementAttribute(temp,LATSTRING);
-    lat = XML::Parser::getElementAttribute(temp, "lat");
-    lon = XML::Parser::getElementAttribute(temp, "lon");
+    lon = checkAndGetElementAttribute(temp, LONSTRING);
     temp = XML::Parser::getElementContent(temp);
-    if (XML::Parser::elementExists(temp, "ele")) {
+
+
+    if (checkElementExistsBool(temp, ELESTRING)) {
         temp2 = XML::Parser::getElement(temp, "ele");
+        //ele = XML::Parser::getElementContent(checkAndGetElement(temp,ELESTRING));
         ele = XML::Parser::getElementContent(temp2);
         Position startPos = Position(lat,lon,ele);
         positions.push_back(startPos);
