@@ -224,6 +224,15 @@ Track::Track(std::string source, bool isFileName, metres granularity)
         routeName = checkAndEraseContent(source, NAMESTRING);
         stringStream << "Track name is: " << routeName << std::endl;
     }
+
+    if (checkElementExistsBool(source,NAMESTRING))
+    {
+        std::cout<<"TRUE"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"FALSE"<<std::endl;
+    }
     while (XML::Parser::elementExists(source, TRKSEGSTRING)) {
         
         trackPoint = XML::Parser::getAndEraseElement(source, TRKSEGSTRING);
