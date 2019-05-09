@@ -299,31 +299,8 @@ Route::Route(std::string source, bool isFileName, metres granularity)
         return XML::Parser::getElementAttribute(source, type); 
     };
 
-    ///////////////////////////////////////////////////////
-    //                  runThroughFile()                 //
-    // Function to get the stream of strings from a file //
-    ///////////////////////////////////////////////////////
-
-    auto runThroughFile = [](std::string source, bool isFileName)
-    {
-        std::ostringstream ossPrivate, ossToReturn;
-        if (isFileName)
-        {
-            std::ifstream fs(source);
-            if (!fs.good())
-                throw std::invalid_argument("Error opening source file '" + source + "'.");
-            ossPrivate << "Source file '" << source << "' opened okay." << std::endl;
-            while (fs.good())
-            {
-                std::string fileLine;
-                getline(fs, fileLine);
-                ossToReturn << fileLine << std::endl;
-            }
-            //source = oss2.str();     
-            return ossToReturn.str(); 
-        }
-        return source;
-    };
+  
+    
 
     ////////////////////////
     // Constant variables //
@@ -343,13 +320,39 @@ Route::Route(std::string source, bool isFileName, metres granularity)
     //////////////////////////////////////////////////
 
 
-    std::string lat, lon, ele, routeName, routePoint; 
+    std::string lat, lon, ele, pointName, routePoint; 
  
     
     setGranularity(granularity);
 
     Position prevPos = Position(0,0,0), nextPos = Position(0,0,0);
     std::ostringstream stringStream;
+
+    ///////////////////////////////////////////////////////
+    //                  runThroughFile()                 //
+    // Function to get the stream of strings from a file //
+    ///////////////////////////////////////////////////////
+
+    auto runThroughFile = [&stringStream](std::string source, bool isFileName)
+    {
+        std::ostringstream ossToReturn;
+        if (isFileName)
+        {
+            std::ifstream fs(source);
+            if (!fs.good())
+                throw std::invalid_argument("Error opening source file '" + source + "'.");
+            stringStream << "Source file '" << source << "' opened okay." << std::endl;
+            while (fs.good())
+            {
+                std::string fileLine;
+                getline(fs, fileLine);
+                ossToReturn << fileLine << std::endl;
+            }
+            //source = oss2.str();     
+            return ossToReturn.str(); 
+        }
+        return source;
+    };
 
 
     //////////////////////////////////////////////////////////////////////////////////
@@ -388,8 +391,8 @@ Route::Route(std::string source, bool isFileName, metres granularity)
             positions.push_back(startPos); 
 
             stringStream << "Position added: " << startPos.toString() << std::endl;
-            if (XML::Parser::elementExists(routePoint, NAMESTRING)) { routeName = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, NAMESTRING)); }
-            positionNames.push_back(routeName);
+            if (XML::Parser::elementExists(routePoint, NAMESTRING)) { pointName = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, NAMESTRING)); }
+            positionNames.push_back(pointName);
 
             prevPos = positions.back(), nextPos = positions.back();
             
@@ -403,8 +406,8 @@ Route::Route(std::string source, bool isFileName, metres granularity)
             else 
             { 
                 positions.push_back(nextPos); 
-                if (XML::Parser::elementExists(routePoint, NAMESTRING)) { routeName = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, NAMESTRING)); }
-                positionNames.push_back(routeName);
+                if (XML::Parser::elementExists(routePoint, NAMESTRING)) { pointName = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, NAMESTRING)); }
+                positionNames.push_back(pointName);
                 stringStream << "Position added: " << nextPos.toString() << std::endl;
                 ++numPositions;
                 prevPos = nextPos;
