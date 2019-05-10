@@ -1,4 +1,3 @@
-
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -359,8 +358,6 @@ Route::Route(std::string source, bool isFileName, metres granularity)
     // numPositions is incremented to show updated position throughout the function //
     ////////////////////////////////////////////////////////////////////////////////// 
 
-    unsigned int numPositions = 0;
-
     source = runThroughFile(source, isFileName);
     source = checkAndGetElementContent(source, GPXSTRING);
     source = checkAndGetElementContent(source, RTESTRING);
@@ -384,44 +381,24 @@ Route::Route(std::string source, bool isFileName, metres granularity)
         if (XML::Parser::elementExists(routePoint, ELESTRING)) { ele = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, ELESTRING)); }
         else { ele = "0"; /* default no elevation */ }
         
+        Position CurrentPos = Position(lat, lon, ele);
 
-        if (positions.empty()) 
-        { 
-            Position startPos = Position(lat, lon, ele);
-            positions.push_back(startPos); 
-
-            stringStream << "Position added: " << startPos.toString() << std::endl;
+        if (areSameLocation(CurrentPos, positions.back())) { stringStream << "Position ignored: " << CurrentPos.toString() << std::endl; }
+        else
+        {
+            positions.push_back(CurrentPos); 
+            stringStream << "Position added: " << CurrentPos.toString() << std::endl;
             if (XML::Parser::elementExists(routePoint, NAMESTRING)) { pointName = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, NAMESTRING)); }
             positionNames.push_back(pointName);
-
-            prevPos = positions.back(), nextPos = positions.back();
-            
-            ++numPositions;
         }
-        else 
-        {
-            Position nextPos = Position(lat, lon, ele);
-            
-            if (areSameLocation(nextPos, prevPos)) { stringStream << "Position ignored: " << nextPos.toString() << std::endl; }
-            else 
-            { 
-                positions.push_back(nextPos); 
-                if (XML::Parser::elementExists(routePoint, NAMESTRING)) { pointName = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, NAMESTRING)); }
-                positionNames.push_back(pointName);
-                stringStream << "Position added: " << nextPos.toString() << std::endl;
-                ++numPositions;
-                prevPos = nextPos;
-            }
-        }    
     }
-    
 
-    stringStream << numPositions << " positions added." << std::endl;
+    stringStream << positions.size() + 1 << " positions added." << std::endl;
 
     routeLength = 0;
     metres deltaH = 0, deltaV = 0;
 
-    for (unsigned int i = 1; i < numPositions; ++i)
+    for (unsigned int i = 0; i < positions.size(); ++i)
     {
         deltaH = Position::distanceBetween(positions[i - 1], positions[i]);
         deltaV = positions[i - 1].elevation() - positions[i].elevation();
@@ -429,7 +406,6 @@ Route::Route(std::string source, bool isFileName, metres granularity)
     }
     
     report = stringStream.str();
-    
 }
 
 void Route::setGranularity(metres granularity)
