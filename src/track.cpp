@@ -109,34 +109,6 @@ bool checkElementExistsBool(std::string source, std::string type)
 
 Track::Track(std::string source, bool isFileName, metres granularity)
 {
-
-    ////////////////////////////////////////////////////////////////
-    //                checkAndGetElementContent()                 //
-    // Function to check that each element is in the file         //
-    ////////////////////////////////////////////////////////////////
-
-    auto checkAndGetElementContent = [](std::string source, std::string type)
-    {
-        if (!XML::Parser::elementExists(source, type))  { throw std::domain_error("No " + type + " element."); } // accepts the source and checks if the element exits, throws an error otherwise
-        return XML::Parser::getElementContent(XML::Parser::getElement(source, type)); // if the element exists then return its content
-    };
-
-    auto checkAndEraseContent = [](std::string source, std::string type)
-    {
-        return XML::Parser::getElementContent(XML::Parser::getAndEraseElement(source,type)); // gets the element content and erases it from the source afterwards
-    };
-
-    ////////////////////////////////////////////////////////
-    //           checkAndGetElementAttribute()            //
-    // Function to check that each element is in the file //
-    ////////////////////////////////////////////////////////
-
-    auto checkAndGetElementAttribute = [](std::string source, std::string type)
-    {
-        if (!XML::Parser::attributeExists(source, type)) { throw std::domain_error("No " + type + " attribute."); }
-        return XML::Parser::getElementAttribute(source, type); 
-    };
-    
     ////////////////////////
     // Constant variables //
     ////////////////////////
@@ -163,46 +135,26 @@ Track::Track(std::string source, bool isFileName, metres granularity)
     
     setGranularity(granularity);        // sets the granularity from a pre defined function using a pointer
 
+    ////////////////////////
+    // Computation starts //
+    ////////////////////////
 
-    ///////////////////////////////////////////////////////
-    //                  runThroughFile()                 //
-    // Function to get the stream of strings from a file //
-    ///////////////////////////////////////////////////////
-
-    auto runThroughFile = [&stringStream, source, isFileName]() // Using auto finds the correct return type. Inputs are also captured.
-    {
-        std::ostringstream ossPrivate, ossToReturn; // Creates local function stream of data to be returned to main stream
-        if (isFileName)
-        {
-            std::ifstream fs(source);
-            if (!fs.good())         // ensures that file is the correct one. If not error is thrown with the source name
-                throw std::invalid_argument("Error opening source file '" + source + "'.");
-            ossPrivate << "Source file '" << source << "' opened okay." << std::endl;       // if nothing is thrown then confirmation is added to the local stream
-            while (fs.good())
-            {
-                std::string fileLine;
-                getline(fs, fileLine);  // reads each line of the file
-                ossToReturn << fileLine << std::endl;   // each line is then added to the local stream
-            }
-        }
-        return ossToReturn.str();   // returns the local stream
-    };
-
-    source = runThroughFile();  // pulls the stream of data from the source file.
+    source = runThroughFile(source, isFileName);  // pulls the stream of data from the source file.
+    stringStream << "Source file '" << source << "' opened okay." << std::endl; 
     source = checkAndGetElementContent(source, GPXSTRING);  // checks that there is a 'gpx' string inside of source
     source = checkAndGetElementContent(source, RTKSTRING);  // checks that there is a 'rtk' string inside of source
 
     if (XML::Parser::elementExists(source, NAMESTRING))         
     {
-        routeName = checkAndEraseContent(source, NAMESTRING);
+        routeName = getAndEraseContent(source, NAMESTRING);
         stringStream << "Track name is: " << routeName << std::endl;        //  inserts the name to the stream
     }
 
     while (XML::Parser::elementExists(source, TRKSEGSTRING)) 
     {
-        trackPoint = XML::Parser::getAndEraseElement(source, TRKSEGSTRING);
-        std::string trkseg = XML::Parser::getElementContent(trackPoint);
-        XML::Parser::getAndEraseElement(trkseg, NAMESTRING);
+        trackPoint = XML::Parser::getAndEraseElement(source, TRKSEGSTRING);  // finds, sets, then deletes the found 'trkseg' string
+        std::string trkseg = XML::Parser::getElementContent(trackPoint);    // gets the content from the found 'trkseg' string
+        XML::Parser::getAndEraseElement(trkseg, NAMESTRING);       // erases the content from the currently selected name.
         mergedTrkSegs += trkseg;                                             // finds all the of 'trkseg' strings
     }
 
@@ -219,14 +171,14 @@ Track::Track(std::string source, bool isFileName, metres granularity)
         
         trackPoint = XML::Parser::getElementContent(trackPoint);    // sets trackpoint to all of the current content. Takes over source for current content
 
-        std::string ele;    // creates the elevation string to 
+        std::string ele;    // creates the elevation string to be changed
 
-        if (XML::Parser::elementExists(trackPoint, ELESTRING)) { ele = checkAndGetElementContent(trackPoint, ELESTRING); }
+        if (XML::Parser::elementExists(trackPoint, ELESTRING)) { ele = checkAndGetElementContent(trackPoint, ELESTRING); } // if there is a elevation found sets ele to it
         else { ele = "0"; } // if there is no elevation found then it defaults to 0
 
         currentTime = stringToTime(checkAndGetElementContent(trackPoint,TIMESTRING));
         
-        Position CurrentPos = Position(lat, lon, ele);
+        Position CurrentPos = Position(lat, lon, ele);  // combines the lat,lon,ele into a position element
 
         if (!positions.empty() && areSameLocation(CurrentPos, positions.back())) // if there are no positions and the positions are in the same location 
         { 
@@ -235,17 +187,17 @@ Track::Track(std::string source, bool isFileName, metres granularity)
         }
         else
         {
-            positions.push_back(CurrentPos); 
+            positions.push_back(CurrentPos); // push back the current position to the main position variable
 
-            if (XML::Parser::elementExists(trackPoint, NAMESTRING)) { trackPoint = checkAndGetElementContent(trackPoint, NAMESTRING); }
-            positionNames.push_back(trackPoint);
+            if (XML::Parser::elementExists(trackPoint, NAMESTRING)) { trackPoint = checkAndGetElementContent(trackPoint, NAMESTRING); } // checks that there is a 'name' string within trackpoint
+            positionNames.push_back(trackPoint);    // push back the name of the position
 
-            stringStream << "Position added: " << CurrentPos.toString() << std::endl;
+            stringStream << "Position added: " << CurrentPos.toString() << std::endl;   // adds the current position to the stream
 
-            timeElapsed = currentTime - startTime;
-            arrived.push_back(timeElapsed), departed.push_back(timeElapsed);
+            timeElapsed = currentTime - startTime;  // finds the time taken by taking startTime away from currentTime
+            arrived.push_back(timeElapsed), departed.push_back(timeElapsed);    // pushes back the time taken
 
-            stringStream << " at time: " << std::to_string(timeElapsed) << std::endl; 
+            stringStream << " at time: " << std::to_string(timeElapsed) << std::endl;   // adds the time taken to the stream
         }
     }
 
@@ -254,18 +206,10 @@ Track::Track(std::string source, bool isFileName, metres granularity)
     ///////////////////////////////////////////////////
     // Setting variable parameters ready for looping //
     ///////////////////////////////////////////////////
-    
-    routeLength = 0;
-    metres deltaH = 0, deltaV = 0;
-    
 
-    for (unsigned int i = 0; i < positions.size() -1; ++i)      // using the positions created throughout a route is created.
-    {
-        deltaH = Position::distanceBetween(positions[i], positions[i + 1]);
-        deltaV = positions[i + 1].elevation() - positions[i].elevation();
-        routeLength += sqrt(pow(deltaH, 2) + pow(deltaV, 2));
-    }
-    report = stringStream.str();    // switches the current string stream into a string to create the report
+    calculateRouteLength();
+
+    report = stringStream.str();    // converts the current string stream into a string to create the report
 }
 
 void Track::setGranularity(metres granularity)

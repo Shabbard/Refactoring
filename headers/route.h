@@ -108,6 +108,21 @@ namespace GPS
        * "granularity" metres apart (horizontally).
        */
       bool areSameLocation(const Position &, const Position &) const;
+
+      // opens a file and reads it into a stringstream then returns said stringstream as a string
+      std::string runThroughFile(std::string source, bool isFileName);
+
+      // checks if an element is is a string and gets its attribute if it exists, else it throws an error
+      std::string checkAndGetElementAttribute(std::string source, std::string type);
+
+      // checks if an element is is a string and gets its content if it exists, else it throws an error
+      std::string checkAndGetElementContent(std::string source, std::string type);
+
+      // gets an element of a string and returns its content whilst erasing it from the string  
+      std::string getAndEraseContent(std::string source, std::string type);
+
+      //calcualtes the route length  
+      void calculateRouteLength();
   };
 }
 

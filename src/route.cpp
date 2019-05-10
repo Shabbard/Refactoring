@@ -269,38 +269,61 @@ std::string Route::buildReport() const
     return report;
 }
 
+std::string Route::runThroughFile(std::string source, bool isFileName) // Using auto finds the correct return type. Inputs are also captured.
+{
+    std::ostringstream ossToReturn; // Creates local function stream of data to be returned to main stream
+    if (isFileName)
+    {
+        std::ifstream fs(source);
+        if (!fs.good()) // ensures that file is the correct one. If not error is thrown with the source name
+        {
+            throw std::invalid_argument("Error opening source file '" + source + "'.");
+        }      
+        while (fs.good())
+        {
+            std::string fileLine;
+            getline(fs, fileLine);  // reads each line of the file
+            ossToReturn << fileLine << std::endl;   // each line is then added to the local stream
+        }
+    }
+    return ossToReturn.str();   // returns the local stream
+};
+
+std::string Route::checkAndGetElementAttribute(std::string source, std::string type)
+{
+    if (!XML::Parser::attributeExists(source, type)) { throw std::domain_error("No " + type + " attribute."); }
+    return XML::Parser::getElementAttribute(source, type); 
+};
+
+std::string Route::checkAndGetElementContent(std::string source, std::string type)
+{
+    if (!XML::Parser::elementExists(source, type))  { throw std::domain_error("No " + type + " element."); }
+    return XML::Parser::getElementContent(XML::Parser::getElement(source, type));        
+};   
+
+std::string Route::getAndEraseContent(std::string source, std::string type)
+{
+    return XML::Parser::getElementContent(XML::Parser::getAndEraseElement(source,type)); // gets the element content and erases it from the source afterwards
+};
+
+void Route::calculateRouteLength()
+{
+    routeLength = 0;
+    metres deltaH = 0, deltaV = 0;
+
+    for (unsigned int i = 0; i < positions.size() -1; ++i)      // using the positions created throughout a route is created.
+    {
+        deltaH = Position::distanceBetween(positions[i], positions[i + 1]);
+        deltaV = positions[i + 1].elevation() - positions[i].elevation();
+        routeLength += sqrt(pow(deltaH, 2) + pow(deltaV, 2));
+    }
+}
+
 Route::Route(std::string source, bool isFileName, metres granularity)
 {
-
-
-    ////////////////////////////////////////////////////////////////
-    //                checkAndGetElementContent()                 //
-    // Function to check that each element is in the file         //
-    ////////////////////////////////////////////////////////////////
-
-
-    auto checkAndGetElementContent = [](std::string source, std::string type)
-    {
-        if (!XML::Parser::elementExists(source, type))  { throw std::domain_error("No " + type + " element."); }
-        return XML::Parser::getElementContent(XML::Parser::getElement(source, type));        
-    };   
-
-     ////////////////////////////////////////////////////////
-    //           checkAndGetElementAttribute()            //
-    // Function to check that each element is in the file //
-    ////////////////////////////////////////////////////////
-
-
-    auto checkAndGetElementAttribute = [](std::string source, std::string type)
-    {
-        if (!XML::Parser::attributeExists(source, type)) { throw std::domain_error("No " + type + " attribute."); }
-        return XML::Parser::getElementAttribute(source, type); 
-    };
-
     ////////////////////////
     // Constant variables //
     ////////////////////////
-
 
     const std::string GPXSTRING = "gpx";
     const std::string RTESTRING = "rte";
@@ -314,90 +337,62 @@ Route::Route(std::string source, bool isFileName, metres granularity)
     // Variables that need to be changed throughout //
     //////////////////////////////////////////////////
 
-
-    std::string lat, lon, ele, pointName, routePoint; 
+    std::string lat, lon, pointName, routePoint; // creates strings to be changed throughout
  
-    setGranularity(granularity);
+    setGranularity(granularity); // sets the granulatiry from a pre defineted pointer function
 
-    std::ostringstream stringStream;
+    std::ostringstream stringStream;    // creates a string stream to be updated throughout and returned to the report.
 
-    ///////////////////////////////////////////////////////
-    //                  runThroughFile()                 //
-    // Function to get the stream of strings from a file //
-    ///////////////////////////////////////////////////////
+    ////////////////////////
+    // Computation starts //
+    ////////////////////////
 
-    auto runThroughFile = [&stringStream, source, isFileName]()
-    {
-        std::ostringstream ossToReturn;
-        if (isFileName)
-        {
-            std::ifstream fs(source);
-            if (!fs.good())
-                throw std::invalid_argument("Error opening source file '" + source + "'.");
-            stringStream << "Source file '" << source << "' opened okay." << std::endl;
-            while (fs.good())
-            {
-                std::string fileLine;
-                getline(fs, fileLine);
-                ossToReturn << fileLine << std::endl;
-            }
-        }    
-        return ossToReturn.str(); 
-    };
-
-
-    //////////////////////////////////////////////////////////////////////////////////
-    // numPositions is incremented to show updated position throughout the function //
-    ////////////////////////////////////////////////////////////////////////////////// 
-
-    source = runThroughFile();
-    source = checkAndGetElementContent(source, GPXSTRING);
-    source = checkAndGetElementContent(source, RTESTRING);
+    source = runThroughFile(source, isFileName); // pulls the stream of data from the source file.
+    stringStream << "Source file '" << source << "' opened okay." << std::endl;       // if nothing is thrown then confirmation is added to the local stream
+    source = checkAndGetElementContent(source, GPXSTRING);  // checks that there is a 'gpx' string inside of source
+    source = checkAndGetElementContent(source, RTESTRING);  // checks that there is a 'rtk' string inside of source
 
     if (XML::Parser::elementExists(source, NAMESTRING)) 
     {    
-        routeName = XML::Parser::getElementContent(XML::Parser::getAndEraseElement(source, NAMESTRING));
-        stringStream << "Route name is: " << routeName << std::endl;
+        routeName = getAndEraseContent(source, NAMESTRING);
+        stringStream << "Route name is: " << routeName << std::endl;    //  inserts the name to the stream
     }
 
-    if (!XML::Parser::elementExists(source, RTEPTSTRING)) { throw std::domain_error("No 'rtept' element."); }
+    if (!XML::Parser::elementExists(source, RTEPTSTRING)) { throw std::domain_error("No 'rtept' element."); } // if can not find 'rtept' string then error is thrown
 
-    while (XML::Parser::elementExists(source, RTEPTSTRING))
+    while (XML::Parser::elementExists(source, RTEPTSTRING))  // continues to loop is there is a 'rtept' inside of source
     {
-        routePoint = XML::Parser::getAndEraseElement(source, RTEPTSTRING);
-        lat = checkAndGetElementAttribute(routePoint, LATSTRING);
-        lon = checkAndGetElementAttribute(routePoint, LONSTRING);
+        routePoint = XML::Parser::getAndEraseElement(source, RTEPTSTRING); // sets routePoint the the 'rtept'
+        lat = checkAndGetElementAttribute(routePoint, LATSTRING);   // sets lat to the 'lat'
+        lon = checkAndGetElementAttribute(routePoint, LONSTRING);   // sets lon to the 'lon'
         
-        routePoint = XML::Parser::getElementContent(routePoint);
+        routePoint = XML::Parser::getElementContent(routePoint);    // sets routepoint to all the current content. Takes over source as a temp
 
-        if (XML::Parser::elementExists(routePoint, ELESTRING)) { ele = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, ELESTRING)); }
-        else { ele = "0"; /* default no elevation */ }
+        std::string ele;    // creates the elevation to be changed 
+        if (XML::Parser::elementExists(routePoint, ELESTRING)) { ele = checkAndGetElementContent(routePoint, ELESTRING); }    // if there is a evevation sets ele to it
+        else { ele = "0"; } // if there is no elevation found then it defaults to 0
         
-        Position CurrentPos = Position(lat, lon, ele);
+        Position CurrentPos = Position(lat, lon, ele);    // combines the lat,lon,ele into a position element
 
         if (!positions.empty() && areSameLocation(CurrentPos, positions.back())) { stringStream << "Position ignored: " << CurrentPos.toString() << std::endl; }
         else
         {
-            positions.push_back(CurrentPos); 
-            stringStream << "Position added: " << CurrentPos.toString() << std::endl;
-            if (XML::Parser::elementExists(routePoint, NAMESTRING)) { pointName = XML::Parser::getElementContent(XML::Parser::getElement(routePoint, NAMESTRING)); }
+            positions.push_back(CurrentPos); // pushes back the current position
+            stringStream << "Position added: " << CurrentPos.toString() << std::endl;   // adds the current position to the string stream
+            if (XML::Parser::elementExists(routePoint, NAMESTRING)) { pointName = checkAndGetElementContent(routePoint, NAMESTRING); }
             positionNames.push_back(pointName);
         }
     }
 
-    stringStream << positions.size() << " positions added." << std::endl;
+    stringStream << positions.size() << " positions added." << std::endl; // adds the positions to the stream using the size of the vector as the number of positions
 
-    routeLength = 0;
-    metres deltaH = 0, deltaV = 0;
+    ///////////////////////////////////////////////////
+    // Setting variable parameters ready for looping //
+    ///////////////////////////////////////////////////
 
-    for (unsigned int i = 0; i < positions.size() -1; ++i)
-       {
-           deltaH = Position::distanceBetween(positions[i], positions[i + 1]);
-           deltaV = positions[i + 1].elevation() - positions[i].elevation();
-           routeLength += sqrt(pow(deltaH, 2) + pow(deltaV, 2));
-       }
+    calculateRouteLength();
     
-    report = stringStream.str();
+    report = stringStream.str(); // converts the current string stream into a string to create the report
 }
 
 void Route::setGranularity(metres granularity)
