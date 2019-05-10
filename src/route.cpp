@@ -285,6 +285,18 @@ Route::Route(std::string source, bool isFileName, metres granularity)
         return XML::Parser::getElementContent(XML::Parser::getElement(source, type));        
     };   
 
+     ////////////////////////////////////////////////////////
+    //           checkAndGetElementAttribute()            //
+    // Function to check that each element is in the file //
+    ////////////////////////////////////////////////////////
+
+
+    auto checkAndGetElementAttribute = [](std::string source, std::string type)
+    {
+        if (!XML::Parser::attributeExists(source, type)) { throw std::domain_error("No " + type + " attribute."); }
+        return XML::Parser::getElementAttribute(source, type); 
+    };
+
     ////////////////////////
     // Constant variables //
     ////////////////////////
@@ -342,8 +354,6 @@ Route::Route(std::string source, bool isFileName, metres granularity)
     source = checkAndGetElementContent(source, GPXSTRING);
     source = checkAndGetElementContent(source, RTESTRING);
 
-    
-
     if (XML::Parser::elementExists(source, NAMESTRING)) 
     {    
         routeName = XML::Parser::getElementContent(XML::Parser::getAndEraseElement(source, NAMESTRING));
@@ -375,17 +385,17 @@ Route::Route(std::string source, bool isFileName, metres granularity)
         }
     }
 
-    stringStream << positions.size() + 1 << " positions added." << std::endl;
+    stringStream << positions.size() << " positions added." << std::endl;
 
     routeLength = 0;
     metres deltaH = 0, deltaV = 0;
 
-    for (unsigned int i = 0; i < positions.size() - 1; ++i)
-    {
-        deltaH = Position::distanceBetween(positions[i], positions[i + 1]);
-        deltaV = positions[i + 1].elevation() - positions[i].elevation();
-        routeLength += sqrt(pow(deltaH, 2) + pow(deltaV, 2));
-    }
+    for (unsigned int i = 0; i < positions.size() -1; ++i)
+       {
+           deltaH = Position::distanceBetween(positions[i], positions[i + 1]);
+           deltaV = positions[i + 1].elevation() - positions[i].elevation();
+           routeLength += sqrt(pow(deltaH, 2) + pow(deltaV, 2));
+       }
     
     report = stringStream.str();
 }

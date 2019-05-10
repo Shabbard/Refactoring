@@ -202,7 +202,6 @@ Track::Track(std::string source, bool isFileName, metres granularity)
     seconds startTime, currentTime, timeElapsed;
     std::ostringstream stringStream;
     Position startPos = Position(0,0,0), nextPos = Position(0,0,0), prevPos = Position(0,0,0);
-    unsigned int numOfPosition;
     setGranularity(granularity);
 
 
@@ -238,7 +237,6 @@ Track::Track(std::string source, bool isFileName, metres granularity)
 
 
     if (! mergedTrkSegs.empty()) source = mergedTrkSegs;
-    numOfPosition = 0;
 
     while (XML::Parser::elementExists(source, TRKPTSTRING)) 
     {
@@ -263,8 +261,6 @@ Track::Track(std::string source, bool isFileName, metres granularity)
             stringStream << "Start position added: " << startPos.toString() << std::endl;
             if (XML::Parser::elementExists(trackPoint,NAMESTRING)) { name = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint,NAMESTRING)); }
             positionNames.push_back(name);
-
-            ++numOfPosition;
 
             prevPos = positions.back(), nextPos = positions.back();
 
@@ -298,16 +294,15 @@ Track::Track(std::string source, bool isFileName, metres granularity)
                 positions.push_back(nextPos);
                 positionNames.push_back(name);
 
-                ++numOfPosition;
                 timeElapsed = currentTime - startTime;
                 arrived.push_back(timeElapsed);
                 departed.push_back(timeElapsed);
                 stringStream << " at time: " << std::to_string(timeElapsed) << std::endl;
                 prevPos = nextPos;
             }
-        //source = trackPoint;
+        source = trackPoint;
         }
-        //source = trackPoint; // one trackpoint should be deleted on start
+       
     }
     
     
@@ -325,7 +320,7 @@ Track::Track(std::string source, bool isFileName, metres granularity)
         
     //     if (XML::Parser::elementExists(trackPoint, ELESTRING)) {
     //         ele = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint, ELESTRING));
-    //         nextPos = Position(lat,lon,ele);
+    //         nextPos = Position(lat,lon,ele);s
     //     } else nextPos = Position(lat,lon);
     //     if (! XML::Parser::elementExists(trackPoint,TIMESTRING)) throw std::domain_error("No 'time' element.");
     //     time = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint,TIMESTRING));
@@ -346,23 +341,21 @@ Track::Track(std::string source, bool isFileName, metres granularity)
     //         // departed.push_back(timeElapsed);
     //         // stringStream << "Position added: " << nextPos.toString() << std::endl;
     //         // stringStream << " at time: " << std::to_string(timeElapsed) << std::endl;
-    //         // ++numOfPosition;
     //         // prevPos = nextPos;
     //     }
     //}
 
-    stringStream << numOfPosition << " positions added." << std::endl;
+    stringStream << positions.size() << " positions added." << std::endl;
     routeLength = 0;
     metres deltaH = 0, deltaV = 0;
     
-    for (unsigned int i = 1; i < numOfPosition; ++i) 
+    for (unsigned int i = 1; i < positions.size() -1; ++i) 
     {
-        deltaH = Position::distanceBetween(positions[i-1], positions[i]);
-        deltaV = positions[i-1].elevation() - positions[i].elevation();
-        routeLength += sqrt(pow(deltaH,2) + pow(deltaV,2));
+        deltaH = Position::distanceBetween(positions[i], positions[i + 1]);
+           deltaV = positions[i + 1].elevation() - positions[i].elevation();
+           routeLength += sqrt(pow(deltaH, 2) + pow(deltaV, 2));
     }
     report = stringStream.str();
-    
 }
 
 void Track::setGranularity(metres granularity)
