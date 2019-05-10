@@ -225,14 +225,8 @@ Track::Track(std::string source, bool isFileName, metres granularity)
         stringStream << "Track name is: " << routeName << std::endl;
     }
 
-    if (checkElementExistsBool(source,NAMESTRING))
-    {
-        std::cout<<"TRUE"<<std::endl;
-    }
-    else
-    {
-        std::cout<<"FALSE"<<std::endl;
-    }
+    
+
     while (XML::Parser::elementExists(source, TRKSEGSTRING)) {
         
         trackPoint = XML::Parser::getAndEraseElement(source, TRKSEGSTRING);
@@ -279,6 +273,7 @@ Track::Track(std::string source, bool isFileName, metres granularity)
             checkElementExistsThrow(trackPoint,TIMESTRING);
 
             time = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint,TIMESTRING));
+            //time = checkAndGetElementContent(trackPoint,TIMESTRING);
             startTime = currentTime = stringToTime(time);
             // do everything related to the start position here
         }
@@ -296,9 +291,10 @@ Track::Track(std::string source, bool isFileName, metres granularity)
             else
             {
                 //do everything for the rest of the positions
-                positions.push_back(nextPos);
+                
                 stringStream << "Position added: " << nextPos.toString() << std::endl;
                 if (XML::Parser::elementExists(trackPoint,NAMESTRING)) { name = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint,NAMESTRING)); }
+                positions.push_back(nextPos);
                 positionNames.push_back(name);
 
                 ++numOfPosition;
