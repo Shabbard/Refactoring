@@ -110,7 +110,6 @@ bool checkElementExistsBool(std::string source, std::string type)
 Track::Track(std::string source, bool isFileName, metres granularity)
 {
 
-
     ////////////////////////////////////////////////////////////////
     //                checkAndGetElementContent()                 //
     // Function to check that each element is in the file         //
@@ -118,13 +117,13 @@ Track::Track(std::string source, bool isFileName, metres granularity)
 
     auto checkAndGetElementContent = [](std::string source, std::string type)
     {
-        if (!XML::Parser::elementExists(source, type))  { throw std::domain_error("No " + type + " element."); }
-        return XML::Parser::getElementContent(XML::Parser::getElement(source, type));        
+        if (!XML::Parser::elementExists(source, type))  { throw std::domain_error("No " + type + " element."); } // accepts the source and checks if the element exits, throws an error otherwise
+        return XML::Parser::getElementContent(XML::Parser::getElement(source, type)); // if the element exists then return its content
     };
 
     auto checkAndEraseContent = [](std::string source, std::string type)
     {
-        return XML::Parser::getElementContent(XML::Parser::getAndEraseElement(source,type));
+        return XML::Parser::getElementContent(XML::Parser::getAndEraseElement(source,type)); // gets the element content and erases it from the source afterwards
     };
 
     ////////////////////////////////////////////////////////
@@ -137,49 +136,7 @@ Track::Track(std::string source, bool isFileName, metres granularity)
         if (!XML::Parser::attributeExists(source, type)) { throw std::domain_error("No " + type + " attribute."); }
         return XML::Parser::getElementAttribute(source, type); 
     };
-
-    ///////////////////////////////////////////////////////
-    //               checkAndGetElement()                 //
-    //      returns the element that is requested        //
-    ///////////////////////////////////////////////////////
-
-    auto checkAndGetElement = [](std::string source, std::string type)
-    {
-        if (!XML::Parser::elementExists(source, type)) { throw std::domain_error("No " + type + " attribute."); }
-        return XML::Parser::getElement(source, type); 
-    };
-
-    ///////////////////////////////////////////////////////
-    //                  runThroughFile()                 //
-    // Function to get the stream of strings from a file //
-    ///////////////////////////////////////////////////////
-
-    auto runThroughFile = [](std::string source, bool isFileName)
-    {
-        std::ostringstream ossPrivate, ossToReturn;
-        if (isFileName)
-        {
-            std::ifstream fs(source);
-            if (!fs.good())
-                throw std::invalid_argument("Error opening source file '" + source + "'.");
-            ossPrivate << "Source file '" << source << "' opened okay." << std::endl;
-            while (fs.good())
-            {
-                std::string fileLine;
-                getline(fs, fileLine);
-                ossToReturn << fileLine << std::endl;
-            }
-            //source = oss2.str();     
-            return ossToReturn.str(); 
-        }
-        return source;
-    };
-
-    auto checkAndEraseElement = [](std::string source, std::string type)
-    {
-        return XML::Parser::getAndEraseElement(source, type);
-    };
-
+    
     ////////////////////////
     // Constant variables //
     ////////////////////////
@@ -198,164 +155,117 @@ Track::Track(std::string source, bool isFileName, metres granularity)
     // Variables that may change throughout //
     //////////////////////////////////////////
 
-    std::string mergedTrkSegs,trkseg,lat,lon,ele,name,time,trackPoint;
-    seconds startTime, currentTime, timeElapsed;
-    std::ostringstream stringStream;
-    Position startPos = Position(0,0,0), nextPos = Position(0,0,0), prevPos = Position(0,0,0);
-    setGranularity(granularity);
+    std::string mergedTrkSegs,trackPoint;       // creates strings to be changed
 
+    seconds startTime, currentTime, timeElapsed;        // creates seconds to be changed
 
-    //////////////////////////////////////////////////////////////////////////
-    // Uses Lambda to find source for each stringType & opening source file //
-    //////////////////////////////////////////////////////////////////////////
-
-    source = runThroughFile(source, isFileName);
-    source = checkAndGetElementContent(source, GPXSTRING);
-    source = checkAndGetElementContent(source, RTKSTRING);
-
-
-    // if (XML::Parser::elementExists(source, NAMESTRING)) {
-    //     routeName = checkAndGetElementContent(checkAndEraseElement(source,NAMESTRING), NAMESTRING);
-    //     stringStream << "Track name is: " << routeName << std::endl;
-    // }
-
-    if (XML::Parser::elementExists(source, NAMESTRING)) {
-        routeName = checkAndEraseContent(source, NAMESTRING);
-        stringStream << "Track name is: " << routeName << std::endl;
-    }
-
+    std::ostringstream stringStream;        // creates string stream to store the stream
     
+    setGranularity(granularity);        // sets the granularity from a pre defined function using a pointer
 
-    while (XML::Parser::elementExists(source, TRKSEGSTRING)) {
-        
-        trackPoint = XML::Parser::getAndEraseElement(source, TRKSEGSTRING);
-        trkseg = XML::Parser::getElementContent(trackPoint);
-        XML::Parser::getAndEraseElement(trkseg, NAMESTRING);
-        mergedTrkSegs += trkseg;
+
+    ///////////////////////////////////////////////////////
+    //                  runThroughFile()                 //
+    // Function to get the stream of strings from a file //
+    ///////////////////////////////////////////////////////
+
+    auto runThroughFile = [&stringStream, source, isFileName]() // Using auto finds the correct return type. Inputs are also captured.
+    {
+        std::ostringstream ossPrivate, ossToReturn; // Creates local function stream of data to be returned to main stream
+        if (isFileName)
+        {
+            std::ifstream fs(source);
+            if (!fs.good())         // ensures that file is the correct one. If not error is thrown with the source name
+                throw std::invalid_argument("Error opening source file '" + source + "'.");
+            ossPrivate << "Source file '" << source << "' opened okay." << std::endl;       // if nothing is thrown then confirmation is added to the local stream
+            while (fs.good())
+            {
+                std::string fileLine;
+                getline(fs, fileLine);  // reads each line of the file
+                ossToReturn << fileLine << std::endl;   // each line is then added to the local stream
+            }
+        }
+        return ossToReturn.str();   // returns the local stream
+    };
+
+    source = runThroughFile();  // pulls the stream of data from the source file.
+    source = checkAndGetElementContent(source, GPXSTRING);  // checks that there is a 'gpx' string inside of source
+    source = checkAndGetElementContent(source, RTKSTRING);  // checks that there is a 'rtk' string inside of source
+
+    if (XML::Parser::elementExists(source, NAMESTRING))         
+    {
+        routeName = checkAndEraseContent(source, NAMESTRING);
+        stringStream << "Track name is: " << routeName << std::endl;        //  inserts the name to the stream
     }
 
-
-
-    if (! mergedTrkSegs.empty()) source = mergedTrkSegs;
-
-    while (XML::Parser::elementExists(source, TRKPTSTRING)) 
+    while (XML::Parser::elementExists(source, TRKSEGSTRING)) 
     {
-        checkElementExistsThrow(source, TRKPTSTRING);
-        trackPoint = checkAndEraseElement(source, TRKPTSTRING);
+        trackPoint = XML::Parser::getAndEraseElement(source, TRKSEGSTRING);
+        std::string trkseg = XML::Parser::getElementContent(trackPoint);
+        XML::Parser::getAndEraseElement(trkseg, NAMESTRING);
+        mergedTrkSegs += trkseg;                                             // finds all the of 'trkseg' strings
+    }
+
+    if (! mergedTrkSegs.empty()) source = mergedTrkSegs;    // inserts the 'trkseg' strings into the stream
+
+    currentTime =  startTime =  stringToTime(checkAndGetElementContent(trackPoint,TIMESTRING));   // sets currenttTime and startTime
+
+    while (XML::Parser::elementExists(source, TRKPTSTRING)) // continues to loop is there is a 'trkpt' inside of source
+    {
+        trackPoint = XML::Parser::getAndEraseElement(source, TRKPTSTRING);  // sets trackpoint to the 'trkpt'
+
+        std::string lat = checkAndGetElementAttribute(trackPoint, LATSTRING);   // sets lat to the 'lat'
+        std::string lon = checkAndGetElementAttribute(trackPoint, LONSTRING);   // sets lon to the 'lon'
         
-        checkAttributeExistsThrow(checkAndEraseElement(source, TRKPTSTRING), LATSTRING);
-        checkAttributeExistsThrow(checkAndEraseElement(source, TRKPTSTRING), LONSTRING);
+        trackPoint = XML::Parser::getElementContent(trackPoint);    // sets trackpoint to all of the current content. Takes over source for current content
 
-        lat = checkAndGetElementAttribute(trackPoint,LATSTRING);
-        lon = checkAndGetElementAttribute(trackPoint, LONSTRING);
-        trackPoint = XML::Parser::getElementContent(trackPoint);
+        std::string ele;    // creates the elevation string to 
 
-        if (XML::Parser::elementExists(trackPoint,ELESTRING)) { ele = checkAndEraseContent(trackPoint,ELESTRING); }
-        else { ele = "0"; }
+        if (XML::Parser::elementExists(trackPoint, ELESTRING)) { ele = checkAndGetElementContent(trackPoint, ELESTRING); }
+        else { ele = "0"; } // if there is no elevation found then it defaults to 0
 
-        if (positions.empty())
-        {
-            startPos = Position(lat,lon,ele);  
-            positions.push_back(startPos);
+        currentTime = stringToTime(checkAndGetElementContent(trackPoint,TIMESTRING));
+        
+        Position CurrentPos = Position(lat, lon, ele);
 
-            stringStream << "Start position added: " << startPos.toString() << std::endl;
-            if (XML::Parser::elementExists(trackPoint,NAMESTRING)) { name = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint,NAMESTRING)); }
-            positionNames.push_back(name);
-
-            prevPos = positions.back(), nextPos = positions.back();
-
-            arrived.push_back(0);
-            departed.push_back(0);
-
-            checkElementExistsThrow(trackPoint,TIMESTRING);
-
-            time = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint,TIMESTRING));
-            //time = checkAndGetElementContent(trackPoint,TIMESTRING);
-            startTime = currentTime = stringToTime(time);
-            // do everything related to the start position here
+        if (!positions.empty() && areSameLocation(CurrentPos, positions.back())) // if there are no positions and the positions are in the same location 
+        { 
+            stringStream << "Position ignored: " << CurrentPos.toString() << std::endl; // it ignores the position
+            departed.back() = currentTime - startTime; // sets the departed time for the position
         }
         else
         {
-            nextPos = Position(lat,lon,ele);
-            if (! XML::Parser::elementExists(trackPoint,TIMESTRING)) throw std::domain_error("No 'time' element.");
-            time = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint,TIMESTRING));
-            currentTime = stringToTime(time);
-            if (areSameLocation(nextPos, prevPos)) 
-            {
-                departed.back() = currentTime - startTime;
-                stringStream << "Position ignored: " << nextPos.toString() << std::endl;
-            }
-            else
-            {
-                //do everything for the rest of the positions
-                
-                stringStream << "Position added: " << nextPos.toString() << std::endl;
-                if (XML::Parser::elementExists(trackPoint,NAMESTRING)) { name = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint,NAMESTRING)); }
-                positions.push_back(nextPos);
-                positionNames.push_back(name);
+            positions.push_back(CurrentPos); 
 
-                timeElapsed = currentTime - startTime;
-                arrived.push_back(timeElapsed);
-                departed.push_back(timeElapsed);
-                stringStream << " at time: " << std::to_string(timeElapsed) << std::endl;
-                prevPos = nextPos;
-            }
-        source = trackPoint;
+            if (XML::Parser::elementExists(trackPoint, NAMESTRING)) { trackPoint = checkAndGetElementContent(trackPoint, NAMESTRING); }
+            positionNames.push_back(trackPoint);
+
+            stringStream << "Position added: " << CurrentPos.toString() << std::endl;
+
+            timeElapsed = currentTime - startTime;
+            arrived.push_back(timeElapsed), departed.push_back(timeElapsed);
+
+            stringStream << " at time: " << std::to_string(timeElapsed) << std::endl; 
         }
-       
     }
-    
-    
-    
-    // while (XML::Parser::elementExists(source, TRKPTSTRING)) {
-        
-    //     // trackPoint = XML::Parser::getAndEraseElement(source, TRKPTSTRING);
-    //     // if (! XML::Parser::attributeExists(trackPoint,LATSTRING)) throw std::domain_error("No 'lat' attribute.");
-    //     // if (! XML::Parser::attributeExists(trackPoint,LONSTRING)) throw std::domain_error("No 'lon' attribute.");
-    //     // lat = checkAndGetElementAttribute(trackPoint, LATSTRING);
-    //     // lon = checkAndGetElementAttribute(trackPoint, LONSTRING);
-    //     // trackPoint = XML::Parser::getElementContent(trackPoint);
-        
 
-        
-    //     if (XML::Parser::elementExists(trackPoint, ELESTRING)) {
-    //         ele = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint, ELESTRING));
-    //         nextPos = Position(lat,lon,ele);s
-    //     } else nextPos = Position(lat,lon);
-    //     if (! XML::Parser::elementExists(trackPoint,TIMESTRING)) throw std::domain_error("No 'time' element.");
-    //     time = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint,TIMESTRING));
-    //     currentTime = stringToTime(time);
-    //     if (areSameLocation(nextPos, prevPos)) {
-    //         // If we're still at the same location, then we haven't departed yet.
-    //         // departed.back() = currentTime - startTime;
-    //         // stringStream << "Position ignored: " << nextPos.toString() << std::endl;
-    //     } //else {
-    //         if (XML::Parser::elementExists(trackPoint,NAMESTRING)) {
-
-    //             //name = XML::Parser::getElementContent(XML::Parser::getElement(trackPoint,NAMESTRING));
-    //         // } else name = ""; // Fixed bug by adding this.
-    //         // positions.push_back(nextPos);
-    //         // positionNames.push_back(name);
-    //         // timeElapsed = currentTime - startTime;
-    //         // arrived.push_back(timeElapsed);
-    //         // departed.push_back(timeElapsed);
-    //         // stringStream << "Position added: " << nextPos.toString() << std::endl;
-    //         // stringStream << " at time: " << std::to_string(timeElapsed) << std::endl;
-    //         // prevPos = nextPos;
-    //     }
-    //}
-
-    stringStream << positions.size() << " positions added." << std::endl;
+    stringStream << positions.size() << " positions added." << std::endl;   // adds the positions to the stream using the size of the vector as the number of positions
+    
+    ///////////////////////////////////////////////////
+    // Setting variable parameters ready for looping //
+    ///////////////////////////////////////////////////
+    
     routeLength = 0;
     metres deltaH = 0, deltaV = 0;
     
-    for (unsigned int i = 1; i < positions.size() -1; ++i) 
+
+    for (unsigned int i = 0; i < positions.size() -1; ++i)      // using the positions created throughout a route is created.
     {
         deltaH = Position::distanceBetween(positions[i], positions[i + 1]);
-           deltaV = positions[i + 1].elevation() - positions[i].elevation();
-           routeLength += sqrt(pow(deltaH, 2) + pow(deltaV, 2));
+        deltaV = positions[i + 1].elevation() - positions[i].elevation();
+        routeLength += sqrt(pow(deltaH, 2) + pow(deltaV, 2));
     }
-    report = stringStream.str();
+    report = stringStream.str();    // switches the current string stream into a string to create the report
 }
 
 void Track::setGranularity(metres granularity)
