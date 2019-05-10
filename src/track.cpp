@@ -244,6 +244,7 @@ Track::Track(std::string source, bool isFileName, metres granularity)
     {
         checkElementExistsThrow(source, TRKPTSTRING);
         trackPoint = checkAndEraseElement(source, TRKPTSTRING);
+        
         checkAttributeExistsThrow(checkAndEraseElement(source, TRKPTSTRING), LATSTRING);
         checkAttributeExistsThrow(checkAndEraseElement(source, TRKPTSTRING), LONSTRING);
 
@@ -304,8 +305,9 @@ Track::Track(std::string source, bool isFileName, metres granularity)
                 stringStream << " at time: " << std::to_string(timeElapsed) << std::endl;
                 prevPos = nextPos;
             }
+        //source = trackPoint;
         }
-    
+        //source = trackPoint; // one trackpoint should be deleted on start
     }
     
     

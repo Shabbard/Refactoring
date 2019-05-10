@@ -283,23 +283,7 @@ Route::Route(std::string source, bool isFileName, metres granularity)
     {
         if (!XML::Parser::elementExists(source, type))  { throw std::domain_error("No " + type + " element."); }
         return XML::Parser::getElementContent(XML::Parser::getElement(source, type));        
-    };
-    
-
-    ////////////////////////////////////////////////////////
-    //           checkAndGetElementAttribute()            //
-    // Function to check that each element is in the file //
-    ////////////////////////////////////////////////////////
-
-
-    auto checkAndGetElementAttribute = [](std::string source, std::string type)
-    {
-        if (!XML::Parser::attributeExists(source, type)) { throw std::domain_error("No " + type + " attribute."); }
-        return XML::Parser::getElementAttribute(source, type); 
-    };
-
-  
-    
+    };   
 
     ////////////////////////
     // Constant variables //
@@ -321,10 +305,8 @@ Route::Route(std::string source, bool isFileName, metres granularity)
 
     std::string lat, lon, ele, pointName, routePoint; 
  
-    
     setGranularity(granularity);
 
-    Position prevPos = Position(0,0,0), nextPos = Position(0,0,0);
     std::ostringstream stringStream;
 
     ///////////////////////////////////////////////////////
@@ -332,7 +314,7 @@ Route::Route(std::string source, bool isFileName, metres granularity)
     // Function to get the stream of strings from a file //
     ///////////////////////////////////////////////////////
 
-    auto runThroughFile = [&stringStream](std::string source, bool isFileName)
+    auto runThroughFile = [&stringStream, source, isFileName]()
     {
         std::ostringstream ossToReturn;
         if (isFileName)
@@ -347,10 +329,8 @@ Route::Route(std::string source, bool isFileName, metres granularity)
                 getline(fs, fileLine);
                 ossToReturn << fileLine << std::endl;
             }
-            //source = oss2.str();     
-            return ossToReturn.str(); 
-        }
-        return source;
+        }    
+        return ossToReturn.str(); 
     };
 
 
@@ -358,9 +338,11 @@ Route::Route(std::string source, bool isFileName, metres granularity)
     // numPositions is incremented to show updated position throughout the function //
     ////////////////////////////////////////////////////////////////////////////////// 
 
-    source = runThroughFile(source, isFileName);
+    source = runThroughFile();
     source = checkAndGetElementContent(source, GPXSTRING);
     source = checkAndGetElementContent(source, RTESTRING);
+
+    
 
     if (XML::Parser::elementExists(source, NAMESTRING)) 
     {    
@@ -383,7 +365,7 @@ Route::Route(std::string source, bool isFileName, metres granularity)
         
         Position CurrentPos = Position(lat, lon, ele);
 
-        if (areSameLocation(CurrentPos, positions.back())) { stringStream << "Position ignored: " << CurrentPos.toString() << std::endl; }
+        if (!positions.empty() && areSameLocation(CurrentPos, positions.back())) { stringStream << "Position ignored: " << CurrentPos.toString() << std::endl; }
         else
         {
             positions.push_back(CurrentPos); 
@@ -398,10 +380,10 @@ Route::Route(std::string source, bool isFileName, metres granularity)
     routeLength = 0;
     metres deltaH = 0, deltaV = 0;
 
-    for (unsigned int i = 0; i < positions.size(); ++i)
+    for (unsigned int i = 0; i < positions.size() - 1; ++i)
     {
-        deltaH = Position::distanceBetween(positions[i - 1], positions[i]);
-        deltaV = positions[i - 1].elevation() - positions[i].elevation();
+        deltaH = Position::distanceBetween(positions[i], positions[i + 1]);
+        deltaV = positions[i + 1].elevation() - positions[i].elevation();
         routeLength += sqrt(pow(deltaH, 2) + pow(deltaV, 2));
     }
     
